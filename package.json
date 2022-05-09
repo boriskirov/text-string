@@ -1,0 +1,18 @@
+{
+  "name": "text-string",
+  "version": "1.0.0",
+  "description": "Generate different text strings types for faster import of data in text objects.",
+  "main": "code.js",
+  "scripts": {
+    "build": "tsc -p tsconfig.json"
+  },
+  "author": "",
+  "license": "",
+  "devDependencies": {
+    "@figma/plugin-typings": "^1.45.0",
+    "typescript": "*"
+  },
+  "dependencies": {
+    "figma-plugin-ds": "^1.0.1"
+  }
+}

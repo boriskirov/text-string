@@ -1,0 +1,32 @@
+{
+  "name": "Text string",
+  "id": "1103668132201345618",
+  "api": "1.0.0",
+  "main": "code.js",
+  "editorType": ["figma", "figjam"],
+  "ui": "ui.html",
+  "menu": [
+    { "name": "Open plugin", "command": "text" },
+    { "separator": true },
+    { "name": "Create Text", "command": "text" },
+    { "separator": true },
+    {
+      "name": "Convert to",
+      "menu": [
+        {
+          "name": "Date",
+          "command": "circle",
+          "main": "code.js"
+        },
+        { "name": "Duration", "command": "rectangle" },
+        { "name": "Health", "command": "rectangle" },
+        { "name": "Percentage", "command": "rectangle" },
+        { "name": "Service", "command": "rectangle" },
+        { "name": "Severity", "command": "rectangle" },
+        { "name": "Space/Trace ID", "command": "rectangle" },
+        { "name": "Trace", "command": "rectangle" },
+        { "name": "Throughput", "command": "rectangle" }
+      ]
+    }
+  ]
+}
