@@ -52,13 +52,13 @@ if (figma.editorType === "figma") {
           }
           return result;
         }
-        const rect = figma.createText();
-        rect.characters = generateString(24);
-        rect.y = i * 72;
-        rect.fontSize = 24;
-        rect.fills = [{ type: "SOLID", color: { r: 0, g: 0, b: 0 } }];
-        figma.currentPage.appendChild(rect);
-        nodes.push(rect);
+        const text = figma.createText();
+        text.characters = generateString(24);
+        text.y = i * 72;
+        text.fontSize = 24;
+        text.fills = [{ type: "SOLID", color: { r: 0, g: 0, b: 0 } }];
+        figma.currentPage.appendChild(text);
+        nodes.push(text);
       }
       figma.currentPage.selection = nodes;
       figma.viewport.scrollAndZoomIntoView(nodes);
@@ -67,8 +67,6 @@ if (figma.editorType === "figma") {
     if (msg.type === "change-text") {
       for (const node of figma.currentPage.selection) {
         if ("characters" in node) {
-          const rand = Math.random().toString(16).substr(2, 8);
-
           const characters =
             "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
           function generateUpdate(length) {
@@ -88,6 +86,19 @@ if (figma.editorType === "figma") {
     }
     // Update duration
     if (msg.type === "change-duration") {
+      // Check if something is selected
+      if (figma.currentPage.selection.length === 0) {
+        // if not, show a message
+        figma.notify("Select a text object to convert it", { timeout: 5 });
+      }
+      // if it is not a text object, show a message
+      const nodes = figma.currentPage.selection.filter(function (node) {
+        return node.type === "TEXT";
+      }) as Array<TextNode>;
+      if (nodes.length === 0) {
+        figma.notify("Select a text object to convert it", { timeout: 5 });
+        return;
+      }
       for (const node of figma.currentPage.selection) {
         if ("characters" in node) {
           const characters = "123456789";
@@ -110,6 +121,19 @@ if (figma.editorType === "figma") {
 
     // Update percentage
     if (msg.type === "change-percentage") {
+      // Check if something is selected
+      if (figma.currentPage.selection.length === 0) {
+        // if not, show a message
+        figma.notify("Select a text object to convert it", { timeout: 5 });
+      }
+      // if it is not a text object, show a message
+      const nodes = figma.currentPage.selection.filter(function (node) {
+        return node.type === "TEXT";
+      }) as Array<TextNode>;
+      if (nodes.length === 0) {
+        figma.notify("Select a text object to convert it", { timeout: 5 });
+        return;
+      }
       for (const node of figma.currentPage.selection) {
         if ("characters" in node) {
           const characters = "456789";
@@ -131,6 +155,19 @@ if (figma.editorType === "figma") {
 
     // Update severity
     if (msg.type === "change-severity") {
+      // Check if something is selected
+      if (figma.currentPage.selection.length === 0) {
+        // if not, show a message
+        figma.notify("Select a text object to convert it", { timeout: 5 });
+      }
+      // if it is not a text object, show a message
+      const nodes = figma.currentPage.selection.filter(function (node) {
+        return node.type === "TEXT";
+      }) as Array<TextNode>;
+      if (nodes.length === 0) {
+        figma.notify("Select a text object to convert it", { timeout: 5 });
+        return;
+      }
       for (const node of figma.currentPage.selection) {
         if ("characters" in node) {
           const characters = "236789";
@@ -152,6 +189,19 @@ if (figma.editorType === "figma") {
 
     // Update tpm
     if (msg.type === "change-tpm") {
+      // Check if something is selected
+      if (figma.currentPage.selection.length === 0) {
+        // if not, show a message
+        figma.notify("Select a text object to convert it", { timeout: 5 });
+      }
+      // if it is not a text object, show a message
+      const nodes = figma.currentPage.selection.filter(function (node) {
+        return node.type === "TEXT";
+      }) as Array<TextNode>;
+      if (nodes.length === 0) {
+        figma.notify("Select a text object to convert it", { timeout: 5 });
+        return;
+      }
       for (const node of figma.currentPage.selection) {
         if ("characters" in node) {
           const characters = "456789";
@@ -173,6 +223,19 @@ if (figma.editorType === "figma") {
 
     // Update date
     if (msg.type === "change-date") {
+      // Check if something is selected
+      if (figma.currentPage.selection.length === 0) {
+        // if not, show a message
+        figma.notify("Select a text object to convert it", { timeout: 5 });
+      }
+      // if it is not a text object, show a message
+      const nodes = figma.currentPage.selection.filter(function (node) {
+        return node.type === "TEXT";
+      }) as Array<TextNode>;
+      if (nodes.length === 0) {
+        figma.notify("Select a text object to convert it", { timeout: 5 });
+        return;
+      }
       for (const node of figma.currentPage.selection) {
         if ("characters" in node) {
           function randomDate(start, end) {
@@ -196,6 +259,19 @@ if (figma.editorType === "figma") {
 
     //Update random trace
     if (msg.type === "change-trace") {
+      // Check if something is selected
+      if (figma.currentPage.selection.length === 0) {
+        // if not, show a message
+        figma.notify("Select a text object to convert it", { timeout: 5 });
+      }
+      // if it is not a text object, show a message
+      const nodes = figma.currentPage.selection.filter(function (node) {
+        return node.type === "TEXT";
+      }) as Array<TextNode>;
+      if (nodes.length === 0) {
+        figma.notify("Select a text object to convert it", { timeout: 5 });
+        return;
+      }
       for (const node of figma.currentPage.selection) {
         if ("characters" in node) {
           const service = [
@@ -221,6 +297,19 @@ if (figma.editorType === "figma") {
 
     //Update random service
     if (msg.type === "change-service") {
+      // Check if something is selected
+      if (figma.currentPage.selection.length === 0) {
+        // if not, show a message
+        figma.notify("Select a text object to convert it", { timeout: 5 });
+      }
+      // if it is not a text object, show a message
+      const nodes = figma.currentPage.selection.filter(function (node) {
+        return node.type === "TEXT";
+      }) as Array<TextNode>;
+      if (nodes.length === 0) {
+        figma.notify("Select a text object to convert it", { timeout: 5 });
+        return;
+      }
       for (const node of figma.currentPage.selection) {
         if ("characters" in node) {
           const service = [
@@ -247,6 +336,21 @@ if (figma.editorType === "figma") {
 
     //Update random health status
     if (msg.type === "change-health") {
+      // Check if something is selected
+      if (figma.currentPage.selection.length === 0) {
+        // if not, show a message
+        figma.notify("Select a text object to convert it", { timeout: 5 });
+        return;
+      }
+      // if it is not a text object, show a message
+      const nodes = figma.currentPage.selection.filter(function (node) {
+        return node.type === "TEXT";
+      }) as Array<TextNode>;
+      if (nodes.length === 0) {
+        figma.notify("Select a text object to convert it", { timeout: 5 });
+        return;
+      }
+
       for (const node of figma.currentPage.selection) {
         if ("characters" in node) {
           const service = ["Healthy", "Unhealthy", "Critical", "Unknown"];
@@ -259,6 +363,19 @@ if (figma.editorType === "figma") {
 
     //Update random monitor
     if (msg.type === "change-monitor") {
+      // Check if something is selected
+      if (figma.currentPage.selection.length === 0) {
+        // if not, show a message
+        figma.notify("Select a text object to convert it", { timeout: 5 });
+      }
+      // if it is not a text object, show a message
+      const nodes = figma.currentPage.selection.filter(function (node) {
+        return node.type === "TEXT";
+      }) as Array<TextNode>;
+      if (nodes.length === 0) {
+        figma.notify("Select a text object to convert it", { timeout: 5 });
+        return;
+      }
       for (const node of figma.currentPage.selection) {
         if ("characters" in node) {
           const service = [
