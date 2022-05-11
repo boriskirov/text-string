@@ -1722,6 +1722,45 @@
         margin: 0 12px 0 0;
       }
     </style>
+    <style>
+      .figma-light body {
+        background-color: white;
+        color: #303030;
+      }
+
+      .figma-dark body {
+        background-color: #222222;
+        color: #f2f2f2;
+      }
+
+      .figma-dark .button-list:hover {
+        background-color: #303030:
+      }
+
+      .figma-dark .button-list,
+      .figma-dark label {
+        background-color: #222222;
+        color: #f2f2f2;
+      }
+
+      .figma-dark .button-type {
+        -webkit-filter: invert(100%);
+        filter: invert(100%);
+      }
+
+      .figma-dark hr {
+        background-color: #303030;
+      }
+
+      .figma-dark input {
+        background-color: #303030;
+        color: #fefefe;
+      }
+
+      .figma-dark input:focus, .figma-dark input::placeholder {
+        color: f2f2f2;
+      }
+    </style>
   </head>
 
   <body>
@@ -1904,6 +1943,11 @@
       document.getElementById("cancel").onclick = () => {
         parent.postMessage({ pluginMessage: { type: "cancel" } }, "*");
       };
+
+      function svgMod() {
+        var circle1 = document.getElementById("button-type");
+        circle1.stroke.fill = "blue";
+      }
     </script>
   </body>
 </html>

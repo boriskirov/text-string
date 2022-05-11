@@ -7,7 +7,7 @@ if (figma.editorType === "figma") {
   // it will then create that many rectangles on the screen.
 
   // This shows the HTML page in "ui.html".
-  figma.showUI(__html__, { width: 350, height: 640 });
+  figma.showUI(__html__, { width: 350, height: 640, themeColors: true });
 
   // Calls to "parent.postMessage" from within the HTML page will trigger this
   // callback. The callback will be passed the "pluginMessage" property of the
@@ -90,6 +90,7 @@ if (figma.editorType === "figma") {
       if (figma.currentPage.selection.length === 0) {
         // if not, show a message
         figma.notify("Select a text object to convert it", { timeout: 5 });
+        return;
       }
       // if it is not a text object, show a message
       const nodes = figma.currentPage.selection.filter(function (node) {
@@ -125,6 +126,7 @@ if (figma.editorType === "figma") {
       if (figma.currentPage.selection.length === 0) {
         // if not, show a message
         figma.notify("Select a text object to convert it", { timeout: 5 });
+        return;
       }
       // if it is not a text object, show a message
       const nodes = figma.currentPage.selection.filter(function (node) {
@@ -159,6 +161,7 @@ if (figma.editorType === "figma") {
       if (figma.currentPage.selection.length === 0) {
         // if not, show a message
         figma.notify("Select a text object to convert it", { timeout: 5 });
+        return;
       }
       // if it is not a text object, show a message
       const nodes = figma.currentPage.selection.filter(function (node) {
@@ -193,6 +196,7 @@ if (figma.editorType === "figma") {
       if (figma.currentPage.selection.length === 0) {
         // if not, show a message
         figma.notify("Select a text object to convert it", { timeout: 5 });
+        return;
       }
       // if it is not a text object, show a message
       const nodes = figma.currentPage.selection.filter(function (node) {
@@ -227,6 +231,7 @@ if (figma.editorType === "figma") {
       if (figma.currentPage.selection.length === 0) {
         // if not, show a message
         figma.notify("Select a text object to convert it", { timeout: 5 });
+        return;
       }
       // if it is not a text object, show a message
       const nodes = figma.currentPage.selection.filter(function (node) {
@@ -263,6 +268,7 @@ if (figma.editorType === "figma") {
       if (figma.currentPage.selection.length === 0) {
         // if not, show a message
         figma.notify("Select a text object to convert it", { timeout: 5 });
+        return;
       }
       // if it is not a text object, show a message
       const nodes = figma.currentPage.selection.filter(function (node) {
@@ -301,6 +307,7 @@ if (figma.editorType === "figma") {
       if (figma.currentPage.selection.length === 0) {
         // if not, show a message
         figma.notify("Select a text object to convert it", { timeout: 5 });
+        return;
       }
       // if it is not a text object, show a message
       const nodes = figma.currentPage.selection.filter(function (node) {
@@ -367,6 +374,7 @@ if (figma.editorType === "figma") {
       if (figma.currentPage.selection.length === 0) {
         // if not, show a message
         figma.notify("Select a text object to convert it", { timeout: 5 });
+        return;
       }
       // if it is not a text object, show a message
       const nodes = figma.currentPage.selection.filter(function (node) {
