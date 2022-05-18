@@ -1,40 +1,15 @@
-Below are the steps to get your plugin running. You can also find instructions at:
+# Text string
 
-https://www.figma.com/plugin-docs/setup/
+A Figma plugin to test your UI in different languages
 
-This plugin template uses Typescript and NPM, two standard tools in creating JavaScript applications.
+![Text String](https://raw.githubusercontent.com/boriskirov/text-string/main/textstring-cover.png)
 
-First, download Node.js which comes with NPM. This will allow you to install TypeScript and other
-libraries. You can find the download link here:
+## Commands
 
-https://nodejs.org/en/download/
+### Text Strings
 
-Next, install TypeScript using the command:
+Opens a modal with a list of options. Select a text object/s in figma and then click on one of the available options in the modal to convert them in a data specific type. Close the dialog by clicking on the close icon on the top right corner.
 
-npm install -g typescript
+## License
 
-Finally, in the directory of your plugin, get the latest type definitions for the plugin API by running:
-
-npm install --save-dev @figma/plugin-typings
-
-If you are familiar with JavaScript, TypeScript will look very familiar. In fact, valid JavaScript code
-is already valid Typescript code.
-
-TypeScript adds type annotations to variables. This allows code editors such as Visual Studio Code
-to provide information about the Figma API while you are writing code, as well as help catch bugs
-you previously didn't notice.
-
-For more information, visit https://www.typescriptlang.org/
-
-Using TypeScript requires a compiler to convert TypeScript (code.ts) into JavaScript (code.js)
-for the browser to run.
-
-We recommend writing TypeScript code using Visual Studio code:
-
-1. Download Visual Studio Code if you haven't already: https://code.visualstudio.com/.
-2. Open this directory in Visual Studio Code.
-3. Compile TypeScript to JavaScript: Run the "Terminal > Run Build Task..." menu item,
-   then select "tsc: watch - tsconfig.json". You will have to do this again every time
-   you reopen Visual Studio Code.
-
-That's it! Visual Studio Code will regenerate the JavaScript file every time you save.
+[MIT](/LICENSE.md)
