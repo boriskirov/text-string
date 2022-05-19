@@ -10,7 +10,7 @@ A Figma plugin to test your UI in different languages
 
 If text object/s is/are selected in Figma, the command will format them randomly with dates.
 
-### Duratio
+### Duration
 
 If text object/s is/are selected in Figma, the command will format them randomly with duration.
 
