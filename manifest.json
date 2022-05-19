@@ -4,5 +4,19 @@
   "api": "1.0.0",
   "main": "code.js",
   "editorType": ["figma", "figjam"],
-  "ui": "ui.html"
+  "ui": "ui.html",
+  "menu": [
+    { "name": "Date", "command": "date" },
+    { "name": "Duration", "command": "duration" },
+    { "name": "Health", "command": "health" },
+    { "name": "Monitor", "command": "monitor" },
+    { "name": "Percentage", "command": "percentage" },
+    { "name": "Service", "command": "service" },
+    { "name": "Severity", "command": "severity" },
+    { "name": "Span / Trace ID", "command": "span-trace-id" },
+    { "name": "Trace", "command": "trace" },
+    { "name": "Throughput", "command": "throughput" },
+    { "separator": true },
+    { "name": "Plugin", "command": "plugin" }
+  ]
 }

@@ -1,8 +1,738 @@
 // This file holds the main code for the plugin. It has access to the *document*.
 // You can access browser APIs such as the network by creating a UI which contains
 // a full browser environment (see documentation).
+
 // Runs this code if the plugin is run in Figma
-if (figma.editorType === "figma") {
+
+if (figma.command == "health") {
+  async function createHealth(): Promise<string | undefined> {
+    // Inter is the font that objects will be created in Figma.
+    // We need to wait for fonts to load before creating text using them.
+    figma.loadFontAsync({ family: "Inter", style: "Thin" });
+    await figma.loadFontAsync({ family: "Inter", style: "Extra Light" });
+    await figma.loadFontAsync({ family: "Inter", style: "Light" });
+    await figma.loadFontAsync({ family: "Inter", style: "Regular" });
+    await figma.loadFontAsync({ family: "Inter", style: "Medium" });
+    await figma.loadFontAsync({ family: "Inter", style: "Semi Bold" });
+    await figma.loadFontAsync({ family: "Inter", style: "Bold" });
+    await figma.loadFontAsync({ family: "Inter", style: "Extra Bold" });
+    await figma.loadFontAsync({ family: "Inter", style: "Black" });
+    await figma.loadFontAsync({ family: "Inter", style: "Thin Italic" });
+    await figma.loadFontAsync({
+      family: "Inter",
+      style: "Extra Light Italic",
+    });
+    await figma.loadFontAsync({ family: "Inter", style: "Light Italic" });
+    await figma.loadFontAsync({ family: "Inter", style: "Italic" });
+    await figma.loadFontAsync({ family: "Inter", style: "Medium Italic" });
+    await figma.loadFontAsync({ family: "Inter", style: "Semi Bold Italic" });
+    await figma.loadFontAsync({ family: "Inter", style: "Bold Italic" });
+    await figma.loadFontAsync({
+      family: "Inter",
+      style: "Extra Bold Italic",
+    });
+    await figma.loadFontAsync({ family: "Inter", style: "Black Italic" });
+    // Make sure the selection is a single piece of text before proceeding.
+
+    if (figma.command === "health") {
+      const node = figma.currentPage.selection[0];
+      if (node.type !== "TEXT") {
+        return "Select a single text node.";
+      } else {
+        for (const node of figma.currentPage.selection) {
+          if ("characters" in node) {
+            const service = ["Healthy", "Unhealthy", "Critical", "Unknown"];
+            const randomService = Math.floor(Math.random() * service.length);
+
+            node.characters = service[randomService];
+          }
+        }
+      }
+    }
+  }
+
+  createHealth().then((message: string | undefined) => {
+    figma.closePlugin(message);
+  });
+} else if (figma.command == "service") {
+  async function createService(): Promise<string | undefined> {
+    // Inter is the font that objects will be created in Figma.
+    // We need to wait for fonts to load before creating text using them.
+    await figma.loadFontAsync({ family: "Inter", style: "Thin" });
+    await figma.loadFontAsync({ family: "Inter", style: "Extra Light" });
+    await figma.loadFontAsync({ family: "Inter", style: "Light" });
+    await figma.loadFontAsync({ family: "Inter", style: "Regular" });
+    await figma.loadFontAsync({ family: "Inter", style: "Medium" });
+    await figma.loadFontAsync({ family: "Inter", style: "Semi Bold" });
+    await figma.loadFontAsync({ family: "Inter", style: "Bold" });
+    await figma.loadFontAsync({ family: "Inter", style: "Extra Bold" });
+    await figma.loadFontAsync({ family: "Inter", style: "Black" });
+    await figma.loadFontAsync({ family: "Inter", style: "Thin Italic" });
+    await figma.loadFontAsync({
+      family: "Inter",
+      style: "Extra Light Italic",
+    });
+    await figma.loadFontAsync({ family: "Inter", style: "Light Italic" });
+    await figma.loadFontAsync({ family: "Inter", style: "Italic" });
+    await figma.loadFontAsync({ family: "Inter", style: "Medium Italic" });
+    await figma.loadFontAsync({ family: "Inter", style: "Semi Bold Italic" });
+    await figma.loadFontAsync({ family: "Inter", style: "Bold Italic" });
+    await figma.loadFontAsync({
+      family: "Inter",
+      style: "Extra Bold Italic",
+    });
+    await figma.loadFontAsync({ family: "Inter", style: "Black Italic" });
+    // Make sure the selection is a single piece of text before proceeding.
+
+    if (figma.command === "service") {
+      const node = figma.currentPage.selection[0];
+      if (node.type !== "TEXT") {
+        return "Select a single text node.";
+      } else {
+        for (const node of figma.currentPage.selection) {
+          if (figma.currentPage.selection.length === 0) {
+            // if not, show a message
+            figma.notify("Select a text object to convert it", {
+              timeout: 5,
+            });
+            return;
+          }
+          // if it is not a text object, show a message
+          const nodes = figma.currentPage.selection.filter(function (node) {
+            return node.type === "TEXT";
+          }) as Array<TextNode>;
+          if (nodes.length === 0) {
+            figma.notify("Select a text object to convert it", {
+              timeout: 5,
+            });
+            return;
+          }
+          for (const node of figma.currentPage.selection) {
+            if ("characters" in node) {
+              const service = [
+                "advertService",
+                "productCatalogService",
+                "recommendationService",
+                "frontend-rum",
+                "frontend-node",
+                "cartService",
+                "shippingService",
+                "checkoutService",
+                "paymentService",
+                "emailService",
+                "addressValidationService",
+                "billingService",
+                "frontend-IOS",
+              ];
+              const randomService = Math.floor(Math.random() * service.length);
+
+              node.characters = service[randomService];
+            }
+          }
+        }
+      }
+    }
+  }
+
+  createService().then((message: string | undefined) => {
+    figma.closePlugin(message);
+  });
+} else if (figma.command == "trace") {
+  async function createTrace(): Promise<string | undefined> {
+    // Inter is the font that objects will be created in Figma.
+    // We need to wait for fonts to load before creating text using them.
+    await figma.loadFontAsync({ family: "Inter", style: "Thin" });
+    await figma.loadFontAsync({ family: "Inter", style: "Extra Light" });
+    await figma.loadFontAsync({ family: "Inter", style: "Light" });
+    await figma.loadFontAsync({ family: "Inter", style: "Regular" });
+    await figma.loadFontAsync({ family: "Inter", style: "Medium" });
+    await figma.loadFontAsync({ family: "Inter", style: "Semi Bold" });
+    await figma.loadFontAsync({ family: "Inter", style: "Bold" });
+    await figma.loadFontAsync({ family: "Inter", style: "Extra Bold" });
+    await figma.loadFontAsync({ family: "Inter", style: "Black" });
+    await figma.loadFontAsync({ family: "Inter", style: "Thin Italic" });
+    await figma.loadFontAsync({
+      family: "Inter",
+      style: "Extra Light Italic",
+    });
+    await figma.loadFontAsync({ family: "Inter", style: "Light Italic" });
+    await figma.loadFontAsync({ family: "Inter", style: "Italic" });
+    await figma.loadFontAsync({ family: "Inter", style: "Medium Italic" });
+    await figma.loadFontAsync({ family: "Inter", style: "Semi Bold Italic" });
+    await figma.loadFontAsync({ family: "Inter", style: "Bold Italic" });
+    await figma.loadFontAsync({
+      family: "Inter",
+      style: "Extra Bold Italic",
+    });
+    await figma.loadFontAsync({ family: "Inter", style: "Black Italic" });
+    // Make sure the selection is a single piece of text before proceeding.
+
+    if (figma.command === "trace") {
+      const node = figma.currentPage.selection[0];
+      if (node.type !== "TEXT") {
+        return "Select a single text node.";
+      } else {
+        for (const node of figma.currentPage.selection) {
+          if (figma.currentPage.selection.length === 0) {
+            // if not, show a message
+            figma.notify("Select a text object to convert it", {
+              timeout: 5,
+            });
+            return;
+          }
+          // if it is not a text object, show a message
+          const nodes = figma.currentPage.selection.filter(function (node) {
+            return node.type === "TEXT";
+          }) as Array<TextNode>;
+          if (nodes.length === 0) {
+            figma.notify("Select a text object to convert it", {
+              timeout: 5,
+            });
+            return;
+          }
+          for (const node of figma.currentPage.selection) {
+            if ("characters" in node) {
+              const service = [
+                "/",
+                "/cart",
+                "/place-order",
+                "GET /api/user/",
+                "/product/:id",
+                "/cart/checkout/",
+                "/product/OLJSDSKHSDSD",
+                "Click - div",
+                "/product/L9ECAV7KIM",
+                "/product/KJLASDJKLSA",
+                "GET /user",
+                "POST /user",
+              ];
+              const randomTrace = Math.floor(Math.random() * service.length);
+
+              node.characters = service[randomTrace];
+            }
+          }
+        }
+      }
+    }
+  }
+
+  createTrace().then((message: string | undefined) => {
+    figma.closePlugin(message);
+  });
+} else if (figma.command == "duration") {
+  async function createDuration(): Promise<string | undefined> {
+    // Inter is the font that objects will be created in Figma.
+    // We need to wait for fonts to load before creating text using them.
+    await figma.loadFontAsync({ family: "Inter", style: "Thin" });
+    await figma.loadFontAsync({ family: "Inter", style: "Extra Light" });
+    await figma.loadFontAsync({ family: "Inter", style: "Light" });
+    await figma.loadFontAsync({ family: "Inter", style: "Regular" });
+    await figma.loadFontAsync({ family: "Inter", style: "Medium" });
+    await figma.loadFontAsync({ family: "Inter", style: "Semi Bold" });
+    await figma.loadFontAsync({ family: "Inter", style: "Bold" });
+    await figma.loadFontAsync({ family: "Inter", style: "Extra Bold" });
+    await figma.loadFontAsync({ family: "Inter", style: "Black" });
+    await figma.loadFontAsync({ family: "Inter", style: "Thin Italic" });
+    await figma.loadFontAsync({
+      family: "Inter",
+      style: "Extra Light Italic",
+    });
+    await figma.loadFontAsync({ family: "Inter", style: "Light Italic" });
+    await figma.loadFontAsync({ family: "Inter", style: "Italic" });
+    await figma.loadFontAsync({ family: "Inter", style: "Medium Italic" });
+    await figma.loadFontAsync({ family: "Inter", style: "Semi Bold Italic" });
+    await figma.loadFontAsync({ family: "Inter", style: "Bold Italic" });
+    await figma.loadFontAsync({
+      family: "Inter",
+      style: "Extra Bold Italic",
+    });
+    await figma.loadFontAsync({ family: "Inter", style: "Black Italic" });
+    // Make sure the selection is a single piece of text before proceeding.
+
+    if (figma.command === "duration") {
+      const node = figma.currentPage.selection[0];
+      if (node.type !== "TEXT") {
+        return "Select a single text node.";
+      } else {
+        for (const node of figma.currentPage.selection) {
+          if (figma.currentPage.selection.length === 0) {
+            // if not, show a message
+            figma.notify("Select a text object to convert it", {
+              timeout: 5,
+            });
+            return;
+          }
+          // if it is not a text object, show a message
+          const nodes = figma.currentPage.selection.filter(function (node) {
+            return node.type === "TEXT";
+          }) as Array<TextNode>;
+          if (nodes.length === 0) {
+            figma.notify("Select a text object to convert it", {
+              timeout: 5,
+            });
+            return;
+          }
+          for (const node of figma.currentPage.selection) {
+            if ("characters" in node) {
+              const characters = "123456789";
+              function generateDuration(length) {
+                let result = "";
+                const charactersLength = characters.length;
+                for (let i = 0; i < length; i++) {
+                  result += characters.charAt(
+                    Math.floor(Math.random() * charactersLength)
+                  );
+                }
+                return result;
+              }
+
+              node.characters =
+                generateDuration(1) + "," + generateDuration(3) + " ms";
+            }
+          }
+        }
+      }
+    }
+  }
+
+  createDuration().then((message: string | undefined) => {
+    figma.closePlugin(message);
+  });
+} else if (figma.command == "percentage") {
+  async function createPercentage(): Promise<string | undefined> {
+    // Inter is the font that objects will be created in Figma.
+    // We need to wait for fonts to load before creating text using them.
+    await figma.loadFontAsync({ family: "Inter", style: "Thin" });
+    await figma.loadFontAsync({ family: "Inter", style: "Extra Light" });
+    await figma.loadFontAsync({ family: "Inter", style: "Light" });
+    await figma.loadFontAsync({ family: "Inter", style: "Regular" });
+    await figma.loadFontAsync({ family: "Inter", style: "Medium" });
+    await figma.loadFontAsync({ family: "Inter", style: "Semi Bold" });
+    await figma.loadFontAsync({ family: "Inter", style: "Bold" });
+    await figma.loadFontAsync({ family: "Inter", style: "Extra Bold" });
+    await figma.loadFontAsync({ family: "Inter", style: "Black" });
+    await figma.loadFontAsync({ family: "Inter", style: "Thin Italic" });
+    await figma.loadFontAsync({
+      family: "Inter",
+      style: "Extra Light Italic",
+    });
+    await figma.loadFontAsync({ family: "Inter", style: "Light Italic" });
+    await figma.loadFontAsync({ family: "Inter", style: "Italic" });
+    await figma.loadFontAsync({ family: "Inter", style: "Medium Italic" });
+    await figma.loadFontAsync({ family: "Inter", style: "Semi Bold Italic" });
+    await figma.loadFontAsync({ family: "Inter", style: "Bold Italic" });
+    await figma.loadFontAsync({
+      family: "Inter",
+      style: "Extra Bold Italic",
+    });
+    await figma.loadFontAsync({ family: "Inter", style: "Black Italic" });
+    // Make sure the selection is a single piece of text before proceeding.
+
+    if (figma.command === "percentage") {
+      const node = figma.currentPage.selection[0];
+      if (node.type !== "TEXT") {
+        return "Select a single text node.";
+      } else {
+        for (const node of figma.currentPage.selection) {
+          if (figma.currentPage.selection.length === 0) {
+            // if not, show a message
+            figma.notify("Select a text object to convert it", {
+              timeout: 5,
+            });
+            return;
+          }
+          // if it is not a text object, show a message
+          const nodes = figma.currentPage.selection.filter(function (node) {
+            return node.type === "TEXT";
+          }) as Array<TextNode>;
+          if (nodes.length === 0) {
+            figma.notify("Select a text object to convert it", {
+              timeout: 5,
+            });
+            return;
+          }
+          for (const node of figma.currentPage.selection) {
+            if ("characters" in node) {
+              const characters = "456789";
+              function generatePecentage(length) {
+                let result = "";
+                const charactersLength = characters.length;
+                for (let i = 0; i < length; i++) {
+                  result += characters.charAt(
+                    Math.floor(Math.random() * charactersLength)
+                  );
+                }
+                return result;
+              }
+
+              node.characters =
+                generatePecentage(1) + generatePecentage(1) + "%";
+            }
+          }
+        }
+      }
+    }
+  }
+
+  createPercentage().then((message: string | undefined) => {
+    figma.closePlugin(message);
+  });
+} else if (figma.command == "throughput") {
+  async function createThroughput(): Promise<string | undefined> {
+    // Inter is the font that objects will be created in Figma.
+    // We need to wait for fonts to load before creating text using them.
+    await figma.loadFontAsync({ family: "Inter", style: "Thin" });
+    await figma.loadFontAsync({ family: "Inter", style: "Extra Light" });
+    await figma.loadFontAsync({ family: "Inter", style: "Light" });
+    await figma.loadFontAsync({ family: "Inter", style: "Regular" });
+    await figma.loadFontAsync({ family: "Inter", style: "Medium" });
+    await figma.loadFontAsync({ family: "Inter", style: "Semi Bold" });
+    await figma.loadFontAsync({ family: "Inter", style: "Bold" });
+    await figma.loadFontAsync({ family: "Inter", style: "Extra Bold" });
+    await figma.loadFontAsync({ family: "Inter", style: "Black" });
+    await figma.loadFontAsync({ family: "Inter", style: "Thin Italic" });
+    await figma.loadFontAsync({
+      family: "Inter",
+      style: "Extra Light Italic",
+    });
+    await figma.loadFontAsync({ family: "Inter", style: "Light Italic" });
+    await figma.loadFontAsync({ family: "Inter", style: "Italic" });
+    await figma.loadFontAsync({ family: "Inter", style: "Medium Italic" });
+    await figma.loadFontAsync({ family: "Inter", style: "Semi Bold Italic" });
+    await figma.loadFontAsync({ family: "Inter", style: "Bold Italic" });
+    await figma.loadFontAsync({
+      family: "Inter",
+      style: "Extra Bold Italic",
+    });
+    await figma.loadFontAsync({ family: "Inter", style: "Black Italic" });
+    // Make sure the selection is a single piece of text before proceeding.
+
+    if (figma.command === "throughput") {
+      const node = figma.currentPage.selection[0];
+      if (node.type !== "TEXT") {
+        return "Select a single text node.";
+      } else {
+        for (const node of figma.currentPage.selection) {
+          if (figma.currentPage.selection.length === 0) {
+            // if not, show a message
+            figma.notify("Select a text object to convert it", {
+              timeout: 5,
+            });
+            return;
+          }
+          // if it is not a text object, show a message
+          const nodes = figma.currentPage.selection.filter(function (node) {
+            return node.type === "TEXT";
+          }) as Array<TextNode>;
+          if (nodes.length === 0) {
+            figma.notify("Select a text object to convert it", {
+              timeout: 5,
+            });
+            return;
+          }
+          for (const node of figma.currentPage.selection) {
+            if ("characters" in node) {
+              const characters = "456789";
+              function generateTpm(length) {
+                let result = "";
+                const charactersLength = characters.length;
+                for (let i = 0; i < length; i++) {
+                  result += characters.charAt(
+                    Math.floor(Math.random() * charactersLength)
+                  );
+                }
+                return result;
+              }
+
+              node.characters = generateTpm(2) + "." + generateTpm(1) + " tpm";
+            }
+          }
+        }
+      }
+    }
+  }
+
+  createThroughput().then((message: string | undefined) => {
+    figma.closePlugin(message);
+  });
+} else if (figma.command == "date") {
+  async function createDate(): Promise<string | undefined> {
+    // Inter is the font that objects will be created in Figma.
+    // We need to wait for fonts to load before creating text using them.
+    await figma.loadFontAsync({ family: "Inter", style: "Thin" });
+    await figma.loadFontAsync({ family: "Inter", style: "Extra Light" });
+    await figma.loadFontAsync({ family: "Inter", style: "Light" });
+    await figma.loadFontAsync({ family: "Inter", style: "Regular" });
+    await figma.loadFontAsync({ family: "Inter", style: "Medium" });
+    await figma.loadFontAsync({ family: "Inter", style: "Semi Bold" });
+    await figma.loadFontAsync({ family: "Inter", style: "Bold" });
+    await figma.loadFontAsync({ family: "Inter", style: "Extra Bold" });
+    await figma.loadFontAsync({ family: "Inter", style: "Black" });
+    await figma.loadFontAsync({ family: "Inter", style: "Thin Italic" });
+    await figma.loadFontAsync({
+      family: "Inter",
+      style: "Extra Light Italic",
+    });
+    await figma.loadFontAsync({ family: "Inter", style: "Light Italic" });
+    await figma.loadFontAsync({ family: "Inter", style: "Italic" });
+    await figma.loadFontAsync({ family: "Inter", style: "Medium Italic" });
+    await figma.loadFontAsync({ family: "Inter", style: "Semi Bold Italic" });
+    await figma.loadFontAsync({ family: "Inter", style: "Bold Italic" });
+    await figma.loadFontAsync({
+      family: "Inter",
+      style: "Extra Bold Italic",
+    });
+    await figma.loadFontAsync({ family: "Inter", style: "Black Italic" });
+    // Make sure the selection is a single piece of text before proceeding.
+
+    if (figma.command === "date") {
+      const node = figma.currentPage.selection[0];
+      if (node.type !== "TEXT") {
+        return "Select a single text node.";
+      } else {
+        for (const node of figma.currentPage.selection) {
+          if (figma.currentPage.selection.length === 0) {
+            // if not, show a message
+            figma.notify("Select a text object to convert it", {
+              timeout: 5,
+            });
+            return;
+          }
+          // if it is not a text object, show a message
+          const nodes = figma.currentPage.selection.filter(function (node) {
+            return node.type === "TEXT";
+          }) as Array<TextNode>;
+          if (nodes.length === 0) {
+            figma.notify("Select a text object to convert it", {
+              timeout: 5,
+            });
+            return;
+          }
+          for (const node of figma.currentPage.selection) {
+            if ("characters" in node) {
+              function randomDate(start, end) {
+                return new Date(
+                  start.getTime() +
+                    Math.random() * (end.getTime() - start.getTime())
+                );
+              }
+              // need to fix the correct locale, not working for some reason
+              node.characters = randomDate(
+                new Date(2016, 0, 1),
+                new Date()
+              ).toLocaleDateString("en-US", {
+                year: "numeric",
+                month: "long",
+                weekday: "long",
+              });
+            }
+          }
+        }
+      }
+    }
+  }
+
+  createDate().then((message: string | undefined) => {
+    figma.closePlugin(message);
+  });
+} else if (figma.command == "severity") {
+  async function createSeverity(): Promise<string | undefined> {
+    // Inter is the font that objects will be created in Figma.
+    // We need to wait for fonts to load before creating text using them.
+    await figma.loadFontAsync({ family: "Inter", style: "Thin" });
+    await figma.loadFontAsync({ family: "Inter", style: "Extra Light" });
+    await figma.loadFontAsync({ family: "Inter", style: "Light" });
+    await figma.loadFontAsync({ family: "Inter", style: "Regular" });
+    await figma.loadFontAsync({ family: "Inter", style: "Medium" });
+    await figma.loadFontAsync({ family: "Inter", style: "Semi Bold" });
+    await figma.loadFontAsync({ family: "Inter", style: "Bold" });
+    await figma.loadFontAsync({ family: "Inter", style: "Extra Bold" });
+    await figma.loadFontAsync({ family: "Inter", style: "Black" });
+    await figma.loadFontAsync({ family: "Inter", style: "Thin Italic" });
+    await figma.loadFontAsync({
+      family: "Inter",
+      style: "Extra Light Italic",
+    });
+    await figma.loadFontAsync({ family: "Inter", style: "Light Italic" });
+    await figma.loadFontAsync({ family: "Inter", style: "Italic" });
+    await figma.loadFontAsync({ family: "Inter", style: "Medium Italic" });
+    await figma.loadFontAsync({ family: "Inter", style: "Semi Bold Italic" });
+    await figma.loadFontAsync({ family: "Inter", style: "Bold Italic" });
+    await figma.loadFontAsync({
+      family: "Inter",
+      style: "Extra Bold Italic",
+    });
+    await figma.loadFontAsync({ family: "Inter", style: "Black Italic" });
+    // Make sure the selection is a single piece of text before proceeding.
+
+    if (figma.command === "severity") {
+      const node = figma.currentPage.selection[0];
+      if (node.type !== "TEXT") {
+        return "Select a single text node.";
+      } else {
+        for (const node of figma.currentPage.selection) {
+          if (figma.currentPage.selection.length === 0) {
+            // if not, show a message
+            figma.notify("Select a text object to convert it", {
+              timeout: 5,
+            });
+            return;
+          }
+          // if it is not a text object, show a message
+          const nodes = figma.currentPage.selection.filter(function (node) {
+            return node.type === "TEXT";
+          }) as Array<TextNode>;
+          if (nodes.length === 0) {
+            figma.notify("Select a text object to convert it", {
+              timeout: 5,
+            });
+            return;
+          }
+          for (const node of figma.currentPage.selection) {
+            if ("characters" in node) {
+              const characters = "236789";
+              function generateSeverity(length) {
+                let result = "";
+                const charactersLength = characters.length;
+                for (let i = 0; i < length; i++) {
+                  result += characters.charAt(
+                    Math.floor(Math.random() * charactersLength)
+                  );
+                }
+                return result;
+              }
+
+              node.characters = generateSeverity(2);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  createSeverity().then((message: string | undefined) => {
+    figma.closePlugin(message);
+  });
+} else if (figma.command == "span-trace-id") {
+  async function createID(): Promise<string | undefined> {
+    // Inter is the font that objects will be created in Figma.
+    // We need to wait for fonts to load before creating text using them.
+    await figma.loadFontAsync({ family: "Inter", style: "Thin" });
+    await figma.loadFontAsync({ family: "Inter", style: "Extra Light" });
+    await figma.loadFontAsync({ family: "Inter", style: "Light" });
+    await figma.loadFontAsync({ family: "Inter", style: "Regular" });
+    await figma.loadFontAsync({ family: "Inter", style: "Medium" });
+    await figma.loadFontAsync({ family: "Inter", style: "Semi Bold" });
+    await figma.loadFontAsync({ family: "Inter", style: "Bold" });
+    await figma.loadFontAsync({ family: "Inter", style: "Extra Bold" });
+    await figma.loadFontAsync({ family: "Inter", style: "Black" });
+    await figma.loadFontAsync({ family: "Inter", style: "Thin Italic" });
+    await figma.loadFontAsync({
+      family: "Inter",
+      style: "Extra Light Italic",
+    });
+    await figma.loadFontAsync({ family: "Inter", style: "Light Italic" });
+    await figma.loadFontAsync({ family: "Inter", style: "Italic" });
+    await figma.loadFontAsync({ family: "Inter", style: "Medium Italic" });
+    await figma.loadFontAsync({ family: "Inter", style: "Semi Bold Italic" });
+    await figma.loadFontAsync({ family: "Inter", style: "Bold Italic" });
+    await figma.loadFontAsync({
+      family: "Inter",
+      style: "Extra Bold Italic",
+    });
+    await figma.loadFontAsync({ family: "Inter", style: "Black Italic" });
+    // Make sure the selection is a single piece of text before proceeding.
+
+    if (figma.command === "span-trace-id") {
+      const node = figma.currentPage.selection[0];
+      if (node.type !== "TEXT") {
+        return "Select a single text node.";
+      } else {
+        for (const node of figma.currentPage.selection) {
+          if ("characters" in node) {
+            const characters =
+              "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+            function generateUpdate(length) {
+              let result = "";
+              const charactersLength = characters.length;
+              for (let i = 0; i < length; i++) {
+                result += characters.charAt(
+                  Math.floor(Math.random() * charactersLength)
+                );
+              }
+              return result;
+            }
+
+            node.characters = generateUpdate(24);
+          }
+        }
+      }
+    }
+  }
+
+  createID().then((message: string | undefined) => {
+    figma.closePlugin(message);
+  });
+} else if (figma.command == "monitor") {
+  async function createMonitor(): Promise<string | undefined> {
+    // Inter is the font that objects will be created in Figma.
+    // We need to wait for fonts to load before creating text using them.
+    await figma.loadFontAsync({ family: "Inter", style: "Thin" });
+    await figma.loadFontAsync({ family: "Inter", style: "Extra Light" });
+    await figma.loadFontAsync({ family: "Inter", style: "Light" });
+    await figma.loadFontAsync({ family: "Inter", style: "Regular" });
+    await figma.loadFontAsync({ family: "Inter", style: "Medium" });
+    await figma.loadFontAsync({ family: "Inter", style: "Semi Bold" });
+    await figma.loadFontAsync({ family: "Inter", style: "Bold" });
+    await figma.loadFontAsync({ family: "Inter", style: "Extra Bold" });
+    await figma.loadFontAsync({ family: "Inter", style: "Black" });
+    await figma.loadFontAsync({ family: "Inter", style: "Thin Italic" });
+    await figma.loadFontAsync({
+      family: "Inter",
+      style: "Extra Light Italic",
+    });
+    await figma.loadFontAsync({ family: "Inter", style: "Light Italic" });
+    await figma.loadFontAsync({ family: "Inter", style: "Italic" });
+    await figma.loadFontAsync({ family: "Inter", style: "Medium Italic" });
+    await figma.loadFontAsync({ family: "Inter", style: "Semi Bold Italic" });
+    await figma.loadFontAsync({ family: "Inter", style: "Bold Italic" });
+    await figma.loadFontAsync({
+      family: "Inter",
+      style: "Extra Bold Italic",
+    });
+    await figma.loadFontAsync({ family: "Inter", style: "Black Italic" });
+    // Make sure the selection is a single piece of text before proceeding.
+
+    if (figma.command === "monitor") {
+      const node = figma.currentPage.selection[0];
+      if (node.type !== "TEXT") {
+        return "Select a single text node.";
+      } else {
+        for (const node of figma.currentPage.selection) {
+          if ("characters" in node) {
+            const service = [
+              "http://frontend-js:3000",
+              "https://github.com",
+              "icmp://github.com",
+              "tcp://10.40.20.160:400",
+              "tcp://40.10.20.5:11000",
+              "tcp://20.1.9.200:6379",
+              "tcp://40.10.5.155:3000",
+              "tcp://10.40.2.154:5000",
+            ];
+            const randomService = Math.floor(Math.random() * service.length);
+
+            node.characters = service[randomService];
+          }
+        }
+      }
+    }
+  }
+
+  createMonitor().then((message: string | undefined) => {
+    figma.closePlugin(message);
+  });
+} else {
   // This plugin will open a window to prompt the user to enter a number, and
   // it will then create that many rectangles on the screen.
 
@@ -150,7 +880,7 @@ if (figma.editorType === "figma") {
             return result;
           }
 
-          node.characters = generatePecentage(1) + "0%";
+          node.characters = generatePecentage(1) + generatePecentage(1) + "%";
         }
       }
     }
@@ -403,13 +1133,4 @@ if (figma.editorType === "figma") {
       }
     }
   };
-
-  // // Cancel and close the pop up
-  // else msg.type === "cancel";
-  // {
-  //   figma.closePlugin();
-  // }
-  // // Make sure to close the plugin when you're done. Otherwise the plugin will
-  // // keep running, which shows the cancel button at the bottom of the screen.
-  // figma.closePlugin();
 }

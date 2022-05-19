@@ -4,12 +4,13 @@
   "description": "Generate different text strings types for faster import of data in text objects.",
   "main": "code.js",
   "scripts": {
-    "build": "tsc -p tsconfig.json"
+    "build": "tsc -p tsconfig.json",
+    "watch": "tsc -w"
   },
   "author": "",
   "license": "",
   "devDependencies": {
-    "@figma/plugin-typings": "^1.45.0",
+    "@figma/plugin-typings": "^1.47.0",
     "typescript": "*"
   },
   "dependencies": {
