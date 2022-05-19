@@ -17,6 +17,6 @@
     { "name": "Trace", "command": "trace" },
     { "name": "Throughput", "command": "throughput" },
     { "separator": true },
-    { "name": "Plugin", "command": "plugin" }
+    { "name": "Open Plugin", "command": "plugin" }
   ]
 }
