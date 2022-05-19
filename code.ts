@@ -8,7 +8,7 @@ if (figma.command == "health") {
   async function createHealth(): Promise<string | undefined> {
     // Inter is the font that objects will be created in Figma.
     // We need to wait for fonts to load before creating text using them.
-    figma.loadFontAsync({ family: "Inter", style: "Thin" });
+    await figma.loadFontAsync({ family: "Inter", style: "Thin" });
     await figma.loadFontAsync({ family: "Inter", style: "Extra Light" });
     await figma.loadFontAsync({ family: "Inter", style: "Light" });
     await figma.loadFontAsync({ family: "Inter", style: "Regular" });
