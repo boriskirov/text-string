@@ -34,18 +34,24 @@ if (figma.command == "health") {
     await figma.loadFontAsync({ family: "Inter", style: "Black Italic" });
     // Make sure the selection is a single piece of text before proceeding.
 
-    if (figma.command === "health") {
-      const node = figma.currentPage.selection[0];
-      if (node.type !== "TEXT") {
-        return "Select a single text node.";
-      } else {
-        for (const node of figma.currentPage.selection) {
-          if ("characters" in node) {
-            const service = ["Healthy", "Unhealthy", "Critical", "Unknown"];
-            const randomService = Math.floor(Math.random() * service.length);
+    if (figma.currentPage.selection.length === 0) {
+      // if not, show a message
+      figma.closePlugin("Select a text object to convert it");
+      return;
+    } // if it is not a text object, show a message
+    const nodes = figma.currentPage.selection.filter(function (node) {
+      return node.type === "TEXT";
+    }) as Array<TextNode>;
+    if (nodes.length === 0) {
+      figma.closePlugin("Select a text object to convert it");
+      return;
+    } else {
+      for (const node of figma.currentPage.selection) {
+        if ("characters" in node) {
+          const service = ["Healthy", "Unhealthy", "Critical", "Unknown"];
+          const randomService = Math.floor(Math.random() * service.length);
 
-            node.characters = service[randomService];
-          }
+          node.characters = service[randomService];
         }
       }
     }
@@ -84,50 +90,52 @@ if (figma.command == "health") {
     await figma.loadFontAsync({ family: "Inter", style: "Black Italic" });
     // Make sure the selection is a single piece of text before proceeding.
 
-    if (figma.command === "service") {
-      const node = figma.currentPage.selection[0];
-      if (node.type !== "TEXT") {
-        return "Select a single text node.";
-      } else {
+    if (figma.currentPage.selection.length === 0) {
+      // if not, show a message
+      figma.closePlugin("Select a text object to convert it");
+      return;
+    } // if it is not a text object, show a message
+    const nodes = figma.currentPage.selection.filter(function (node) {
+      return node.type === "TEXT";
+    }) as Array<TextNode>;
+    if (nodes.length === 0) {
+      figma.closePlugin("Select a text object to convert it");
+      return;
+    } else {
+      for (const node of figma.currentPage.selection) {
+        if (figma.currentPage.selection.length === 0) {
+          // if not, show a message
+          figma.closePlugin("Select a text object to convert it");
+          return;
+        }
+        // if it is not a text object, show a message
+        const nodes = figma.currentPage.selection.filter(function (node) {
+          return node.type === "TEXT";
+        }) as Array<TextNode>;
+        if (nodes.length === 0) {
+          figma.closePlugin("Select a text object to convert it");
+          return;
+        }
         for (const node of figma.currentPage.selection) {
-          if (figma.currentPage.selection.length === 0) {
-            // if not, show a message
-            figma.notify("Select a text object to convert it", {
-              timeout: 5,
-            });
-            return;
-          }
-          // if it is not a text object, show a message
-          const nodes = figma.currentPage.selection.filter(function (node) {
-            return node.type === "TEXT";
-          }) as Array<TextNode>;
-          if (nodes.length === 0) {
-            figma.notify("Select a text object to convert it", {
-              timeout: 5,
-            });
-            return;
-          }
-          for (const node of figma.currentPage.selection) {
-            if ("characters" in node) {
-              const service = [
-                "advertService",
-                "productCatalogService",
-                "recommendationService",
-                "frontend-rum",
-                "frontend-node",
-                "cartService",
-                "shippingService",
-                "checkoutService",
-                "paymentService",
-                "emailService",
-                "addressValidationService",
-                "billingService",
-                "frontend-IOS",
-              ];
-              const randomService = Math.floor(Math.random() * service.length);
+          if ("characters" in node) {
+            const service = [
+              "advertService",
+              "productCatalogService",
+              "recommendationService",
+              "frontend-rum",
+              "frontend-node",
+              "cartService",
+              "shippingService",
+              "checkoutService",
+              "paymentService",
+              "emailService",
+              "addressValidationService",
+              "billingService",
+              "frontend-IOS",
+            ];
+            const randomService = Math.floor(Math.random() * service.length);
 
-              node.characters = service[randomService];
-            }
+            node.characters = service[randomService];
           }
         }
       }
@@ -167,49 +175,51 @@ if (figma.command == "health") {
     await figma.loadFontAsync({ family: "Inter", style: "Black Italic" });
     // Make sure the selection is a single piece of text before proceeding.
 
-    if (figma.command === "trace") {
-      const node = figma.currentPage.selection[0];
-      if (node.type !== "TEXT") {
-        return "Select a single text node.";
-      } else {
+    if (figma.currentPage.selection.length === 0) {
+      // if not, show a message
+      figma.closePlugin("Select a text object to convert it");
+      return;
+    } // if it is not a text object, show a message
+    const nodes = figma.currentPage.selection.filter(function (node) {
+      return node.type === "TEXT";
+    }) as Array<TextNode>;
+    if (nodes.length === 0) {
+      figma.closePlugin("Select a text object to convert it");
+      return;
+    } else {
+      for (const node of figma.currentPage.selection) {
+        if (figma.currentPage.selection.length === 0) {
+          // if not, show a message
+          figma.closePlugin("Select a text object to convert it");
+          return;
+        }
+        // if it is not a text object, show a message
+        const nodes = figma.currentPage.selection.filter(function (node) {
+          return node.type === "TEXT";
+        }) as Array<TextNode>;
+        if (nodes.length === 0) {
+          figma.closePlugin("Select a text object to convert it");
+          return;
+        }
         for (const node of figma.currentPage.selection) {
-          if (figma.currentPage.selection.length === 0) {
-            // if not, show a message
-            figma.notify("Select a text object to convert it", {
-              timeout: 5,
-            });
-            return;
-          }
-          // if it is not a text object, show a message
-          const nodes = figma.currentPage.selection.filter(function (node) {
-            return node.type === "TEXT";
-          }) as Array<TextNode>;
-          if (nodes.length === 0) {
-            figma.notify("Select a text object to convert it", {
-              timeout: 5,
-            });
-            return;
-          }
-          for (const node of figma.currentPage.selection) {
-            if ("characters" in node) {
-              const service = [
-                "/",
-                "/cart",
-                "/place-order",
-                "GET /api/user/",
-                "/product/:id",
-                "/cart/checkout/",
-                "/product/OLJSDSKHSDSD",
-                "Click - div",
-                "/product/L9ECAV7KIM",
-                "/product/KJLASDJKLSA",
-                "GET /user",
-                "POST /user",
-              ];
-              const randomTrace = Math.floor(Math.random() * service.length);
+          if ("characters" in node) {
+            const service = [
+              "/",
+              "/cart",
+              "/place-order",
+              "GET /api/user/",
+              "/product/:id",
+              "/cart/checkout/",
+              "/product/OLJSDSKHSDSD",
+              "Click - div",
+              "/product/L9ECAV7KIM",
+              "/product/KJLASDJKLSA",
+              "GET /user",
+              "POST /user",
+            ];
+            const randomTrace = Math.floor(Math.random() * service.length);
 
-              node.characters = service[randomTrace];
-            }
+            node.characters = service[randomTrace];
           }
         }
       }
@@ -249,46 +259,48 @@ if (figma.command == "health") {
     await figma.loadFontAsync({ family: "Inter", style: "Black Italic" });
     // Make sure the selection is a single piece of text before proceeding.
 
-    if (figma.command === "duration") {
-      const node = figma.currentPage.selection[0];
-      if (node.type !== "TEXT") {
-        return "Select a single text node.";
-      } else {
+    if (figma.currentPage.selection.length === 0) {
+      // if not, show a message
+      figma.closePlugin("Select a text object to convert it");
+      return;
+    } // if it is not a text object, show a message
+    const nodes = figma.currentPage.selection.filter(function (node) {
+      return node.type === "TEXT";
+    }) as Array<TextNode>;
+    if (nodes.length === 0) {
+      figma.closePlugin("Select a text object to convert it");
+      return;
+    } else {
+      for (const node of figma.currentPage.selection) {
+        if (figma.currentPage.selection.length === 0) {
+          // if not, show a message
+          figma.closePlugin("Select a text object to convert it");
+          return;
+        }
+        // if it is not a text object, show a message
+        const nodes = figma.currentPage.selection.filter(function (node) {
+          return node.type === "TEXT";
+        }) as Array<TextNode>;
+        if (nodes.length === 0) {
+          figma.closePlugin("Select a text object to convert it");
+          return;
+        }
         for (const node of figma.currentPage.selection) {
-          if (figma.currentPage.selection.length === 0) {
-            // if not, show a message
-            figma.notify("Select a text object to convert it", {
-              timeout: 5,
-            });
-            return;
-          }
-          // if it is not a text object, show a message
-          const nodes = figma.currentPage.selection.filter(function (node) {
-            return node.type === "TEXT";
-          }) as Array<TextNode>;
-          if (nodes.length === 0) {
-            figma.notify("Select a text object to convert it", {
-              timeout: 5,
-            });
-            return;
-          }
-          for (const node of figma.currentPage.selection) {
-            if ("characters" in node) {
-              const characters = "123456789";
-              function generateDuration(length) {
-                let result = "";
-                const charactersLength = characters.length;
-                for (let i = 0; i < length; i++) {
-                  result += characters.charAt(
-                    Math.floor(Math.random() * charactersLength)
-                  );
-                }
-                return result;
+          if ("characters" in node) {
+            const characters = "123456789";
+            function generateDuration(length) {
+              let result = "";
+              const charactersLength = characters.length;
+              for (let i = 0; i < length; i++) {
+                result += characters.charAt(
+                  Math.floor(Math.random() * charactersLength)
+                );
               }
-
-              node.characters =
-                generateDuration(1) + "," + generateDuration(3) + " ms";
+              return result;
             }
+
+            node.characters =
+              generateDuration(1) + "," + generateDuration(3) + " ms";
           }
         }
       }
@@ -328,46 +340,47 @@ if (figma.command == "health") {
     await figma.loadFontAsync({ family: "Inter", style: "Black Italic" });
     // Make sure the selection is a single piece of text before proceeding.
 
-    if (figma.command === "percentage") {
-      const node = figma.currentPage.selection[0];
-      if (node.type !== "TEXT") {
-        return "Select a single text node.";
-      } else {
+    if (figma.currentPage.selection.length === 0) {
+      // if not, show a message
+      figma.closePlugin("Select a text object to convert it");
+      return;
+    } // if it is not a text object, show a message
+    const nodes = figma.currentPage.selection.filter(function (node) {
+      return node.type === "TEXT";
+    }) as Array<TextNode>;
+    if (nodes.length === 0) {
+      figma.closePlugin("Select a text object to convert it");
+      return;
+    } else {
+      for (const node of figma.currentPage.selection) {
+        if (figma.currentPage.selection.length === 0) {
+          // if not, show a message
+          figma.closePlugin("Select a text object to convert it");
+          return;
+        }
+        // if it is not a text object, show a message
+        const nodes = figma.currentPage.selection.filter(function (node) {
+          return node.type === "TEXT";
+        }) as Array<TextNode>;
+        if (nodes.length === 0) {
+          figma.closePlugin("Select a text object to convert it");
+          return;
+        }
         for (const node of figma.currentPage.selection) {
-          if (figma.currentPage.selection.length === 0) {
-            // if not, show a message
-            figma.notify("Select a text object to convert it", {
-              timeout: 5,
-            });
-            return;
-          }
-          // if it is not a text object, show a message
-          const nodes = figma.currentPage.selection.filter(function (node) {
-            return node.type === "TEXT";
-          }) as Array<TextNode>;
-          if (nodes.length === 0) {
-            figma.notify("Select a text object to convert it", {
-              timeout: 5,
-            });
-            return;
-          }
-          for (const node of figma.currentPage.selection) {
-            if ("characters" in node) {
-              const characters = "456789";
-              function generatePecentage(length) {
-                let result = "";
-                const charactersLength = characters.length;
-                for (let i = 0; i < length; i++) {
-                  result += characters.charAt(
-                    Math.floor(Math.random() * charactersLength)
-                  );
-                }
-                return result;
+          if ("characters" in node) {
+            const characters = "456789";
+            function generatePecentage(length) {
+              let result = "";
+              const charactersLength = characters.length;
+              for (let i = 0; i < length; i++) {
+                result += characters.charAt(
+                  Math.floor(Math.random() * charactersLength)
+                );
               }
-
-              node.characters =
-                generatePecentage(1) + generatePecentage(1) + "%";
+              return result;
             }
+
+            node.characters = generatePecentage(1) + generatePecentage(1) + "%";
           }
         }
       }
@@ -407,45 +420,47 @@ if (figma.command == "health") {
     await figma.loadFontAsync({ family: "Inter", style: "Black Italic" });
     // Make sure the selection is a single piece of text before proceeding.
 
-    if (figma.command === "throughput") {
-      const node = figma.currentPage.selection[0];
-      if (node.type !== "TEXT") {
-        return "Select a single text node.";
-      } else {
+    if (figma.currentPage.selection.length === 0) {
+      // if not, show a message
+      figma.closePlugin("Select a text object to convert it");
+      return;
+    } // if it is not a text object, show a message
+    const nodes = figma.currentPage.selection.filter(function (node) {
+      return node.type === "TEXT";
+    }) as Array<TextNode>;
+    if (nodes.length === 0) {
+      figma.closePlugin("Select a text object to convert it");
+      return;
+    } else {
+      for (const node of figma.currentPage.selection) {
+        if (figma.currentPage.selection.length === 0) {
+          // if not, show a message
+          figma.closePlugin("Select a text object to convert it");
+          return;
+        }
+        // if it is not a text object, show a message
+        const nodes = figma.currentPage.selection.filter(function (node) {
+          return node.type === "TEXT";
+        }) as Array<TextNode>;
+        if (nodes.length === 0) {
+          figma.closePlugin("Select a text object to convert it");
+          return;
+        }
         for (const node of figma.currentPage.selection) {
-          if (figma.currentPage.selection.length === 0) {
-            // if not, show a message
-            figma.notify("Select a text object to convert it", {
-              timeout: 5,
-            });
-            return;
-          }
-          // if it is not a text object, show a message
-          const nodes = figma.currentPage.selection.filter(function (node) {
-            return node.type === "TEXT";
-          }) as Array<TextNode>;
-          if (nodes.length === 0) {
-            figma.notify("Select a text object to convert it", {
-              timeout: 5,
-            });
-            return;
-          }
-          for (const node of figma.currentPage.selection) {
-            if ("characters" in node) {
-              const characters = "456789";
-              function generateTpm(length) {
-                let result = "";
-                const charactersLength = characters.length;
-                for (let i = 0; i < length; i++) {
-                  result += characters.charAt(
-                    Math.floor(Math.random() * charactersLength)
-                  );
-                }
-                return result;
+          if ("characters" in node) {
+            const characters = "456789";
+            function generateTpm(length) {
+              let result = "";
+              const charactersLength = characters.length;
+              for (let i = 0; i < length; i++) {
+                result += characters.charAt(
+                  Math.floor(Math.random() * charactersLength)
+                );
               }
-
-              node.characters = generateTpm(2) + "." + generateTpm(1) + " tpm";
+              return result;
             }
+
+            node.characters = generateTpm(2) + "." + generateTpm(1) + " tpm";
           }
         }
       }
@@ -485,47 +500,49 @@ if (figma.command == "health") {
     await figma.loadFontAsync({ family: "Inter", style: "Black Italic" });
     // Make sure the selection is a single piece of text before proceeding.
 
-    if (figma.command === "date") {
-      const node = figma.currentPage.selection[0];
-      if (node.type !== "TEXT") {
-        return "Select a single text node.";
-      } else {
+    if (figma.currentPage.selection.length === 0) {
+      // if not, show a message
+      figma.closePlugin("Select a text object to convert it");
+      return;
+    } // if it is not a text object, show a message
+    const nodes = figma.currentPage.selection.filter(function (node) {
+      return node.type === "TEXT";
+    }) as Array<TextNode>;
+    if (nodes.length === 0) {
+      figma.closePlugin("Select a text object to convert it");
+      return;
+    } else {
+      for (const node of figma.currentPage.selection) {
+        if (figma.currentPage.selection.length === 0) {
+          // if not, show a message
+          figma.closePlugin("Select a text object to convert it");
+          return;
+        }
+        // if it is not a text object, show a message
+        const nodes = figma.currentPage.selection.filter(function (node) {
+          return node.type === "TEXT";
+        }) as Array<TextNode>;
+        if (nodes.length === 0) {
+          figma.closePlugin("Select a text object to convert it");
+          return;
+        }
         for (const node of figma.currentPage.selection) {
-          if (figma.currentPage.selection.length === 0) {
-            // if not, show a message
-            figma.notify("Select a text object to convert it", {
-              timeout: 5,
-            });
-            return;
-          }
-          // if it is not a text object, show a message
-          const nodes = figma.currentPage.selection.filter(function (node) {
-            return node.type === "TEXT";
-          }) as Array<TextNode>;
-          if (nodes.length === 0) {
-            figma.notify("Select a text object to convert it", {
-              timeout: 5,
-            });
-            return;
-          }
-          for (const node of figma.currentPage.selection) {
-            if ("characters" in node) {
-              function randomDate(start, end) {
-                return new Date(
-                  start.getTime() +
-                    Math.random() * (end.getTime() - start.getTime())
-                );
-              }
-              // need to fix the correct locale, not working for some reason
-              node.characters = randomDate(
-                new Date(2016, 0, 1),
-                new Date()
-              ).toLocaleDateString("en-US", {
-                year: "numeric",
-                month: "long",
-                weekday: "long",
-              });
+          if ("characters" in node) {
+            function randomDate(start, end) {
+              return new Date(
+                start.getTime() +
+                  Math.random() * (end.getTime() - start.getTime())
+              );
             }
+            // need to fix the correct locale, not working for some reason
+            node.characters = randomDate(
+              new Date(2016, 0, 1),
+              new Date()
+            ).toLocaleDateString("en-US", {
+              year: "numeric",
+              month: "long",
+              weekday: "long",
+            });
           }
         }
       }
@@ -565,45 +582,47 @@ if (figma.command == "health") {
     await figma.loadFontAsync({ family: "Inter", style: "Black Italic" });
     // Make sure the selection is a single piece of text before proceeding.
 
-    if (figma.command === "severity") {
-      const node = figma.currentPage.selection[0];
-      if (node.type !== "TEXT") {
-        return "Select a single text node.";
-      } else {
+    if (figma.currentPage.selection.length === 0) {
+      // if not, show a message
+      figma.closePlugin("Select a text object to convert it");
+      return;
+    } // if it is not a text object, show a message
+    const nodes = figma.currentPage.selection.filter(function (node) {
+      return node.type === "TEXT";
+    }) as Array<TextNode>;
+    if (nodes.length === 0) {
+      figma.closePlugin("Select a text object to convert it");
+      return;
+    } else {
+      for (const node of figma.currentPage.selection) {
+        if (figma.currentPage.selection.length === 0) {
+          // if not, show a message
+          figma.closePlugin("Select a text object to convert it");
+          return;
+        }
+        // if it is not a text object, show a message
+        const nodes = figma.currentPage.selection.filter(function (node) {
+          return node.type === "TEXT";
+        }) as Array<TextNode>;
+        if (nodes.length === 0) {
+          figma.closePlugin("Select a text object to convert it");
+          return;
+        }
         for (const node of figma.currentPage.selection) {
-          if (figma.currentPage.selection.length === 0) {
-            // if not, show a message
-            figma.notify("Select a text object to convert it", {
-              timeout: 5,
-            });
-            return;
-          }
-          // if it is not a text object, show a message
-          const nodes = figma.currentPage.selection.filter(function (node) {
-            return node.type === "TEXT";
-          }) as Array<TextNode>;
-          if (nodes.length === 0) {
-            figma.notify("Select a text object to convert it", {
-              timeout: 5,
-            });
-            return;
-          }
-          for (const node of figma.currentPage.selection) {
-            if ("characters" in node) {
-              const characters = "236789";
-              function generateSeverity(length) {
-                let result = "";
-                const charactersLength = characters.length;
-                for (let i = 0; i < length; i++) {
-                  result += characters.charAt(
-                    Math.floor(Math.random() * charactersLength)
-                  );
-                }
-                return result;
+          if ("characters" in node) {
+            const characters = "236789";
+            function generateSeverity(length) {
+              let result = "";
+              const charactersLength = characters.length;
+              for (let i = 0; i < length; i++) {
+                result += characters.charAt(
+                  Math.floor(Math.random() * charactersLength)
+                );
               }
-
-              node.characters = generateSeverity(2);
+              return result;
             }
+
+            node.characters = generateSeverity(2);
           }
         }
       }
@@ -643,28 +662,34 @@ if (figma.command == "health") {
     await figma.loadFontAsync({ family: "Inter", style: "Black Italic" });
     // Make sure the selection is a single piece of text before proceeding.
 
-    if (figma.command === "span-trace-id") {
-      const node = figma.currentPage.selection[0];
-      if (node.type !== "TEXT") {
-        return "Select a single text node.";
-      } else {
-        for (const node of figma.currentPage.selection) {
-          if ("characters" in node) {
-            const characters =
-              "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-            function generateUpdate(length) {
-              let result = "";
-              const charactersLength = characters.length;
-              for (let i = 0; i < length; i++) {
-                result += characters.charAt(
-                  Math.floor(Math.random() * charactersLength)
-                );
-              }
-              return result;
+    if (figma.currentPage.selection.length === 0) {
+      // if not, show a message
+      figma.closePlugin("Select a text object to convert it");
+      return;
+    } // if it is not a text object, show a message
+    const nodes = figma.currentPage.selection.filter(function (node) {
+      return node.type === "TEXT";
+    }) as Array<TextNode>;
+    if (nodes.length === 0) {
+      figma.closePlugin("Select a text object to convert it");
+      return;
+    } else {
+      for (const node of figma.currentPage.selection) {
+        if ("characters" in node) {
+          const characters =
+            "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+          function generateUpdate(length) {
+            let result = "";
+            const charactersLength = characters.length;
+            for (let i = 0; i < length; i++) {
+              result += characters.charAt(
+                Math.floor(Math.random() * charactersLength)
+              );
             }
-
-            node.characters = generateUpdate(24);
+            return result;
           }
+
+          node.characters = generateUpdate(24);
         }
       }
     }
@@ -703,27 +728,33 @@ if (figma.command == "health") {
     await figma.loadFontAsync({ family: "Inter", style: "Black Italic" });
     // Make sure the selection is a single piece of text before proceeding.
 
-    if (figma.command === "monitor") {
-      const node = figma.currentPage.selection[0];
-      if (node.type !== "TEXT") {
-        return "Select a single text node.";
-      } else {
-        for (const node of figma.currentPage.selection) {
-          if ("characters" in node) {
-            const service = [
-              "http://frontend-js:3000",
-              "https://github.com",
-              "icmp://github.com",
-              "tcp://10.40.20.160:400",
-              "tcp://40.10.20.5:11000",
-              "tcp://20.1.9.200:6379",
-              "tcp://40.10.5.155:3000",
-              "tcp://10.40.2.154:5000",
-            ];
-            const randomService = Math.floor(Math.random() * service.length);
+    if (figma.currentPage.selection.length === 0) {
+      // if not, show a message
+      figma.closePlugin("Select a text object to convert it");
+      return;
+    } // if it is not a text object, show a message
+    const nodes = figma.currentPage.selection.filter(function (node) {
+      return node.type === "TEXT";
+    }) as Array<TextNode>;
+    if (nodes.length === 0) {
+      figma.closePlugin("Select a text object to convert it");
+      return;
+    } else {
+      for (const node of figma.currentPage.selection) {
+        if ("characters" in node) {
+          const service = [
+            "http://frontend-js:3000",
+            "https://github.com",
+            "icmp://github.com",
+            "tcp://10.40.20.160:400",
+            "tcp://40.10.20.5:11000",
+            "tcp://20.1.9.200:6379",
+            "tcp://40.10.5.155:3000",
+            "tcp://10.40.2.154:5000",
+          ];
+          const randomService = Math.floor(Math.random() * service.length);
 
-            node.characters = service[randomService];
-          }
+          node.characters = service[randomService];
         }
       }
     }

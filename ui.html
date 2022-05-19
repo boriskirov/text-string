@@ -495,91 +495,73 @@
           2,
           12
         ));
-        window.onload = function () {
-          document.getElementById("create").onclick = () => {
-            const textbox = document.getElementById("count");
-            const count = parseInt(textbox.value, 10);
-            parent.postMessage(
-              { pluginMessage: { type: "create-text", count } },
-              "*"
-            );
-          };
+
+        document.getElementById("create").onclick = () => {
+          const textbox = document.getElementById("count");
+          const count = parseInt(textbox.value, 10);
+          parent.postMessage(
+            { pluginMessage: { type: "create-text", count } },
+            "*"
+          );
         };
-        window.onload = function () {
-          document.getElementById("change").onclick = () => {
-            parent.postMessage({ pluginMessage: { type: "change-text" } }, "*");
-          };
+
+        document.getElementById("change").onclick = () => {
+          parent.postMessage({ pluginMessage: { type: "change-text" } }, "*");
         };
-        window.onload = function () {
-          document.getElementById("duration").onclick = () => {
-            parent.postMessage(
-              { pluginMessage: { type: "change-duration" } },
-              "*"
-            );
-          };
+
+        document.getElementById("duration").onclick = () => {
+          parent.postMessage(
+            { pluginMessage: { type: "change-duration" } },
+            "*"
+          );
         };
-        window.onload = function () {
-          document.getElementById("date").onclick = () => {
-            parent.postMessage({ pluginMessage: { type: "change-date" } }, "*");
-          };
+
+        document.getElementById("date").onclick = () => {
+          parent.postMessage({ pluginMessage: { type: "change-date" } }, "*");
         };
-        window.onload = function () {
-          document.getElementById("percentage").onclick = () => {
-            parent.postMessage(
-              { pluginMessage: { type: "change-percentage" } },
-              "*"
-            );
-          };
+
+        document.getElementById("percentage").onclick = () => {
+          parent.postMessage(
+            { pluginMessage: { type: "change-percentage" } },
+            "*"
+          );
         };
-        window.onload = function () {
-          document.getElementById("tpm").onclick = () => {
-            parent.postMessage({ pluginMessage: { type: "change-tpm" } }, "*");
-          };
+
+        document.getElementById("tpm").onclick = () => {
+          parent.postMessage({ pluginMessage: { type: "change-tpm" } }, "*");
         };
-        window.onload = function () {
-          document.getElementById("service").onclick = () => {
-            parent.postMessage(
-              { pluginMessage: { type: "change-service" } },
-              "*"
-            );
-          };
+
+        document.getElementById("service").onclick = () => {
+          parent.postMessage(
+            { pluginMessage: { type: "change-service" } },
+            "*"
+          );
         };
-        window.onload = function () {
-          document.getElementById("trace").onclick = () => {
-            parent.postMessage(
-              { pluginMessage: { type: "change-trace" } },
-              "*"
-            );
-          };
+
+        document.getElementById("trace").onclick = () => {
+          parent.postMessage({ pluginMessage: { type: "change-trace" } }, "*");
         };
-        window.onload = function () {
-          document.getElementById("severity").onclick = () => {
-            parent.postMessage(
-              { pluginMessage: { type: "change-severity" } },
-              "*"
-            );
-          };
+
+        document.getElementById("severity").onclick = () => {
+          parent.postMessage(
+            { pluginMessage: { type: "change-severity" } },
+            "*"
+          );
         };
-        window.onload = function () {
-          document.getElementById("health").onclick = () => {
-            parent.postMessage(
-              { pluginMessage: { type: "change-health" } },
-              "*"
-            );
-          };
+
+        document.getElementById("health").onclick = () => {
+          parent.postMessage({ pluginMessage: { type: "change-health" } }, "*");
         };
-        window.onload = function () {
-          document.getElementById("monitor").onclick = () => {
-            parent.postMessage(
-              { pluginMessage: { type: "change-monitor" } },
-              "*"
-            );
-          };
+
+        document.getElementById("monitor").onclick = () => {
+          parent.postMessage(
+            { pluginMessage: { type: "change-monitor" } },
+            "*"
+          );
         };
-        window.onload = function () {
-          document.getElementById("cancel").onclick = () => {
-            parent.postMessage({ pluginMessage: { type: "cancel" } }, "*");
-          };
+
+        document.getElementById("cancel").onclick = () => {
+          parent.postMessage({ pluginMessage: { type: "cancel" } }, "*");
         };
       };
     </script>
