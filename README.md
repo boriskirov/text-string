@@ -1,6 +1,6 @@
 # Text string
 
-A Figma plugin to test your UI in different languages
+A Figma plugin to generate different data for faster and more effective design process in Elastic o11y.
 
 ![Text String](https://raw.githubusercontent.com/boriskirov/text-string/main/textstring-cover.png)
 
