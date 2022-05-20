@@ -31,6 +31,33 @@ if (figma.command == "open-plugin") {
   figma.loadFontAsync({ family: "Inter", style: "Bold Italic" });
   figma.loadFontAsync({ family: "Inter", style: "Extra Bold Italic" });
   figma.loadFontAsync({ family: "Inter", style: "Black Italic" });
+  figma.loadFontAsync({ family: "Inter UI", style: "Thin" });
+  figma.loadFontAsync({ family: "Inter UI", style: "Extra Light" });
+  figma.loadFontAsync({ family: "Inter UI", style: "Light" });
+  figma.loadFontAsync({ family: "Inter UI", style: "Regular" });
+  figma.loadFontAsync({ family: "Inter UI", style: "Medium" });
+  figma.loadFontAsync({ family: "Inter UI", style: "Semi Bold" });
+  figma.loadFontAsync({ family: "Inter UI", style: "Bold" });
+  figma.loadFontAsync({ family: "Inter UI", style: "Extra Bold" });
+  figma.loadFontAsync({ family: "Inter UI", style: "Black" });
+  figma.loadFontAsync({ family: "Inter UI", style: "Thin Italic" });
+  figma.loadFontAsync({
+    family: "Inter UI",
+    style: "Extra Light Italic",
+  });
+  figma.loadFontAsync({ family: "Inter UI", style: "Light Italic" });
+  figma.loadFontAsync({ family: "Inter UI", style: "Italic" });
+  figma.loadFontAsync({ family: "Inter UI", style: "Medium Italic" });
+  figma.loadFontAsync({
+    family: "Inter UI",
+    style: "Semi Bold Italic",
+  });
+  figma.loadFontAsync({ family: "Inter UI", style: "Bold Italic" });
+  figma.loadFontAsync({
+    family: "Inter",
+    style: "Extra Bold Italic",
+  });
+  figma.loadFontAsync({ family: "Inter UI", style: "Black Italic" });
   figma.ui.onmessage = (msg) => {
     // One way of distinguishing between different types of messages sent from
     // your HTML page is to use an object with a "type" property like this.
