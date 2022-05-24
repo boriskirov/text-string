@@ -1,8 +1,8 @@
-# Text string
+# Strings
 
 A Figma plugin to generate different data for faster and more effective design process in Elastic o11y.
 
-![Text String](https://raw.githubusercontent.com/boriskirov/text-string/main/textstring-cover.png)
+![Text String](https://raw.githubusercontent.com/boriskirov/text-string/main/assets/cover.png)
 
 ## Commands
 
