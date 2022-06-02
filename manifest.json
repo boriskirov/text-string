@@ -16,6 +16,8 @@
     { "name": "Span / Trace ID", "command": "span-trace-id" },
     { "name": "Trace", "command": "trace" },
     { "name": "Throughput", "command": "throughput" },
+    { "name": "Dependency", "command": "dependency" },
+
     { "separator": true },
     { "name": "Open Plugin", "command": "open-plugin" }
   ]
