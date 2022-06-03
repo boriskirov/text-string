@@ -17,7 +17,8 @@
     { "name": "Trace", "command": "trace" },
     { "name": "Throughput", "command": "throughput" },
     { "name": "Dependency", "command": "dependency" },
-
+    { "name": "Error message", "command": "error-message" },
+    { "name": "Last seen", "command": "last-seen" },
     { "separator": true },
     { "name": "Open Plugin", "command": "open-plugin" }
   ]

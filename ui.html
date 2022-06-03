@@ -575,6 +575,20 @@
           );
         };
 
+        document.getElementById("error-message").onclick = () => {
+          parent.postMessage(
+            { pluginMessage: { type: "change-error-message" } },
+            "*"
+          );
+        };
+
+        document.getElementById("last-seen").onclick = () => {
+          parent.postMessage(
+            { pluginMessage: { type: "change-last-seen" } },
+            "*"
+          );
+        };
+
         document.getElementById("cancel").onclick = () => {
           parent.postMessage({ pluginMessage: { type: "cancel" } }, "*");
         };
