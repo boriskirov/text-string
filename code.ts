@@ -545,7 +545,7 @@ if (figma.command == "open-plugin") {
           const time = ["days", "hours", "minutes"];
           const randomLastSeen = Math.floor(Math.random() * time.length);
           node.characters =
-            generateLastSeen(1) + time[randomLastSeen] + "days ago";
+            generateLastSeen(1) + " " + time[randomLastSeen] + " " + "ago";
         }
       }
     }
