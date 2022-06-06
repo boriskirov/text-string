@@ -46,6 +46,18 @@ If text object/s is/are selected in Figma, the command will format them randomly
 
 If text object/s is/are selected in Figma, the command will format them randomly with throughput values.
 
+### Dependency
+
+If text object/s is/are selected in Figma, the command will format them randomly with dependencies.
+
+### Error message
+
+If text object/s is/are selected in Figma, the command will format them randomly with error messages.
+
+### Last seen
+
+If text object/s is/are selected in Figma, the command will format them randomly with last seen values (days/hours/minutes).
+
 ### Open Plugin
 
 Opens a modal with a list of options. Select a text object/s in figma and then click on one of the available options in the modal to convert them in a data specific type. Close the dialog by clicking on the close icon on the top right corner.
