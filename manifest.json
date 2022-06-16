@@ -19,6 +19,7 @@
     { "name": "Dependency", "command": "dependency" },
     { "name": "Error message", "command": "error-message" },
     { "name": "Last seen", "command": "last-seen" },
+    { "name": "Transaction", "command": "transaction" },
     { "separator": true },
     { "name": "Open Plugin", "command": "open-plugin" }
   ]
