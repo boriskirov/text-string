@@ -20,6 +20,7 @@
     { "name": "Error message", "command": "error-message" },
     { "name": "Last seen", "command": "last-seen" },
     { "name": "Transaction", "command": "transaction" },
+    { "name": "Error type", "command": "error-type" },
     { "separator": true },
     { "name": "Open Plugin", "command": "open-plugin" }
   ]
