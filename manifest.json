@@ -21,6 +21,7 @@
     { "name": "Last seen", "command": "last-seen" },
     { "name": "Transaction", "command": "transaction" },
     { "name": "Error type", "command": "error-type" },
+    { "name": "Storage Size", "command": "storage-size" },
     { "separator": true },
     { "name": "Open Plugin", "command": "open-plugin" }
   ]
