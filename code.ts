@@ -347,19 +347,18 @@ if (figma.command == "open-plugin") {
       for (const node of figma.currentPage.selection) {
         if ("characters" in node) {
           const service = [
-            "advertService",
-            "productCatalogService",
-            "recommendationService",
+            "elastic-co-frontend",
+            "apm-server",
+            "filebeat",
             "frontend-rum",
             "frontend-node",
-            "cartService",
-            "shippingService",
-            "checkoutService",
-            "paymentService",
-            "emailService",
-            "addressValidationService",
-            "billingService",
-            "frontend-IOS",
+            "metricbeat",
+            "opsbeans-python",
+            "kibana",
+            "heartbeat",
+            "opbeans-go",
+            "opbeans-dotnet",
+            "opbeans-ruby",
           ];
           const randomService = Math.floor(Math.random() * service.length);
 
@@ -777,19 +776,18 @@ if (figma.command == "open-plugin") {
         for (const node of figma.currentPage.selection) {
           if ("characters" in node) {
             const service = [
-              "advertService",
-              "productCatalogService",
-              "recommendationService",
+              "elastic-co-frontend",
+              "apm-server",
+              "filebeat",
               "frontend-rum",
               "frontend-node",
-              "cartService",
-              "shippingService",
-              "checkoutService",
-              "paymentService",
-              "emailService",
-              "addressValidationService",
-              "billingService",
-              "frontend-IOS",
+              "metricbeat",
+              "opsbeans-python",
+              "kibana",
+              "heartbeat",
+              "opbeans-go",
+              "opbeans-dotnet",
+              "opbeans-ruby",
             ];
             const randomService = Math.floor(Math.random() * service.length);
 
