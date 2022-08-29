@@ -1967,7 +1967,7 @@ if (figma.command == "open-plugin") {
     }
   }
 
-  createSize().then((message: string | undefined) => {
+  createHostName().then((message: string | undefined) => {
     figma.closePlugin(message);
   });
 }
