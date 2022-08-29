@@ -22,6 +22,7 @@
     { "name": "Transaction", "command": "transaction" },
     { "name": "Error type", "command": "error-type" },
     { "name": "Storage Size", "command": "storage-size" },
+    { "name": "Host name", "command": "host-name" },
     { "separator": true },
     { "name": "Open Plugin", "command": "open-plugin" }
   ]
