@@ -7,7 +7,8 @@
   "ui": "ui.html",
   "menu": [
     { "name": "Date", "command": "date" },
-    { "name": "Duration", "command": "duration" },
+    { "name": "Duration in milliseconds", "command": "duration-ms" },
+    { "name": "Duration in seconds", "command": "duration-s" },
     { "name": "Health", "command": "health" },
     { "name": "Monitor", "command": "monitor" },
     { "name": "Percentage", "command": "percentage" },
