@@ -528,6 +528,14 @@
             ><span class="button-text-type">Host name</span>
           </button>
         </li>
+        <li class="list-item">
+          <button id="android-version" class="button-list">
+            <span class="button-type"
+              ><img
+                src="data:image/svg+xml,%3Csvg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M17.0714 14.9681C16.5638 14.9681 16.1519 14.5694 16.1519 14.078C16.1519 13.5866 16.5638 13.1879 17.0714 13.1879C17.579 13.1879 17.9909 13.5866 17.9909 14.078C17.9909 14.5694 17.579 14.9681 17.0714 14.9681ZM6.94776 14.9681C6.44014 14.9681 6.0283 14.5694 6.0283 14.078C6.0283 13.5866 6.44014 13.1879 6.94776 13.1879C7.45538 13.1879 7.86722 13.5866 7.86722 14.078C7.86722 14.5694 7.45538 14.9681 6.94776 14.9681ZM17.397 9.62744L19.236 6.55843C19.3413 6.38226 19.2743 6.15973 19.0923 6.05774C18.9103 5.95575 18.6805 6.02065 18.5751 6.19682L16.717 9.30292C15.2995 8.67243 13.7096 8.32009 12.0144 8.32009C10.3191 8.32009 8.71964 8.67243 7.30213 9.29365L5.44406 6.18755C5.3387 6.01138 5.10884 5.94648 4.92686 6.04847C4.74489 6.15046 4.67784 6.37299 4.7832 6.54915L6.61254 9.61817C3.47105 11.2778 1.31606 14.3561 1 18H23C22.6935 14.3654 20.5481 11.2871 17.397 9.62744' fill='%23343741'/%3E%3C/svg%3E" /></span
+            ><span class="button-text-type">Android version</span>
+          </button>
+        </li>
       </ul>
     </div>
 
@@ -676,6 +684,13 @@
         document.getElementById("host-name").onclick = () => {
           parent.postMessage(
             { pluginMessage: { type: "change-host-name" } },
+            "*"
+          );
+        };
+
+        document.getElementById("android-version").onclick = () => {
+          parent.postMessage(
+            { pluginMessage: { type: "change-android-version" } },
             "*"
           );
         };
