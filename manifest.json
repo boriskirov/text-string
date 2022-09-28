@@ -30,6 +30,8 @@
     { "name": "Android Mobile Device", "command": "android-mobile-device" },
     { "name": "Browser", "command": "browser" },
     { "name": "Country", "command": "country" },
+    { "name": "Hundreds", "command": "hundreds" },
+    { "name": "Thousands", "command": "thousands" },
     { "separator": true },
     { "name": "Open Plugin", "command": "open-plugin" }
   ]
