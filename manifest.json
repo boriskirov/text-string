@@ -25,6 +25,7 @@
     { "name": "Storage Size", "command": "storage-size" },
     { "name": "Host name", "command": "host-name" },
     { "name": "Android version", "command": "android-version" },
+    { "name": "iOS version", "command": "ios-version" },
     { "separator": true },
     { "name": "Open Plugin", "command": "open-plugin" }
   ]
