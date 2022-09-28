@@ -544,6 +544,22 @@
             ><span class="button-text-type">iOS version</span>
           </button>
         </li>
+        <li class="list-item">
+          <button id="apple-mobile-device" class="button-list">
+            <span class="button-type"
+              ><img
+                src="data:image/svg+xml,%3Csvg width='25' height='24' viewBox='0 0 25 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='6.5' y='2.25' width='12.5' height='19.5' rx='1.58333' stroke='black' stroke-width='1.5'/%3E%3Ccircle cx='12.75' cy='18' r='1.5' fill='black'/%3E%3C/svg%3E" /></span
+            ><span class="button-text-type">Apple mobile device</span>
+          </button>
+        </li>
+        <li class="list-item">
+          <button id="android-mobile-device" class="button-list">
+            <span class="button-type"
+              ><img
+                src="data:image/svg+xml,%3Csvg width='25' height='24' viewBox='0 0 25 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='6' y='2.25' width='12.5' height='19.5' rx='1.58333' stroke='black' stroke-width='1.5'/%3E%3Ccircle cx='12.25' cy='18' r='1.5' fill='black'/%3E%3Crect x='9.25' y='4.5' width='6' height='1.5' rx='0.75' fill='black'/%3E%3C/svg%3E" /></span
+            ><span class="button-text-type">Android mobile device</span>
+          </button>
+        </li>
       </ul>
     </div>
 
@@ -706,6 +722,20 @@
         document.getElementById("ios-version").onclick = () => {
           parent.postMessage(
             { pluginMessage: { type: "change-ios-version" } },
+            "*"
+          );
+        };
+
+        document.getElementById("apple-mobile-device").onclick = () => {
+          parent.postMessage(
+            { pluginMessage: { type: "change-apple-mobile-device" } },
+            "*"
+          );
+        };
+
+        document.getElementById("android-mobile-device").onclick = () => {
+          parent.postMessage(
+            { pluginMessage: { type: "change-android-mobile-device" } },
             "*"
           );
         };

@@ -852,6 +852,118 @@ if (figma.command == "open-plugin") {
         }
       }
     }
+    if (msg.type === "change-apple-mobile-device") {
+      // Check if something is selected
+      if (figma.currentPage.selection.length === 0) {
+        // if not, show a message
+        figma.notify("Select a text object to convert it", { timeout: 5 });
+        return;
+      }
+      // if it is not a text object, show a message
+      const nodes = figma.currentPage.selection.filter(function (node) {
+        return node.type === "TEXT";
+      }) as Array<TextNode>;
+      if (nodes.length === 0) {
+        figma.notify("Select a text object to convert it", { timeout: 5 });
+        return;
+      }
+      for (const node of figma.currentPage.selection) {
+        if ("characters" in node) {
+          const AppleMobileDevice = [
+            "iPhone",
+            "iPhone 3G",
+            "iPhone 3GS",
+            "iPhone 4",
+            "iPhone 4S",
+            "iPhone 5",
+            "iPhone 5C",
+            "iPhone 5S",
+            "iPhone 6",
+            "iPhone 6 Plus",
+            "iPhone 6S",
+            "iPhone 6S Plus",
+            "iPhone SE",
+            "iPhone 7",
+            "iPhone 7 Plus",
+            "iPhone 8",
+            "iPhone 8 Plus",
+            "iPhone X",
+            "iPhone XR",
+            "iPhone XS",
+            "iPhone XS Max",
+            "iPhone 11",
+            "iPhone 11 Pro",
+            "iPhone 11 Pro Max",
+            "iPhone SE",
+            "iPhone 12",
+            "iPhone 12 Mini",
+            "iPhone 12 Pro",
+            "iPhone 13",
+            "iPhone 13 Mini",
+            "iPhone 13 Pro",
+            "iPhone 14",
+            "iPhone 14 Plus",
+            "iPhone 14 Pro",
+            "iPhone 14 Pro Max",
+          ];
+          const randomAppleMobileDevice = Math.floor(
+            Math.random() * AppleMobileDevice.length
+          );
+
+          node.characters = AppleMobileDevice[randomAppleMobileDevice];
+        }
+      }
+    }
+    if (msg.type === "change-android-mobile-device") {
+      // Check if something is selected
+      if (figma.currentPage.selection.length === 0) {
+        // if not, show a message
+        figma.notify("Select a text object to convert it", { timeout: 5 });
+        return;
+      }
+      // if it is not a text object, show a message
+      const nodes = figma.currentPage.selection.filter(function (node) {
+        return node.type === "TEXT";
+      }) as Array<TextNode>;
+      if (nodes.length === 0) {
+        figma.notify("Select a text object to convert it", { timeout: 5 });
+        return;
+      }
+      for (const node of figma.currentPage.selection) {
+        if ("characters" in node) {
+          const AndroidMobileDevice = [
+            "Galaxy A2 Core",
+            "Galaxy A10",
+            "Galaxy A20",
+            "Galaxy A30",
+            "Galaxy C5",
+            "Galaxy C7",
+            "Galaxy E7",
+            "Galaxy J1",
+            "Galaxy J Max",
+            "Galaxy J3 Eclipse",
+            "Galaxy J7 Prime 2",
+            "Galaxy M20",
+            "Xperia X10",
+            "Xperia SP",
+            "Xperia M4 Aqua",
+            "Mi 1S",
+            "Mi Note 10",
+            "Redmi 3",
+            "Redmi Y3",
+            "Poco F2 Pro",
+            "Xiaomi Black Shark",
+            "Xiaomi Black Shark Helo",
+            "Nubia Red Magic Mars",
+          ];
+          const randomAndroidMobileDevice = Math.floor(
+            Math.random() * AndroidMobileDevice.length
+          );
+
+          node.characters = AndroidMobileDevice[randomAndroidMobileDevice];
+        }
+      }
+    }
   };
 } else if (figma.command == "health") {
   async function createHealth(): Promise<string | undefined> {
@@ -2387,6 +2499,180 @@ if (figma.command == "open-plugin") {
   }
 
   createIosVersion().then((message: string | undefined) => {
+    figma.closePlugin(message);
+  });
+} else if (figma.command == "apple-mobile-device") {
+  async function createMobileDeviceApple(): Promise<string | undefined> {
+    // Inter is the font that objects will be created in Figma.
+    // We need to wait for fonts to load before creating text using them.
+    await figma.loadFontAsync({ family: "Inter", style: "Thin" });
+    await figma.loadFontAsync({ family: "Inter", style: "Extra Light" });
+    await figma.loadFontAsync({ family: "Inter", style: "Light" });
+    await figma.loadFontAsync({ family: "Inter", style: "Regular" });
+    await figma.loadFontAsync({ family: "Inter", style: "Medium" });
+    await figma.loadFontAsync({ family: "Inter", style: "Semi Bold" });
+    await figma.loadFontAsync({ family: "Inter", style: "Bold" });
+    await figma.loadFontAsync({ family: "Inter", style: "Extra Bold" });
+    await figma.loadFontAsync({ family: "Inter", style: "Black" });
+    await figma.loadFontAsync({ family: "Inter", style: "Thin Italic" });
+    await figma.loadFontAsync({
+      family: "Inter",
+      style: "Extra Light Italic",
+    });
+    await figma.loadFontAsync({ family: "Inter", style: "Light Italic" });
+    await figma.loadFontAsync({ family: "Inter", style: "Italic" });
+    await figma.loadFontAsync({ family: "Inter", style: "Medium Italic" });
+    await figma.loadFontAsync({ family: "Inter", style: "Semi Bold Italic" });
+    await figma.loadFontAsync({ family: "Inter", style: "Bold Italic" });
+    await figma.loadFontAsync({
+      family: "Inter",
+      style: "Extra Bold Italic",
+    });
+    await figma.loadFontAsync({ family: "Inter", style: "Black Italic" });
+    // Make sure the selection is a single piece of text before proceeding.
+    if (figma.currentPage.selection.length === 0) {
+      // if not, show a message
+      figma.closePlugin("Select a text object to convert it");
+      return;
+    } // if it is not a text object, show a message
+    const nodes = figma.currentPage.selection.filter(function (node) {
+      return node.type === "TEXT";
+    }) as Array<TextNode>;
+    if (nodes.length === 0) {
+      figma.closePlugin("Select a text object to convert it");
+      return;
+    } else {
+      for (const node of figma.currentPage.selection) {
+        if ("characters" in node) {
+          const AppleMobileDevice = [
+            "iPhone",
+            "iPhone 3G",
+            "iPhone 3GS",
+            "iPhone 4",
+            "iPhone 4S",
+            "iPhone 5",
+            "iPhone 5C",
+            "iPhone 5S",
+            "iPhone 6",
+            "iPhone 6 Plus",
+            "iPhone 6S",
+            "iPhone 6S Plus",
+            "iPhone SE",
+            "iPhone 7",
+            "iPhone 7 Plus",
+            "iPhone 8",
+            "iPhone 8 Plus",
+            "iPhone X",
+            "iPhone XR",
+            "iPhone XS",
+            "iPhone XS Max",
+            "iPhone 11",
+            "iPhone 11 Pro",
+            "iPhone 11 Pro Max",
+            "iPhone SE",
+            "iPhone 12",
+            "iPhone 12 Mini",
+            "iPhone 12 Pro",
+            "iPhone 13",
+            "iPhone 13 Mini",
+            "iPhone 13 Pro",
+            "iPhone 14",
+            "iPhone 14 Plus",
+            "iPhone 14 Pro",
+            "iPhone 14 Pro Max",
+          ];
+          const randomAppleMobileDevice = Math.floor(
+            Math.random() * AppleMobileDevice.length
+          );
+
+          node.characters = AppleMobileDevice[randomAppleMobileDevice];
+        }
+      }
+    }
+  }
+
+  createMobileDeviceApple().then((message: string | undefined) => {
+    figma.closePlugin(message);
+  });
+} else if (figma.command == "android-mobile-device") {
+  async function createMobileDeviceAndroid(): Promise<string | undefined> {
+    // Inter is the font that objects will be created in Figma.
+    // We need to wait for fonts to load before creating text using them.
+    await figma.loadFontAsync({ family: "Inter", style: "Thin" });
+    await figma.loadFontAsync({ family: "Inter", style: "Extra Light" });
+    await figma.loadFontAsync({ family: "Inter", style: "Light" });
+    await figma.loadFontAsync({ family: "Inter", style: "Regular" });
+    await figma.loadFontAsync({ family: "Inter", style: "Medium" });
+    await figma.loadFontAsync({ family: "Inter", style: "Semi Bold" });
+    await figma.loadFontAsync({ family: "Inter", style: "Bold" });
+    await figma.loadFontAsync({ family: "Inter", style: "Extra Bold" });
+    await figma.loadFontAsync({ family: "Inter", style: "Black" });
+    await figma.loadFontAsync({ family: "Inter", style: "Thin Italic" });
+    await figma.loadFontAsync({
+      family: "Inter",
+      style: "Extra Light Italic",
+    });
+    await figma.loadFontAsync({ family: "Inter", style: "Light Italic" });
+    await figma.loadFontAsync({ family: "Inter", style: "Italic" });
+    await figma.loadFontAsync({ family: "Inter", style: "Medium Italic" });
+    await figma.loadFontAsync({ family: "Inter", style: "Semi Bold Italic" });
+    await figma.loadFontAsync({ family: "Inter", style: "Bold Italic" });
+    await figma.loadFontAsync({
+      family: "Inter",
+      style: "Extra Bold Italic",
+    });
+    await figma.loadFontAsync({ family: "Inter", style: "Black Italic" });
+    // Make sure the selection is a single piece of text before proceeding.
+    if (figma.currentPage.selection.length === 0) {
+      // if not, show a message
+      figma.closePlugin("Select a text object to convert it");
+      return;
+    } // if it is not a text object, show a message
+    const nodes = figma.currentPage.selection.filter(function (node) {
+      return node.type === "TEXT";
+    }) as Array<TextNode>;
+    if (nodes.length === 0) {
+      figma.closePlugin("Select a text object to convert it");
+      return;
+    } else {
+      for (const node of figma.currentPage.selection) {
+        if ("characters" in node) {
+          const AndroidMobileDevice = [
+            "Galaxy A2 Core",
+            "Galaxy A10",
+            "Galaxy A20",
+            "Galaxy A30",
+            "Galaxy C5",
+            "Galaxy C7",
+            "Galaxy E7",
+            "Galaxy J1",
+            "Galaxy J Max",
+            "Galaxy J3 Eclipse",
+            "Galaxy J7 Prime 2",
+            "Galaxy M20",
+            "Xperia X10",
+            "Xperia SP",
+            "Xperia M4 Aqua",
+            "Mi 1S",
+            "Mi Note 10",
+            "Redmi 3",
+            "Redmi Y3",
+            "Poco F2 Pro",
+            "Xiaomi Black Shark",
+            "Xiaomi Black Shark Helo",
+            "Nubia Red Magic Mars",
+          ];
+          const randomAndroidMobileDevice = Math.floor(
+            Math.random() * AndroidMobileDevice.length
+          );
+
+          node.characters = AndroidMobileDevice[randomAndroidMobileDevice];
+        }
+      }
+    }
+  }
+
+  createMobileDeviceAndroid().then((message: string | undefined) => {
     figma.closePlugin(message);
   });
 }

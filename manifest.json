@@ -26,6 +26,8 @@
     { "name": "Host name", "command": "host-name" },
     { "name": "Android version", "command": "android-version" },
     { "name": "iOS version", "command": "ios-version" },
+    { "name": "Apple Mobile Device", "command": "apple-mobile-device" },
+    { "name": "Android Mobile Device", "command": "android-mobile-device" },
     { "separator": true },
     { "name": "Open Plugin", "command": "open-plugin" }
   ]
