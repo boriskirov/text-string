@@ -1327,6 +1327,84 @@ if (figma.command == "open-plugin") {
         }
       }
     }
+
+    // Update network connection type
+    if (msg.type === "change-nct") {
+      // Check if something is selected
+      if (figma.currentPage.selection.length === 0) {
+        // if not, show a message
+        figma.notify("Select a text object to convert it", { timeout: 5 });
+        return;
+      }
+      // if it is not a text object, show a message
+      const nodes = figma.currentPage.selection.filter(function (node) {
+        return node.type === "TEXT";
+      }) as Array<TextNode>;
+      if (nodes.length === 0) {
+        figma.notify("Select a text object to convert it", { timeout: 5 });
+        return;
+      }
+      for (const node of figma.currentPage.selection) {
+        if ("characters" in node) {
+          const NetworkConnectionType = [
+            "GPRS",
+            "Regular 2G",
+            "Good 2G",
+            "Regular 3G",
+            "Good 3G",
+            "Regular 4G / LTE",
+            "DSL",
+            "Wi-Fi",
+          ];
+          const randomNetworkConnectionType = Math.floor(
+            Math.random() * NetworkConnectionType.length
+          );
+
+          node.characters = NetworkConnectionType[randomNetworkConnectionType];
+        }
+      }
+    }
+
+    // Update version
+
+    if (msg.type === "change-version") {
+      // Check if something is selected
+      if (figma.currentPage.selection.length === 0) {
+        // if not, show a message
+        figma.notify("Select a text object to convert it", { timeout: 5 });
+        return;
+      }
+      // if it is not a text object, show a message
+      const nodes = figma.currentPage.selection.filter(function (node) {
+        return node.type === "TEXT";
+      }) as Array<TextNode>;
+      if (nodes.length === 0) {
+        figma.notify("Select a text object to convert it", { timeout: 5 });
+        return;
+      }
+      for (const node of figma.currentPage.selection) {
+        if ("characters" in node) {
+          const characters = "123456789";
+          function generateVersion(length) {
+            let result = "";
+            const charactersLength = characters.length;
+            for (let i = 0; i < length; i++) {
+              result += characters.charAt(
+                Math.floor(Math.random() * charactersLength)
+              );
+            }
+            return result;
+          }
+
+          node.characters =
+            generateVersion(2) +
+            "." +
+            generateVersion(1) +
+            "." +
+            generateVersion(1);
+        }
+      }
+    }
   };
 } else if (figma.command == "health") {
   async function createHealth(): Promise<string | undefined> {
@@ -3554,6 +3632,141 @@ if (figma.command == "open-plugin") {
   }
 
   createThousands().then((message: string | undefined) => {
+    figma.closePlugin(message);
+  });
+} else if (figma.command == "nct") {
+  async function createNetworkConnectionType(): Promise<string | undefined> {
+    // Inter is the font that objects will be created in Figma.
+    // We need to wait for fonts to load before creating text using them.
+    await figma.loadFontAsync({ family: "Inter", style: "Thin" });
+    await figma.loadFontAsync({ family: "Inter", style: "Extra Light" });
+    await figma.loadFontAsync({ family: "Inter", style: "Light" });
+    await figma.loadFontAsync({ family: "Inter", style: "Regular" });
+    await figma.loadFontAsync({ family: "Inter", style: "Medium" });
+    await figma.loadFontAsync({ family: "Inter", style: "Semi Bold" });
+    await figma.loadFontAsync({ family: "Inter", style: "Bold" });
+    await figma.loadFontAsync({ family: "Inter", style: "Extra Bold" });
+    await figma.loadFontAsync({ family: "Inter", style: "Black" });
+    await figma.loadFontAsync({ family: "Inter", style: "Thin Italic" });
+    await figma.loadFontAsync({
+      family: "Inter",
+      style: "Extra Light Italic",
+    });
+    await figma.loadFontAsync({ family: "Inter", style: "Light Italic" });
+    await figma.loadFontAsync({ family: "Inter", style: "Italic" });
+    await figma.loadFontAsync({ family: "Inter", style: "Medium Italic" });
+    await figma.loadFontAsync({ family: "Inter", style: "Semi Bold Italic" });
+    await figma.loadFontAsync({ family: "Inter", style: "Bold Italic" });
+    await figma.loadFontAsync({
+      family: "Inter",
+      style: "Extra Bold Italic",
+    });
+    await figma.loadFontAsync({ family: "Inter", style: "Black Italic" });
+    // Make sure the selection is a single piece of text before proceeding.
+    if (figma.currentPage.selection.length === 0) {
+      // if not, show a message
+      figma.closePlugin("Select a text object to convert it");
+      return;
+    } // if it is not a text object, show a message
+    const nodes = figma.currentPage.selection.filter(function (node) {
+      return node.type === "TEXT";
+    }) as Array<TextNode>;
+    if (nodes.length === 0) {
+      figma.closePlugin("Select a text object to convert it");
+      return;
+    } else {
+      for (const node of figma.currentPage.selection) {
+        if ("characters" in node) {
+          const NetworkConnectionType = [
+            "GPRS",
+            "Regular 2G",
+            "Good 2G",
+            "Regular 3G",
+            "Good 3G",
+            "Regular 4G / LTE",
+            "DSL",
+            "Wi-Fi",
+          ];
+          const randomNetworkConnectionType = Math.floor(
+            Math.random() * NetworkConnectionType.length
+          );
+
+          node.characters = NetworkConnectionType[randomNetworkConnectionType];
+        }
+      }
+    }
+  }
+
+  createNetworkConnectionType().then((message: string | undefined) => {
+    figma.closePlugin(message);
+  });
+} else if (figma.command == "version") {
+  async function createVersion(): Promise<string | undefined> {
+    // Inter is the font that objects will be created in Figma.
+    // We need to wait for fonts to load before creating text using them.
+    await figma.loadFontAsync({ family: "Inter", style: "Thin" });
+    await figma.loadFontAsync({ family: "Inter", style: "Extra Light" });
+    await figma.loadFontAsync({ family: "Inter", style: "Light" });
+    await figma.loadFontAsync({ family: "Inter", style: "Regular" });
+    await figma.loadFontAsync({ family: "Inter", style: "Medium" });
+    await figma.loadFontAsync({ family: "Inter", style: "Semi Bold" });
+    await figma.loadFontAsync({ family: "Inter", style: "Bold" });
+    await figma.loadFontAsync({ family: "Inter", style: "Extra Bold" });
+    await figma.loadFontAsync({ family: "Inter", style: "Black" });
+    await figma.loadFontAsync({ family: "Inter", style: "Thin Italic" });
+    await figma.loadFontAsync({
+      family: "Inter",
+      style: "Extra Light Italic",
+    });
+    await figma.loadFontAsync({ family: "Inter", style: "Light Italic" });
+    await figma.loadFontAsync({ family: "Inter", style: "Italic" });
+    await figma.loadFontAsync({ family: "Inter", style: "Medium Italic" });
+    await figma.loadFontAsync({ family: "Inter", style: "Semi Bold Italic" });
+    await figma.loadFontAsync({ family: "Inter", style: "Bold Italic" });
+    await figma.loadFontAsync({
+      family: "Inter",
+      style: "Extra Bold Italic",
+    });
+    await figma.loadFontAsync({ family: "Inter", style: "Black Italic" });
+    // Make sure the selection is a single piece of text before proceeding.
+    if (figma.currentPage.selection.length === 0) {
+      // if not, show a message
+      figma.closePlugin("Select a text object to convert it");
+      return;
+    } // if it is not a text object, show a message
+    const nodes = figma.currentPage.selection.filter(function (node) {
+      return node.type === "TEXT";
+    }) as Array<TextNode>;
+    if (nodes.length === 0) {
+      figma.closePlugin("Select a text object to convert it");
+      return;
+    } else {
+      for (const node of figma.currentPage.selection) {
+        if ("characters" in node) {
+          const characters = "123456789";
+          function generateVersion(length) {
+            let result = "";
+            const charactersLength = characters.length;
+            for (let i = 0; i < length; i++) {
+              result += characters.charAt(
+                Math.floor(Math.random() * charactersLength)
+              );
+            }
+            return result;
+          }
+
+          node.characters =
+            generateVersion(2) +
+            "." +
+            generateVersion(1) +
+            "." +
+            generateVersion(1);
+        }
+      }
+    }
+  }
+
+  createVersion().then((message: string | undefined) => {
     figma.closePlugin(message);
   });
 }
