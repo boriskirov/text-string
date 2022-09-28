@@ -28,6 +28,7 @@
     { "name": "iOS version", "command": "ios-version" },
     { "name": "Apple Mobile Device", "command": "apple-mobile-device" },
     { "name": "Android Mobile Device", "command": "android-mobile-device" },
+    { "name": "Browser", "command": "browser" },
     { "separator": true },
     { "name": "Open Plugin", "command": "open-plugin" }
   ]
