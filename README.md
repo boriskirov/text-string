@@ -66,6 +66,22 @@ If text object/s is/are selected in Figma, the command will format them randomly
 
 If text object/s is/are selected in Figma, the command will format them randomly with error type.
 
+### Storage size
+
+If text object/s is/are selected in Figma, the command will format them randomly with size in GB.
+
+### Host name
+
+If text object/s is/are selected in Figma, the command will format them randomly with a host name.
+
+### Android version
+
+If text object/s is/are selected in Figma, the command will format them randomly with an Android version.
+
+### iOS version
+
+If text object/s is/are selected in Figma, the command will format them randomly with an iOS version.
+
 ### Open Plugin
 
 Opens a modal with a list of options. Select a text object/s in figma and then click on one of the available options in the modal to convert them in a data specific type. Close the dialog by clicking on the close icon on the top right corner.
