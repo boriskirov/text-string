@@ -33,7 +33,7 @@
     { "name": "Hundreds", "command": "hundreds" },
     { "name": "Thousands", "command": "thousands" },
     { "name": "Network Connection Type", "command": "nct" },
-    { "name": "Application / Software Version", "command": "version" },
+    { "name": "Semantic Version", "command": "version" },
     { "separator": true },
     { "name": "Open Plugin", "command": "open-plugin" }
   ]
