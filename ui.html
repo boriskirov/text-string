@@ -529,6 +529,14 @@
           </button>
         </li>
         <li class="list-item">
+          <button id="traffic" class="button-list">
+            <span class="button-type"
+              ><img
+                src="data:image/svg+xml,%3Csvg width='24' height='21' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M15 19.4985V15.0135H16.5V21H0V0H16.5V5.9985H15V1.5015H1.5V19.4985H15Z' fill='black'/%3E%3Cpath d='M6.75 13.5V12H16.5V13.5H6.75Z' fill='%23343741'/%3E%3Cpath d='M19.5 12.75L24 8.25L19.5 3.75V12.75Z' fill='black'/%3E%3Cpath d='M8.25 8.25V17.25L3.75 12.75L8.25 8.25Z' fill='black'/%3E%3Cpath d='M10.5 9V7.5H20.25V9H10.5Z' fill='black'/%3E%3C/svg%3E%0A"/></span
+            ><span class="button-text-type">Traffic (Mbit/s)</span>
+          </button>
+        </li>
+        <li class="list-item">
           <button id="android-version" class="button-list">
             <span class="button-type"
               ><img
@@ -756,6 +764,13 @@
         document.getElementById("host-name").onclick = () => {
           parent.postMessage(
             { pluginMessage: { type: "change-host-name" } },
+            "*"
+          );
+        };
+
+        document.getElementById("traffic").onclick = () => {
+          parent.postMessage(
+            { pluginMessage: { type: "change-traffic" } },
             "*"
           );
         };

@@ -24,6 +24,7 @@
     { "name": "Error type", "command": "error-type" },
     { "name": "Storage Size", "command": "storage-size" },
     { "name": "Host name", "command": "host-name" },
+    { "name": "Traffic (Mbit/s)", "command": "traffic" },
     { "name": "Android version", "command": "android-version" },
     { "name": "iOS version", "command": "ios-version" },
     { "name": "Apple Mobile Device", "command": "apple-mobile-device" },

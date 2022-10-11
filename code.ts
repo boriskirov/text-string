@@ -734,6 +734,41 @@ if (figma.command == "open-plugin") {
         }
       }
     }
+    // Update traffic
+    if (msg.type === "change-traffic") {
+      // Check if something is selected
+      if (figma.currentPage.selection.length === 0) {
+        // if not, show a message
+        figma.notify("Select a text object to convert it", { timeout: 5 });
+        return;
+      }
+      // if it is not a text object, show a message
+      const nodes = figma.currentPage.selection.filter(function (node) {
+        return node.type === "TEXT";
+      }) as Array<TextNode>;
+      if (nodes.length === 0) {
+        figma.notify("Select a text object to convert it", { timeout: 5 });
+        return;
+      }
+      for (const node of figma.currentPage.selection) {
+        if ("characters" in node) {
+          const characters = "123456789";
+          function generateTraffic(length) {
+            let result = "";
+            const charactersLength = characters.length;
+            for (let i = 0; i < length; i++) {
+              result += characters.charAt(
+                Math.floor(Math.random() * charactersLength)
+              );
+            }
+            return result;
+          }
+
+          node.characters = generateTraffic(2) + " Mbit/s";
+        }
+      }
+    }
+    // Update Android version
     if (msg.type === "change-android-version") {
       // Check if something is selected
       if (figma.currentPage.selection.length === 0) {
@@ -792,6 +827,7 @@ if (figma.command == "open-plugin") {
         }
       }
     }
+    // Update iOS version
     if (msg.type === "change-ios-version") {
       // Check if something is selected
       if (figma.currentPage.selection.length === 0) {
@@ -852,6 +888,7 @@ if (figma.command == "open-plugin") {
         }
       }
     }
+    // Update Apple mobilde device
     if (msg.type === "change-apple-mobile-device") {
       // Check if something is selected
       if (figma.currentPage.selection.length === 0) {
@@ -914,6 +951,7 @@ if (figma.command == "open-plugin") {
         }
       }
     }
+    // Update Android mobile device
     if (msg.type === "change-android-mobile-device") {
       // Check if something is selected
       if (figma.currentPage.selection.length === 0) {
@@ -964,6 +1002,7 @@ if (figma.command == "open-plugin") {
         }
       }
     }
+    // Update browser
     if (msg.type === "change-browser") {
       // Check if something is selected
       if (figma.currentPage.selection.length === 0) {
@@ -1022,6 +1061,7 @@ if (figma.command == "open-plugin") {
         }
       }
     }
+    // Update country
 
     if (msg.type === "change-country") {
       // Check if something is selected
@@ -2675,6 +2715,86 @@ if (figma.command == "open-plugin") {
   }
 
   createHostName().then((message: string | undefined) => {
+    figma.closePlugin(message);
+  });
+} else if (figma.command == "traffic") {
+  async function createTraffic(): Promise<string | undefined> {
+    // Inter is the font that objects will be created in Figma.
+    // We need to wait for fonts to load before creating text using them.
+    await figma.loadFontAsync({ family: "Inter", style: "Thin" });
+    await figma.loadFontAsync({ family: "Inter", style: "Extra Light" });
+    await figma.loadFontAsync({ family: "Inter", style: "Light" });
+    await figma.loadFontAsync({ family: "Inter", style: "Regular" });
+    await figma.loadFontAsync({ family: "Inter", style: "Medium" });
+    await figma.loadFontAsync({ family: "Inter", style: "Semi Bold" });
+    await figma.loadFontAsync({ family: "Inter", style: "Bold" });
+    await figma.loadFontAsync({ family: "Inter", style: "Extra Bold" });
+    await figma.loadFontAsync({ family: "Inter", style: "Black" });
+    await figma.loadFontAsync({ family: "Inter", style: "Thin Italic" });
+    await figma.loadFontAsync({
+      family: "Inter",
+      style: "Extra Light Italic",
+    });
+    await figma.loadFontAsync({ family: "Inter", style: "Light Italic" });
+    await figma.loadFontAsync({ family: "Inter", style: "Italic" });
+    await figma.loadFontAsync({ family: "Inter", style: "Medium Italic" });
+    await figma.loadFontAsync({ family: "Inter", style: "Semi Bold Italic" });
+    await figma.loadFontAsync({ family: "Inter", style: "Bold Italic" });
+    await figma.loadFontAsync({
+      family: "Inter",
+      style: "Extra Bold Italic",
+    });
+    await figma.loadFontAsync({ family: "Inter", style: "Black Italic" });
+    // Make sure the selection is a single piece of text before proceeding.
+
+    if (figma.currentPage.selection.length === 0) {
+      // if not, show a message
+      figma.closePlugin("Select a text object to convert it");
+      return;
+    } // if it is not a text object, show a message
+    const nodes = figma.currentPage.selection.filter(function (node) {
+      return node.type === "TEXT";
+    }) as Array<TextNode>;
+    if (nodes.length === 0) {
+      figma.closePlugin("Select a text object to convert it");
+      return;
+    } else {
+      for (const node of figma.currentPage.selection) {
+        if (figma.currentPage.selection.length === 0) {
+          // if not, show a message
+          figma.closePlugin("Select a text object to convert it");
+          return;
+        }
+        // if it is not a text object, show a message
+        const nodes = figma.currentPage.selection.filter(function (node) {
+          return node.type === "TEXT";
+        }) as Array<TextNode>;
+        if (nodes.length === 0) {
+          figma.closePlugin("Select a text object to convert it");
+          return;
+        }
+        for (const node of figma.currentPage.selection) {
+          if ("characters" in node) {
+            const characters = "123456789";
+            function generateTraffic(length) {
+              let result = "";
+              const charactersLength = characters.length;
+              for (let i = 0; i < length; i++) {
+                result += characters.charAt(
+                  Math.floor(Math.random() * charactersLength)
+                );
+              }
+              return result;
+            }
+
+            node.characters = generateTraffic(2) + " Mbit/s";
+          }
+        }
+      }
+    }
+  }
+
+  createTraffic().then((message: string | undefined) => {
     figma.closePlugin(message);
   });
 } else if (figma.command == "duration-s") {
