@@ -768,6 +768,13 @@
           );
         };
 
+        document.getElementById("traffic").onclick = () => {
+          parent.postMessage(
+            { pluginMessage: { type: "change-traffic" } },
+            "*"
+          );
+        };
+
         document.getElementById("android-version").onclick = () => {
           parent.postMessage(
             { pluginMessage: { type: "change-android-version" } },

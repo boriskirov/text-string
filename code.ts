@@ -734,6 +734,41 @@ if (figma.command == "open-plugin") {
         }
       }
     }
+    // Update traffic
+    if (msg.type === "change-traffic") {
+      // Check if something is selected
+      if (figma.currentPage.selection.length === 0) {
+        // if not, show a message
+        figma.notify("Select a text object to convert it", { timeout: 5 });
+        return;
+      }
+      // if it is not a text object, show a message
+      const nodes = figma.currentPage.selection.filter(function (node) {
+        return node.type === "TEXT";
+      }) as Array<TextNode>;
+      if (nodes.length === 0) {
+        figma.notify("Select a text object to convert it", { timeout: 5 });
+        return;
+      }
+      for (const node of figma.currentPage.selection) {
+        if ("characters" in node) {
+          const characters = "123456789";
+          function generateTraffic(length) {
+            let result = "";
+            const charactersLength = characters.length;
+            for (let i = 0; i < length; i++) {
+              result += characters.charAt(
+                Math.floor(Math.random() * charactersLength)
+              );
+            }
+            return result;
+          }
+
+          node.characters =
+            generateTraffic(2) + " Mbit/s";
+        }
+      }
+    }
     if (msg.type === "change-android-version") {
       // Check if something is selected
       if (figma.currentPage.selection.length === 0) {
@@ -2748,8 +2783,7 @@ async function createTraffic(): Promise<string | undefined> {
           }
 
           node.characters =
-            generateTraffic(1) +
-            generateTraffic(1) +
+            generateTraffic(2) +
             " Mbit/s";
         }
       }
