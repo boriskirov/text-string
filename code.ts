@@ -90,6 +90,9 @@ if (figma.command == "open-plugin") {
       figma.currentPage.selection = nodes;
       figma.viewport.scrollAndZoomIntoView(nodes);
     }
+
+    // ONCLICK EVENTS LOGIC BELOW
+
     // Update random span id
     if (msg.type === "change-text") {
       for (const node of figma.currentPage.selection) {
@@ -665,6 +668,7 @@ if (figma.command == "open-plugin") {
       }
     }
 
+    // Update Storage size
     if (msg.type === "change-storage-size") {
       // Check if something is selected
       if (figma.currentPage.selection.length === 0) {
@@ -698,6 +702,8 @@ if (figma.command == "open-plugin") {
         }
       }
     }
+
+    //Update host
     if (msg.type === "change-host-name") {
       // Check if something is selected
       if (figma.currentPage.selection.length === 0) {
@@ -734,6 +740,7 @@ if (figma.command == "open-plugin") {
         }
       }
     }
+
     // Update traffic
     if (msg.type === "change-traffic") {
       // Check if something is selected
@@ -768,6 +775,7 @@ if (figma.command == "open-plugin") {
         }
       }
     }
+
     // Update Android version
     if (msg.type === "change-android-version") {
       // Check if something is selected
@@ -827,6 +835,7 @@ if (figma.command == "open-plugin") {
         }
       }
     }
+
     // Update iOS version
     if (msg.type === "change-ios-version") {
       // Check if something is selected
@@ -888,6 +897,7 @@ if (figma.command == "open-plugin") {
         }
       }
     }
+
     // Update Apple mobilde device
     if (msg.type === "change-apple-mobile-device") {
       // Check if something is selected
@@ -951,6 +961,7 @@ if (figma.command == "open-plugin") {
         }
       }
     }
+
     // Update Android mobile device
     if (msg.type === "change-android-mobile-device") {
       // Check if something is selected
@@ -1002,6 +1013,7 @@ if (figma.command == "open-plugin") {
         }
       }
     }
+
     // Update browser
     if (msg.type === "change-browser") {
       // Check if something is selected
@@ -1061,8 +1073,8 @@ if (figma.command == "open-plugin") {
         }
       }
     }
-    // Update country
 
+    // Update country
     if (msg.type === "change-country") {
       // Check if something is selected
       if (figma.currentPage.selection.length === 0) {
@@ -1406,7 +1418,6 @@ if (figma.command == "open-plugin") {
     }
 
     // Update version
-
     if (msg.type === "change-version") {
       // Check if something is selected
       if (figma.currentPage.selection.length === 0) {
@@ -1446,6 +1457,8 @@ if (figma.command == "open-plugin") {
       }
     }
   };
+
+  // SHORTCUTS LOGIC BELOW
 } else if (figma.command == "health") {
   async function createHealth(): Promise<string | undefined> {
     // Inter is the font that objects will be created in Figma.
