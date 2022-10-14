@@ -1456,9 +1456,213 @@ if (figma.command == "open-plugin") {
         }
       }
     }
+    // Update alert reason
+    if (msg.type == "change-alert-reason") {
+      // Check if something is selected
+      if (figma.currentPage.selection.length === 0) {
+        // if not, show a message
+        figma.notify("Select a text object to convert it", { timeout: 5 });
+        return;
+      }
+      // if it is not a text object, show a message
+      const nodes = figma.currentPage.selection.filter(function (node) {
+        return node.type === "TEXT";
+      }) as Array<TextNode>;
+      if (nodes.length === 0) {
+        figma.notify("Select a text object to convert it", { timeout: 5 });
+        return;
+      }
+      for (const node of figma.currentPage.selection) {
+        if ("characters" in node) {
+          const numbers = "56789";
+          function randomPercentage(length) {
+            let result = "";
+            const numbersLength = numbers.length;
+            for (let i = 0; i < length; i++) {
+              result += numbers.charAt(
+                Math.floor(Math.random() * numbersLength)
+              );
+            }
+            return result;
+          }
+
+          const minutes = "23456789";
+          function randomMinute(length) {
+            let result = "";
+            const minutesLength = minutes.length;
+            for (let i = 0; i < length; i++) {
+              result += minutes.charAt(
+                Math.floor(Math.random() * minutesLength)
+              );
+            }
+            return result;
+          }
+
+          const alertReason = ["CPU usage", "Failed transaction rate", "Load"];
+          const randomAlert = Math.floor(Math.random() * alertReason.length);
+
+          const hostName = [
+            "gke-edge-oblt-pool-1-9a60016d-4b34",
+            "gke-edge-oblt-pool-1-9a60016d-xd62",
+            "gke-edge-oblt-pool-1-9a60016d-vjw6",
+            "gke-edge-oblt-pool-1-3b11012g-wyn6",
+            "gke-edge-oblt-pool-1-9a50016d-aj23",
+            "gke-edge-oblt-pool-1-7a82216d-wjs8",
+            "gke-edge-oblt-pool-1-2a27716d-uja2",
+            "gke-edge-oblt-pool-1-5a91116d-ojw3",
+            "gke-edge-oblt-pool-1-4a60016d-pjp1",
+            "gke-edge-oblt-pool-1-7a60016d-slot",
+            "gke-edge-oblt-pool-1-9a60016d-slot",
+          ];
+          const randomHost = Math.floor(Math.random() * hostName.length);
+
+          node.characters =
+            alertReason[randomAlert] +
+            " is " +
+            " 9" +
+            randomPercentage(1) +
+            "%" +
+            " in the last " +
+            randomMinute(1) +
+            " minutes for " +
+            hostName[randomHost] +
+            ". " +
+            "Alert when > " +
+            randomPercentage(2) +
+            "%";
+        }
+      }
+    }
+
+    //Update random alert status
+    if (msg.type === "change-alert-status") {
+      // Check if something is selected
+      if (figma.currentPage.selection.length === 0) {
+        // if not, show a message
+        figma.notify("Select a text object to convert it", { timeout: 5 });
+        return;
+      }
+      // if it is not a text object, show a message
+      const nodes = figma.currentPage.selection.filter(function (node) {
+        return node.type === "TEXT";
+      }) as Array<TextNode>;
+      if (nodes.length === 0) {
+        figma.notify("Select a text object to convert it", { timeout: 5 });
+        return;
+      }
+
+      for (const node of figma.currentPage.selection) {
+        if ("characters" in node) {
+          const status = ["Active", "Recovered"];
+          const randomAlertStatus = Math.floor(Math.random() * status.length);
+
+          node.characters = status[randomAlertStatus];
+        }
+      }
+    }
+
+    //Update random alert source
+    if (msg.type === "change-alert-source") {
+      // Check if something is selected
+      if (figma.currentPage.selection.length === 0) {
+        // if not, show a message
+        figma.notify("Select a text object to convert it", { timeout: 5 });
+        return;
+      }
+      // if it is not a text object, show a message
+      const nodes = figma.currentPage.selection.filter(function (node) {
+        return node.type === "TEXT";
+      }) as Array<TextNode>;
+      if (nodes.length === 0) {
+        figma.notify("Select a text object to convert it", { timeout: 5 });
+        return;
+      }
+
+      for (const node of figma.currentPage.selection) {
+        if ("characters" in node) {
+          const source = [
+            "gke-edge-oblt-pool-1-9a60016d-4b34",
+            "gke-edge-oblt-pool-1-9a60016d-xd62",
+            "gke-edge-oblt-pool-1-9a60016d-vjw6",
+            "gke-edge-oblt-pool-1-3b11012g-wyn6",
+            "gke-edge-oblt-pool-1-9a50016d-aj23",
+            "gke-edge-oblt-pool-1-7a82216d-wjs8",
+            "gke-edge-oblt-pool-1-2a27716d-uja2",
+            "gke-edge-oblt-pool-1-5a91116d-ojw3",
+            "gke-edge-oblt-pool-1-4a60016d-pjp1",
+            "gke-edge-oblt-pool-1-7a60016d-slot",
+            "gke-edge-oblt-pool-1-9a60016d-slot",
+            "beat.stats.apm_server.acm.response.valid.ok",
+            "beat.stats.apm_server.decoder.deflate.content-length",
+            "beat.stats.apm_server.decoder.gzip.count",
+            "beat.stats.apm_server.acm.response.errors.unauthorized",
+            "beat.stats.apm_server.acm.response.errors.notfound",
+            "beat.stats.apm_server.acm.request.count",
+            "azure.app_state.browser_timings_total_duration.avg",
+            "awsfargate.task_stats.network.*.inbound.bytes",
+            "awsfargate.task_stats.memory.fail.coun",
+            "awsfargate.task_stats.diskio.total",
+            "awsfargate.task_stats.diskio.read.ops",
+            "aws.usage.metrics.CallCount.sum",
+            "aws.sqs.messages.sent",
+            "aws.sns.metrics.NumberOfMessagesPublished.sum",
+            "aws.s3_request.errors.4xx",
+            "aws.rds.throughput.network_transmit",
+            "aws.rds.replica_lag.sec",
+            "Hosts",
+            "Kubernetes Pods",
+            "Docker Containers",
+            "EC2 Instances",
+            "S3 Buckets",
+            "RDS Databases",
+            "SQS Queues",
+          ];
+
+          const randomSource = Math.floor(Math.random() * source.length);
+
+          node.characters = source[randomSource];
+        }
+      }
+    }
   };
 
   // SHORTCUTS LOGIC BELOW
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
 } else if (figma.command == "health") {
   async function createHealth(): Promise<string | undefined> {
     // Inter is the font that objects will be created in Figma.
@@ -3900,6 +4104,260 @@ if (figma.command == "open-plugin") {
   }
 
   createVersion().then((message: string | undefined) => {
+    figma.closePlugin(message);
+  });
+} else if (figma.command == "alert-reason") {
+  async function createAlertReason(): Promise<string | undefined> {
+    // Inter is the font that objects will be created in Figma.
+    // We need to wait for fonts to load before creating text using them.
+    await figma.loadFontAsync({ family: "Inter", style: "Thin" });
+    await figma.loadFontAsync({ family: "Inter", style: "Extra Light" });
+    await figma.loadFontAsync({ family: "Inter", style: "Light" });
+    await figma.loadFontAsync({ family: "Inter", style: "Regular" });
+    await figma.loadFontAsync({ family: "Inter", style: "Medium" });
+    await figma.loadFontAsync({ family: "Inter", style: "Semi Bold" });
+    await figma.loadFontAsync({ family: "Inter", style: "Bold" });
+    await figma.loadFontAsync({ family: "Inter", style: "Extra Bold" });
+    await figma.loadFontAsync({ family: "Inter", style: "Black" });
+    await figma.loadFontAsync({ family: "Inter", style: "Thin Italic" });
+    await figma.loadFontAsync({
+      family: "Inter",
+      style: "Extra Light Italic",
+    });
+    await figma.loadFontAsync({ family: "Inter", style: "Light Italic" });
+    await figma.loadFontAsync({ family: "Inter", style: "Italic" });
+    await figma.loadFontAsync({ family: "Inter", style: "Medium Italic" });
+    await figma.loadFontAsync({ family: "Inter", style: "Semi Bold Italic" });
+    await figma.loadFontAsync({ family: "Inter", style: "Bold Italic" });
+    await figma.loadFontAsync({
+      family: "Inter",
+      style: "Extra Bold Italic",
+    });
+    await figma.loadFontAsync({ family: "Inter", style: "Black Italic" });
+    // Make sure the selection is a single piece of text before proceeding.
+    if (figma.currentPage.selection.length === 0) {
+      // if not, show a message
+      figma.closePlugin("Select a text object to convert it");
+      return;
+    } // if it is not a text object, show a message
+    const nodes = figma.currentPage.selection.filter(function (node) {
+      return node.type === "TEXT";
+    }) as Array<TextNode>;
+    if (nodes.length === 0) {
+      figma.closePlugin("Select a text object to convert it");
+      return;
+    } else {
+      for (const node of figma.currentPage.selection) {
+        if ("characters" in node) {
+          const numbers = "56789";
+          function randomPercentage(length) {
+            let result = "";
+            const numbersLength = numbers.length;
+            for (let i = 0; i < length; i++) {
+              result += numbers.charAt(
+                Math.floor(Math.random() * numbersLength)
+              );
+            }
+            return result;
+          }
+
+          const minutes = "23456789";
+          function randomMinute(length) {
+            let result = "";
+            const minutesLength = minutes.length;
+            for (let i = 0; i < length; i++) {
+              result += minutes.charAt(
+                Math.floor(Math.random() * minutesLength)
+              );
+            }
+            return result;
+          }
+
+          const alertReason = ["CPU usage", "Failed transaction rate", "Load"];
+          const randomAlert = Math.floor(Math.random() * alertReason.length);
+
+          const hostName = [
+            "gke-edge-oblt-pool-1-9a60016d-4b34",
+            "gke-edge-oblt-pool-1-9a60016d-xd62",
+            "gke-edge-oblt-pool-1-9a60016d-vjw6",
+            "gke-edge-oblt-pool-1-3b11012g-wyn6",
+            "gke-edge-oblt-pool-1-9a50016d-aj23",
+            "gke-edge-oblt-pool-1-7a82216d-wjs8",
+            "gke-edge-oblt-pool-1-2a27716d-uja2",
+            "gke-edge-oblt-pool-1-5a91116d-ojw3",
+            "gke-edge-oblt-pool-1-4a60016d-pjp1",
+            "gke-edge-oblt-pool-1-7a60016d-slot",
+            "gke-edge-oblt-pool-1-9a60016d-slot",
+          ];
+          const randomHost = Math.floor(Math.random() * hostName.length);
+
+          node.characters =
+            alertReason[randomAlert] +
+            " is " +
+            " 9" +
+            randomPercentage(1) +
+            "%" +
+            " in the last " +
+            randomMinute(1) +
+            " minutes for " +
+            hostName[randomHost] +
+            ". " +
+            "Alert when > " +
+            randomPercentage(2) +
+            "%";
+        }
+      }
+    }
+  }
+
+  createAlertReason().then((message: string | undefined) => {
+    figma.closePlugin(message);
+  });
+} else if (figma.command == "alert-status") {
+  async function createAlertStatus(): Promise<string | undefined> {
+    // Inter is the font that objects will be created in Figma.
+    // We need to wait for fonts to load before creating text using them.
+    await figma.loadFontAsync({ family: "Inter", style: "Thin" });
+    await figma.loadFontAsync({ family: "Inter", style: "Extra Light" });
+    await figma.loadFontAsync({ family: "Inter", style: "Light" });
+    await figma.loadFontAsync({ family: "Inter", style: "Regular" });
+    await figma.loadFontAsync({ family: "Inter", style: "Medium" });
+    await figma.loadFontAsync({ family: "Inter", style: "Semi Bold" });
+    await figma.loadFontAsync({ family: "Inter", style: "Bold" });
+    await figma.loadFontAsync({ family: "Inter", style: "Extra Bold" });
+    await figma.loadFontAsync({ family: "Inter", style: "Black" });
+    await figma.loadFontAsync({ family: "Inter", style: "Thin Italic" });
+    await figma.loadFontAsync({
+      family: "Inter",
+      style: "Extra Light Italic",
+    });
+    await figma.loadFontAsync({ family: "Inter", style: "Light Italic" });
+    await figma.loadFontAsync({ family: "Inter", style: "Italic" });
+    await figma.loadFontAsync({ family: "Inter", style: "Medium Italic" });
+    await figma.loadFontAsync({ family: "Inter", style: "Semi Bold Italic" });
+    await figma.loadFontAsync({ family: "Inter", style: "Bold Italic" });
+    await figma.loadFontAsync({
+      family: "Inter",
+      style: "Extra Bold Italic",
+    });
+    await figma.loadFontAsync({ family: "Inter", style: "Black Italic" });
+    // Make sure the selection is a single piece of text before proceeding.
+    if (figma.currentPage.selection.length === 0) {
+      // if not, show a message
+      figma.closePlugin("Select a text object to convert it");
+      return;
+    } // if it is not a text object, show a message
+    const nodes = figma.currentPage.selection.filter(function (node) {
+      return node.type === "TEXT";
+    }) as Array<TextNode>;
+    if (nodes.length === 0) {
+      figma.closePlugin("Select a text object to convert it");
+      return;
+    } else {
+      for (const node of figma.currentPage.selection) {
+        if ("characters" in node) {
+          const status = ["Active", "Recovered"];
+          const randomAlertStatus = Math.floor(Math.random() * status.length);
+
+          node.characters = status[randomAlertStatus];
+        }
+      }
+    }
+  }
+
+  createAlertStatus().then((message: string | undefined) => {
+    figma.closePlugin(message);
+  });
+} else if (figma.command == "alert-source") {
+  async function createAlertSource(): Promise<string | undefined> {
+    // Inter is the font that objects will be created in Figma.
+    // We need to wait for fonts to load before creating text using them.
+    await figma.loadFontAsync({ family: "Inter", style: "Thin" });
+    await figma.loadFontAsync({ family: "Inter", style: "Extra Light" });
+    await figma.loadFontAsync({ family: "Inter", style: "Light" });
+    await figma.loadFontAsync({ family: "Inter", style: "Regular" });
+    await figma.loadFontAsync({ family: "Inter", style: "Medium" });
+    await figma.loadFontAsync({ family: "Inter", style: "Semi Bold" });
+    await figma.loadFontAsync({ family: "Inter", style: "Bold" });
+    await figma.loadFontAsync({ family: "Inter", style: "Extra Bold" });
+    await figma.loadFontAsync({ family: "Inter", style: "Black" });
+    await figma.loadFontAsync({ family: "Inter", style: "Thin Italic" });
+    await figma.loadFontAsync({
+      family: "Inter",
+      style: "Extra Light Italic",
+    });
+    await figma.loadFontAsync({ family: "Inter", style: "Light Italic" });
+    await figma.loadFontAsync({ family: "Inter", style: "Italic" });
+    await figma.loadFontAsync({ family: "Inter", style: "Medium Italic" });
+    await figma.loadFontAsync({ family: "Inter", style: "Semi Bold Italic" });
+    await figma.loadFontAsync({ family: "Inter", style: "Bold Italic" });
+    await figma.loadFontAsync({
+      family: "Inter",
+      style: "Extra Bold Italic",
+    });
+    await figma.loadFontAsync({ family: "Inter", style: "Black Italic" });
+    // Make sure the selection is a single piece of text before proceeding.
+    if (figma.currentPage.selection.length === 0) {
+      // if not, show a message
+      figma.closePlugin("Select a text object to convert it");
+      return;
+    } // if it is not a text object, show a message
+    const nodes = figma.currentPage.selection.filter(function (node) {
+      return node.type === "TEXT";
+    }) as Array<TextNode>;
+    if (nodes.length === 0) {
+      figma.closePlugin("Select a text object to convert it");
+      return;
+    } else {
+      for (const node of figma.currentPage.selection) {
+        if ("characters" in node) {
+          const source = [
+            "gke-edge-oblt-pool-1-9a60016d-4b34",
+            "gke-edge-oblt-pool-1-9a60016d-xd62",
+            "gke-edge-oblt-pool-1-9a60016d-vjw6",
+            "gke-edge-oblt-pool-1-3b11012g-wyn6",
+            "gke-edge-oblt-pool-1-9a50016d-aj23",
+            "gke-edge-oblt-pool-1-7a82216d-wjs8",
+            "gke-edge-oblt-pool-1-2a27716d-uja2",
+            "gke-edge-oblt-pool-1-5a91116d-ojw3",
+            "gke-edge-oblt-pool-1-4a60016d-pjp1",
+            "gke-edge-oblt-pool-1-7a60016d-slot",
+            "gke-edge-oblt-pool-1-9a60016d-slot",
+            "beat.stats.apm_server.acm.response.valid.ok",
+            "beat.stats.apm_server.decoder.deflate.content-length",
+            "beat.stats.apm_server.decoder.gzip.count",
+            "beat.stats.apm_server.acm.response.errors.unauthorized",
+            "beat.stats.apm_server.acm.response.errors.notfound",
+            "beat.stats.apm_server.acm.request.count",
+            "azure.app_state.browser_timings_total_duration.avg",
+            "awsfargate.task_stats.network.*.inbound.bytes",
+            "awsfargate.task_stats.memory.fail.coun",
+            "awsfargate.task_stats.diskio.total",
+            "awsfargate.task_stats.diskio.read.ops",
+            "aws.usage.metrics.CallCount.sum",
+            "aws.sqs.messages.sent",
+            "aws.sns.metrics.NumberOfMessagesPublished.sum",
+            "aws.s3_request.errors.4xx",
+            "aws.rds.throughput.network_transmit",
+            "aws.rds.replica_lag.sec",
+            "Hosts",
+            "Kubernetes Pods",
+            "Docker Containers",
+            "EC2 Instances",
+            "S3 Buckets",
+            "RDS Databases",
+            "SQS Queues",
+          ];
+
+          const randomSource = Math.floor(Math.random() * source.length);
+
+          node.characters = source[randomSource];
+        }
+      }
+    }
+  }
+
+  createAlertSource().then((message: string | undefined) => {
     figma.closePlugin(message);
   });
 }

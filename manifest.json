@@ -35,6 +35,9 @@
     { "name": "Thousands", "command": "thousands" },
     { "name": "Network Connection Type", "command": "nct" },
     { "name": "Semantic Version", "command": "version" },
+    { "name": "Alert Reason", "command": "alert-reason" },
+    { "name": "Alert Status", "command": "alert-status" },
+    { "name": "Alert Source", "command": "alert-source" },
     { "separator": true },
     { "name": "Open Plugin", "command": "open-plugin" }
   ]
