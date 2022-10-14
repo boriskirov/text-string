@@ -1,7 +1,7 @@
 ---
 name: Feature request
 about: Request a new data field or another feature
-title: ''
+title: 'Feature request'
 labels: documentation, enhancement
 assignees: boriskirov
 
