@@ -6,6 +6,14 @@ A Figma plugin to generate different data for faster and more effective design p
 
 ## Commands
 
+```
+npm install
+```
+
+```
+npm run watch
+```
+
 ### Date
 
 If text object/s is/are selected in Figma, the command will format them randomly with dates.
@@ -109,6 +117,18 @@ If text object/s is/are selected in Figma, the command will format them randomly
 ### Traffic
 
 If text object/s is/are selected in Figma, the command will format them randomly with a traffic value (Mbit/s).
+
+### Alert reason
+
+If text object/s is/are selected in Figma, the command will format them randomly with an Alert reason.
+
+### Alert status
+
+If text object/s is/are selected in Figma, the command will format them randomly with an Alert status.
+
+### Alert source
+
+If text object/s is/are selected in Figma, the command will format them randomly with an Alert source which can be a `{serviceName}`, `{hostName}`, `{metricName}`, or `{inventoryName}`.
 
 ### Open Plugin
 
