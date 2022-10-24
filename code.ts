@@ -58,6 +58,10 @@ if (figma.command == "open-plugin") {
     style: "Extra Bold Italic",
   });
   figma.loadFontAsync({ family: "Inter UI", style: "Black Italic" });
+  // Load Roboto Mono
+  figma.loadFontAsync({ family: "Roboto Mono", style: "Regular" });
+  figma.loadFontAsync({ family: "Roboto Mono", style: "Bold" });
+  figma.loadFontAsync({ family: "Roboto Mono", style: "Italic" });
   figma.ui.onmessage = (msg) => {
     // One way of distinguishing between different types of messages sent from
     // your HTML page is to use an object with a "type" property like this.
@@ -2946,6 +2950,10 @@ if (figma.command == "open-plugin") {
       style: "Extra Bold Italic",
     });
     await figma.loadFontAsync({ family: "Inter", style: "Black Italic" });
+    // Load Roboto Mono font
+    await figma.loadFontAsync({ family: "Roboto Mono", style: "Regular" });
+    await figma.loadFontAsync({ family: "Roboto Mono", style: "Bold" });
+    await figma.loadFontAsync({ family: "Roboto Mono", style: "Italic" });
     // Make sure the selection is a single piece of text before proceeding.
     if (figma.currentPage.selection.length === 0) {
       // if not, show a message
@@ -3013,6 +3021,10 @@ if (figma.command == "open-plugin") {
       style: "Extra Bold Italic",
     });
     await figma.loadFontAsync({ family: "Inter", style: "Black Italic" });
+    // Load Roboto Mono font
+    await figma.loadFontAsync({ family: "Roboto Mono", style: "Regular" });
+    await figma.loadFontAsync({ family: "Roboto Mono", style: "Bold" });
+    await figma.loadFontAsync({ family: "Roboto Mono", style: "Italic" });
     // Make sure the selection is a single piece of text before proceeding.
 
     if (figma.currentPage.selection.length === 0) {
@@ -3093,6 +3105,10 @@ if (figma.command == "open-plugin") {
       style: "Extra Bold Italic",
     });
     await figma.loadFontAsync({ family: "Inter", style: "Black Italic" });
+    // Load Roboto Mono font
+    await figma.loadFontAsync({ family: "Roboto Mono", style: "Regular" });
+    await figma.loadFontAsync({ family: "Roboto Mono", style: "Bold" });
+    await figma.loadFontAsync({ family: "Roboto Mono", style: "Italic" });
     // Make sure the selection is a single piece of text before proceeding.
 
     if (figma.currentPage.selection.length === 0) {
@@ -3178,6 +3194,10 @@ if (figma.command == "open-plugin") {
       style: "Extra Bold Italic",
     });
     await figma.loadFontAsync({ family: "Inter", style: "Black Italic" });
+    // Load Roboto Mono font
+    await figma.loadFontAsync({ family: "Roboto Mono", style: "Regular" });
+    await figma.loadFontAsync({ family: "Roboto Mono", style: "Bold" });
+    await figma.loadFontAsync({ family: "Roboto Mono", style: "Italic" });
     // Make sure the selection is a single piece of text before proceeding.
     if (figma.currentPage.selection.length === 0) {
       // if not, show a message
@@ -3267,6 +3287,10 @@ if (figma.command == "open-plugin") {
       style: "Extra Bold Italic",
     });
     await figma.loadFontAsync({ family: "Inter", style: "Black Italic" });
+    // Load Roboto Mono font
+    await figma.loadFontAsync({ family: "Roboto Mono", style: "Regular" });
+    await figma.loadFontAsync({ family: "Roboto Mono", style: "Bold" });
+    await figma.loadFontAsync({ family: "Roboto Mono", style: "Italic" });
     // Make sure the selection is a single piece of text before proceeding.
     if (figma.currentPage.selection.length === 0) {
       // if not, show a message
@@ -3358,6 +3382,10 @@ if (figma.command == "open-plugin") {
       style: "Extra Bold Italic",
     });
     await figma.loadFontAsync({ family: "Inter", style: "Black Italic" });
+    // Load Roboto Mono font
+    await figma.loadFontAsync({ family: "Roboto Mono", style: "Regular" });
+    await figma.loadFontAsync({ family: "Roboto Mono", style: "Bold" });
+    await figma.loadFontAsync({ family: "Roboto Mono", style: "Italic" });
     // Make sure the selection is a single piece of text before proceeding.
     if (figma.currentPage.selection.length === 0) {
       // if not, show a message
@@ -3451,6 +3479,10 @@ if (figma.command == "open-plugin") {
       style: "Extra Bold Italic",
     });
     await figma.loadFontAsync({ family: "Inter", style: "Black Italic" });
+    // Load Roboto Mono font
+    await figma.loadFontAsync({ family: "Roboto Mono", style: "Regular" });
+    await figma.loadFontAsync({ family: "Roboto Mono", style: "Bold" });
+    await figma.loadFontAsync({ family: "Roboto Mono", style: "Italic" });
     // Make sure the selection is a single piece of text before proceeding.
     if (figma.currentPage.selection.length === 0) {
       // if not, show a message
@@ -3532,6 +3564,10 @@ if (figma.command == "open-plugin") {
       style: "Extra Bold Italic",
     });
     await figma.loadFontAsync({ family: "Inter", style: "Black Italic" });
+    // Load Roboto Mono font
+    await figma.loadFontAsync({ family: "Roboto Mono", style: "Regular" });
+    await figma.loadFontAsync({ family: "Roboto Mono", style: "Bold" });
+    await figma.loadFontAsync({ family: "Roboto Mono", style: "Italic" });
     // Make sure the selection is a single piece of text before proceeding.
     if (figma.currentPage.selection.length === 0) {
       // if not, show a message
@@ -3621,6 +3657,10 @@ if (figma.command == "open-plugin") {
       style: "Extra Bold Italic",
     });
     await figma.loadFontAsync({ family: "Inter", style: "Black Italic" });
+    // Load Roboto Mono font
+    await figma.loadFontAsync({ family: "Roboto Mono", style: "Regular" });
+    await figma.loadFontAsync({ family: "Roboto Mono", style: "Bold" });
+    await figma.loadFontAsync({ family: "Roboto Mono", style: "Italic" });
     // Make sure the selection is a single piece of text before proceeding.
     if (figma.currentPage.selection.length === 0) {
       // if not, show a message
@@ -3920,6 +3960,10 @@ if (figma.command == "open-plugin") {
       style: "Extra Bold Italic",
     });
     await figma.loadFontAsync({ family: "Inter", style: "Black Italic" });
+    // Load Roboto Mono font
+    await figma.loadFontAsync({ family: "Roboto Mono", style: "Regular" });
+    await figma.loadFontAsync({ family: "Roboto Mono", style: "Bold" });
+    await figma.loadFontAsync({ family: "Roboto Mono", style: "Italic" });
     // Make sure the selection is a single piece of text before proceeding.
     if (figma.currentPage.selection.length === 0) {
       // if not, show a message
@@ -3985,6 +4029,10 @@ if (figma.command == "open-plugin") {
       style: "Extra Bold Italic",
     });
     await figma.loadFontAsync({ family: "Inter", style: "Black Italic" });
+    // Load Roboto Mono font
+    await figma.loadFontAsync({ family: "Roboto Mono", style: "Regular" });
+    await figma.loadFontAsync({ family: "Roboto Mono", style: "Bold" });
+    await figma.loadFontAsync({ family: "Roboto Mono", style: "Italic" });
     // Make sure the selection is a single piece of text before proceeding.
     if (figma.currentPage.selection.length === 0) {
       // if not, show a message
@@ -4050,6 +4098,10 @@ if (figma.command == "open-plugin") {
       style: "Extra Bold Italic",
     });
     await figma.loadFontAsync({ family: "Inter", style: "Black Italic" });
+    // Load Roboto Mono font
+    await figma.loadFontAsync({ family: "Roboto Mono", style: "Regular" });
+    await figma.loadFontAsync({ family: "Roboto Mono", style: "Bold" });
+    await figma.loadFontAsync({ family: "Roboto Mono", style: "Italic" });
     // Make sure the selection is a single piece of text before proceeding.
     if (figma.currentPage.selection.length === 0) {
       // if not, show a message
@@ -4116,6 +4168,10 @@ if (figma.command == "open-plugin") {
       style: "Extra Bold Italic",
     });
     await figma.loadFontAsync({ family: "Inter", style: "Black Italic" });
+    // Load Roboto Mono font
+    await figma.loadFontAsync({ family: "Roboto Mono", style: "Regular" });
+    await figma.loadFontAsync({ family: "Roboto Mono", style: "Bold" });
+    await figma.loadFontAsync({ family: "Roboto Mono", style: "Italic" });
     // Make sure the selection is a single piece of text before proceeding.
     if (figma.currentPage.selection.length === 0) {
       // if not, show a message
@@ -4185,6 +4241,10 @@ if (figma.command == "open-plugin") {
       style: "Extra Bold Italic",
     });
     await figma.loadFontAsync({ family: "Inter", style: "Black Italic" });
+    // Load Roboto Mono font
+    await figma.loadFontAsync({ family: "Roboto Mono", style: "Regular" });
+    await figma.loadFontAsync({ family: "Roboto Mono", style: "Bold" });
+    await figma.loadFontAsync({ family: "Roboto Mono", style: "Italic" });
     // Make sure the selection is a single piece of text before proceeding.
     if (figma.currentPage.selection.length === 0) {
       // if not, show a message
@@ -4292,6 +4352,10 @@ if (figma.command == "open-plugin") {
       style: "Extra Bold Italic",
     });
     await figma.loadFontAsync({ family: "Inter", style: "Black Italic" });
+    // Load Roboto Mono font
+    await figma.loadFontAsync({ family: "Roboto Mono", style: "Regular" });
+    await figma.loadFontAsync({ family: "Roboto Mono", style: "Bold" });
+    await figma.loadFontAsync({ family: "Roboto Mono", style: "Italic" });
     // Make sure the selection is a single piece of text before proceeding.
     if (figma.currentPage.selection.length === 0) {
       // if not, show a message
@@ -4347,6 +4411,10 @@ if (figma.command == "open-plugin") {
       style: "Extra Bold Italic",
     });
     await figma.loadFontAsync({ family: "Inter", style: "Black Italic" });
+    // Load Roboto Mono font
+    await figma.loadFontAsync({ family: "Roboto Mono", style: "Regular" });
+    await figma.loadFontAsync({ family: "Roboto Mono", style: "Bold" });
+    await figma.loadFontAsync({ family: "Roboto Mono", style: "Italic" });
     // Make sure the selection is a single piece of text before proceeding.
     if (figma.currentPage.selection.length === 0) {
       // if not, show a message
@@ -4439,6 +4507,11 @@ if (figma.command == "open-plugin") {
       style: "Extra Bold Italic",
     });
     await figma.loadFontAsync({ family: "Inter", style: "Black Italic" });
+
+    // Load Roboto Mono font
+    await figma.loadFontAsync({ family: "Roboto Mono", style: "Regular" });
+    await figma.loadFontAsync({ family: "Roboto Mono", style: "Bold" });
+    await figma.loadFontAsync({ family: "Roboto Mono", style: "Italic" });
     // Make sure the selection is a single piece of text before proceeding.
     if (figma.currentPage.selection.length === 0) {
       // if not, show a message
