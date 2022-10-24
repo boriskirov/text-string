@@ -2,7 +2,7 @@
 
 A Figma plugin to generate different data for faster and more effective design process in Elastic o11y.
 
-![Text String](https://raw.githubusercontent.com/boriskirov/text-string/main/assets/cover.png)
+![Text String](https://user-images.githubusercontent.com/13353203/197478771-f63aec57-67d9-4af4-8c3f-2d31508a85cb.png)
 
 ## Commands
 
