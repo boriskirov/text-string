@@ -18,6 +18,7 @@
     { "name": "Duration in milliseconds", "command": "duration-ms" },
     { "name": "Duration in seconds", "command": "duration-s" },
     { "name": "Data field APM", "command": "data-field-apm" },
+    { "name": "Environment", "command": "environment" },
     { "name": "Error message", "command": "error-message" },
     { "name": "Error type", "command": "error-type" },
     { "name": "Health", "command": "health" },

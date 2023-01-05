@@ -648,6 +648,14 @@
             ><span class="button-text-type">Data field APM</span>
           </button>
         </li>
+        <li class="list-item">
+          <button id="environment" class="button-list">
+            <span class="button-type"
+              ><img
+                src="data:image/svg+xml,%3Csvg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cg clip-path='url(%23clip0_199_173070)'%3E%3Cpath d='M15 9L3.75 20.25' stroke='black' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M6.00027 17.9992C1.50027 10.4992 7.50027 2.9992 20.2503 3.7492C21.0003 16.4992 13.5003 22.4992 6.00027 17.9992Z' stroke='black' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/g%3E%3Cdefs%3E%3CclipPath id='clip0_199_173070'%3E%3Crect width='24' height='24' fill='white'/%3E%3C/clipPath%3E%3C/defs%3E%3C/svg%3E" /></span
+            ><span class="button-text-type">Environment</span>
+          </button>
+        </li>
       </ul>
     </div>
 
@@ -898,6 +906,13 @@
         document.getElementById("data-field-apm").onclick = () => {
           parent.postMessage(
             { pluginMessage: { type: "change-data-field-apm" } },
+            "*"
+          );
+        };
+
+        document.getElementById("environment").onclick = () => {
+          parent.postMessage(
+            { pluginMessage: { type: "change-environment" } },
             "*"
           );
         };
