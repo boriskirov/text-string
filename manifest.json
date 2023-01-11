@@ -22,6 +22,7 @@
     { "name": "Error message", "command": "error-message" },
     { "name": "Error type", "command": "error-type" },
     { "name": "Health", "command": "health" },
+    { "name": "Log level", "command": "log-level" },
     { "name": "Monitor", "command": "monitor" },
     { "name": "Percentage", "command": "percentage" },
     { "name": "Service", "command": "service" },
