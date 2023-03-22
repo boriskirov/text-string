@@ -1756,6 +1756,49 @@ if (figma.command == "open-plugin") {
         }
       }
     }
+    //Update random message
+    if (msg.type === "change-message") {
+      // Check if something is selected
+      if (figma.currentPage.selection.length === 0) {
+        // if not, show a message
+        figma.notify("Select a text object to convert it", { timeout: 5 });
+        return;
+      }
+      // if it is not a text object, show a message
+      const nodes = figma.currentPage.selection.filter(function (node) {
+        return node.type === "TEXT";
+      }) as Array<TextNode>;
+      if (nodes.length === 0) {
+        figma.notify("Select a text object to convert it", { timeout: 5 });
+        return;
+      }
+
+      for (const node of figma.currentPage.selection) {
+        if ("characters" in node) {
+          const message = [
+            "App: elastic-marketo-sapi-prod, Deployment 636384d6eb334d587f9b2b11 Latest Timestamp: 1668506911.107 Row: 7, Column: 5:",
+            "2023/03/22 10:55:34 [warn] 981#981: *2628922 a client request body is buffered to a temporary file /tmp/client-body/0000011658",
+            "App: elastic-etl-api-prod, Deployment 63e29a66de799304d1628079 Latest Timestamp: 1675796070.452 Row: 10, Column: 5:",
+            "App: elastic-marketo-sapi-prod, Deployment 63551fd5877f89107bad6638",
+            "[ 2][764607.486704] POST http://apm-proxy-be1/intake/v2/rum/events HTTP/1.1 202 793/0 47.686 ok",
+            "[ 4][764606.337358] POST http://apm-proxy-be1/intake/v2/rum/events HTTP/1.1 202 663/0 49.737 ok",
+            "[ 2][764608.588758] OPTIONS http://apm-proxy-be1/intake/v2/rum/events HTTP/1.1 200 0/0 47.149 ok",
+            "[ 2][764608.095404] POST http://apm-proxy-be1/intake/v2/rum/events HTTP/1.1 202 11025/0 55.512 ok",
+            "TypeError: Cannot read property 'navigation' of undefined",
+            "at loadGetInitialProps (/app/node_modules/next/dist/next-server/lib/utils.js:5:101)",
+            "at AnimatedNavbar_AnimatedNavbar.render (/app/.next/server/pages/_app.js:3352:12)",
+            "at loadGetInitialProps (/app/node_modules/next/dist/next-server/lib/utils.js:5:101)",
+            "at Function.getInitialProps (/app/.next/server/pages/_document.js:149:9)",
+            "2023/03/22 10:55:32 oauthproxy.go:796: 10.8.5.145:35532 (159.223.1.201) Cookie _oauth2_proxy_1649867679 not present",
+            "2023/03/22 10:55:33 oauthproxy.go:796: 10.8.15.13:48144 (161.35.149.237) Cookie _oauth2_proxy_1649867679 not present",
+            "2023/03/22 10:55:33 oauthproxy.go:796: 10.8.5.145:54056 (161.35.149.237) Cookie _oauth2_proxy_1649867679 not present",
+            "TypeError: Cannot read property 'navigation' of undefined",
+          ];
+          const randomMessage = Math.floor(Math.random() * message.length);
+          node.characters = message[randomMessage];
+        }
+      }
+    }
   };
 
   // SHORTCUTS LOGIC BELOW
@@ -4782,6 +4825,85 @@ if (figma.command == "open-plugin") {
   }
 
   createLogLevel().then((message: string | undefined) => {
+    figma.closePlugin(message);
+  });
+} else if (figma.command == "message") {
+  async function createTimestamp(): Promise<string | undefined> {
+    // Inter is the font that objects will be created in Figma.
+    // We need to wait for fonts to load before creating text using them.
+    await figma.loadFontAsync({ family: "Inter", style: "Thin" });
+    await figma.loadFontAsync({ family: "Inter", style: "Extra Light" });
+    await figma.loadFontAsync({ family: "Inter", style: "Light" });
+    await figma.loadFontAsync({ family: "Inter", style: "Regular" });
+    await figma.loadFontAsync({ family: "Inter", style: "Medium" });
+    await figma.loadFontAsync({ family: "Inter", style: "Semi Bold" });
+    await figma.loadFontAsync({ family: "Inter", style: "Bold" });
+    await figma.loadFontAsync({ family: "Inter", style: "Extra Bold" });
+    await figma.loadFontAsync({ family: "Inter", style: "Black" });
+    await figma.loadFontAsync({ family: "Inter", style: "Thin Italic" });
+    await figma.loadFontAsync({
+      family: "Inter",
+      style: "Extra Light Italic",
+    });
+    await figma.loadFontAsync({ family: "Inter", style: "Light Italic" });
+    await figma.loadFontAsync({ family: "Inter", style: "Italic" });
+    await figma.loadFontAsync({ family: "Inter", style: "Medium Italic" });
+    await figma.loadFontAsync({ family: "Inter", style: "Semi Bold Italic" });
+    await figma.loadFontAsync({ family: "Inter", style: "Bold Italic" });
+    await figma.loadFontAsync({
+      family: "Inter",
+      style: "Extra Bold Italic",
+    });
+    await figma.loadFontAsync({ family: "Inter", style: "Black Italic" });
+
+    // Load Roboto Mono font
+    await figma.loadFontAsync({ family: "Roboto Mono", style: "Regular" });
+    await figma.loadFontAsync({ family: "Roboto Mono", style: "Bold" });
+    await figma.loadFontAsync({ family: "Roboto Mono", style: "Italic" });
+    // Make sure the selection is a single piece of text before proceeding.
+    if (figma.currentPage.selection.length === 0) {
+      // if not, show a message
+      figma.closePlugin("Select a text object to convert it");
+      return;
+    } // if it is not a text object, show a message
+    const nodes = figma.currentPage.selection.filter(function (node) {
+      return node.type === "TEXT";
+    }) as Array<TextNode>;
+    if (nodes.length === 0) {
+      figma.closePlugin("Select a text object to convert it");
+      return;
+    } else {
+      for (const node of figma.currentPage.selection) {
+        if ("characters" in node) {
+          const timeStamp = [
+            "App: elastic-marketo-sapi-prod, Deployment 636384d6eb334d587f9b2b11 Latest Timestamp: 1668506911.107 Row: 7, Column: 5:",
+            "2023/03/22 10:55:34 [warn] 981#981: *2628922 a client request body is buffered to a temporary file /tmp/client-body/0000011658, client: 193.55.177.53, server: apm-proxy.app.elstc.co, request: POST /intake/v2/rum/events HTTP/2.0, host: apm-proxy.app.elstc.co, referrer: https://www.elastic.co/",
+            "App: elastic-etl-api-prod, Deployment 63e29a66de799304d1628079 Latest Timestamp: 1675796070.452 Row: 10, Column: 5:",
+            "App: elastic-marketo-sapi-prod, Deployment 63551fd5877f89107bad6638",
+            "[ 2][764607.486704] POST http://apm-proxy-be1/intake/v2/rum/events HTTP/1.1 202 793/0 47.686 ok",
+            "[ 4][764606.337358] POST http://apm-proxy-be1/intake/v2/rum/events HTTP/1.1 202 663/0 49.737 ok",
+            "[ 2][764608.588758] OPTIONS http://apm-proxy-be1/intake/v2/rum/events HTTP/1.1 200 0/0 47.149 ok",
+            "[ 2][764608.095404] POST http://apm-proxy-be1/intake/v2/rum/events HTTP/1.1 202 11025/0 55.512 ok",
+            "TypeError: Cannot read property 'navigation' of undefined",
+            "at loadGetInitialProps (/app/node_modules/next/dist/next-server/lib/utils.js:5:101)",
+            "at AnimatedNavbar_AnimatedNavbar.render (/app/.next/server/pages/_app.js:3352:12)",
+            "at loadGetInitialProps (/app/node_modules/next/dist/next-server/lib/utils.js:5:101)",
+            "at Function.getInitialProps (/app/.next/server/pages/_document.js:149:9)",
+            "2023/03/22 10:55:32 oauthproxy.go:796: 10.8.5.145:35532 (159.223.1.201) Cookie _oauth2_proxy_1649867679 not present",
+            "2023/03/22 10:55:33 oauthproxy.go:796: 10.8.15.13:48144 (161.35.149.237) Cookie _oauth2_proxy_1649867679 not present",
+            "2023/03/22 10:55:33 oauthproxy.go:796: 10.8.5.145:54056 (161.35.149.237) Cookie _oauth2_proxy_1649867679 not present",
+            "TypeError: Cannot read property 'navigation' of undefined",
+          ];
+
+          const randomTimestamp = Math.floor(Math.random() * timeStamp.length);
+
+          node.characters = timeStamp[randomTimestamp];
+        }
+      }
+    }
+  }
+
+  createTimestamp().then((message: string | undefined) => {
     figma.closePlugin(message);
   });
 }

@@ -41,6 +41,8 @@
     { "name": "Hundreds", "command": "hundreds" },
     { "name": "Thousands", "command": "thousands" },
     { "name": "Network Connection Type", "command": "nct" },
+    { "name": "Message", "command": "message" },
+    { "name": "Timestamp", "command": "timestamp" },
 
     { "separator": true },
     { "name": "Open Plugin", "command": "open-plugin" }
