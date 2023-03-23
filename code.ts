@@ -2,6 +2,49 @@
 // You can access browser APIs such as the network by creating a UI which contains
 // a full browser environment (see documentation).
 
+async function loadMonospaceFont() {
+  // Inter is the font that objects will be created in Figma.
+  await figma.loadFontAsync({ family: "Inter", style: "Thin" });
+  await figma.loadFontAsync({ family: "Inter", style: "Extra Light" });
+  await figma.loadFontAsync({ family: "Inter", style: "Light" });
+  await figma.loadFontAsync({ family: "Inter", style: "Regular" });
+  await figma.loadFontAsync({ family: "Inter", style: "Medium" });
+  await figma.loadFontAsync({ family: "Inter", style: "Semi Bold" });
+  await figma.loadFontAsync({ family: "Inter", style: "Bold" });
+  await figma.loadFontAsync({ family: "Inter", style: "Extra Bold" });
+  await figma.loadFontAsync({ family: "Inter", style: "Black" });
+  await figma.loadFontAsync({ family: "Inter", style: "Thin Italic" });
+  await figma.loadFontAsync({
+    family: "Inter",
+    style: "Extra Light Italic",
+  });
+  await figma.loadFontAsync({ family: "Inter", style: "Light Italic" });
+  await figma.loadFontAsync({ family: "Inter", style: "Italic" });
+  await figma.loadFontAsync({ family: "Inter", style: "Medium Italic" });
+  await figma.loadFontAsync({ family: "Inter", style: "Semi Bold Italic" });
+  await figma.loadFontAsync({ family: "Inter", style: "Bold Italic" });
+  await figma.loadFontAsync({
+    family: "Inter",
+    style: "Extra Bold Italic",
+  });
+  await figma.loadFontAsync({ family: "Inter", style: "Black Italic" });
+  // Make sure the selection is a single piece of text before proceeding.
+  // Roboto Mono load
+  await figma.loadFontAsync({ family: "Roboto Mono", style: "Thin" });
+  await figma.loadFontAsync({ family: "Roboto Mono", style: "Light" });
+  await figma.loadFontAsync({ family: "Roboto Mono", style: "Regular" });
+  await figma.loadFontAsync({ family: "Roboto Mono", style: "Medium" });
+  await figma.loadFontAsync({ family: "Roboto Mono", style: "Bold" });
+  await figma.loadFontAsync({ family: "Roboto Mono", style: "Thin Italic" });
+  await figma.loadFontAsync({ family: "Roboto Mono", style: "Light Italic" });
+  await figma.loadFontAsync({ family: "Roboto Mono", style: "Italic" });
+  await figma.loadFontAsync({
+    family: "Roboto Mono",
+    style: "Medium Italic",
+  });
+  await figma.loadFontAsync({ family: "Roboto Mono", style: "Bold Italic" });
+}
+
 // Runs this code if the plugin is run in Figma)
 if (figma.command == "open-plugin") {
   // This plugin will open a window to prompt the user to enter a number, and
@@ -1895,6 +1938,57 @@ if (figma.command == "open-plugin") {
         }
       }
     }
+    //Update random timestamp
+    if (msg.type === "change-timestamp") {
+      // Check if something is selected
+      if (figma.currentPage.selection.length === 0) {
+        // if not, show a message
+        figma.notify("Select a text object to convert it", { timeout: 5 });
+        return;
+      }
+      // if it is not a text object, show a message
+      const nodes = figma.currentPage.selection.filter(function (node) {
+        return node.type === "TEXT";
+      }) as Array<TextNode>;
+      if (nodes.length === 0) {
+        figma.notify("Select a text object to convert it", { timeout: 5 });
+        return;
+      }
+
+      for (const node of figma.currentPage.selection) {
+        if ("characters" in node) {
+          const months = ["Jan", "Feb", "Mar"];
+          const randomMonthIndex = Math.floor(Math.random() * months.length);
+          const randomMonth = months[randomMonthIndex];
+
+          function addZero(input) {
+            return String(input).length === 1 ? `0${input}` : input;
+          }
+
+          const year = 2023;
+
+          function Day(min, max) {
+            return Math.floor(Math.random() * (max - min + 1) + min);
+          }
+          const randomDay = addZero(Day(0, 31));
+
+          function Minutes(min, max) {
+            return Math.floor(Math.random() * (max - min + 1) + min);
+          }
+          const randomMinute = addZero(Minutes(0, 59));
+
+          function Hours(min, max) {
+            return Math.floor(Math.random() * (max - min + 1) + min);
+          }
+          const randomHour = addZero(Hours(1, 24));
+
+          const seconds = addZero(Math.floor(Math.random() * 60));
+          const milliseconds = Math.floor(Math.random() * 999);
+
+          node.characters = `${randomMonth} ${randomDay}, ${year} @ ${randomHour}:${randomMinute}:${seconds}.${milliseconds}`;
+        }
+      }
+    }
   };
 
   // SHORTCUTS LOGIC BELOW
@@ -1962,6 +2056,10 @@ if (figma.command == "open-plugin") {
       style: "Extra Bold Italic",
     });
     await figma.loadFontAsync({ family: "Inter", style: "Black Italic" });
+    // Load Roboto Mono font
+    await figma.loadFontAsync({ family: "Roboto Mono", style: "Regular" });
+    await figma.loadFontAsync({ family: "Roboto Mono", style: "Bold" });
+    await figma.loadFontAsync({ family: "Roboto Mono", style: "Italic" });
     if (figma.currentPage.selection.length === 0) {
       // if not, show a message
       figma.closePlugin("Select a text object to convert it");
@@ -2017,7 +2115,10 @@ if (figma.command == "open-plugin") {
     });
     await figma.loadFontAsync({ family: "Inter", style: "Black Italic" });
     // Make sure the selection is a single piece of text before proceeding.
-
+    // Load Roboto Mono font
+    await figma.loadFontAsync({ family: "Roboto Mono", style: "Regular" });
+    await figma.loadFontAsync({ family: "Roboto Mono", style: "Bold" });
+    await figma.loadFontAsync({ family: "Roboto Mono", style: "Italic" });
     if (figma.currentPage.selection.length === 0) {
       // if not, show a message
       figma.closePlugin("Select a text object to convert it");
@@ -2074,33 +2175,9 @@ if (figma.command == "open-plugin") {
   });
 } else if (figma.command == "trace") {
   async function createTrace(): Promise<string | undefined> {
-    // Inter is the font that objects will be created in Figma.
+    // Load fonts
+    await loadMonospaceFont();
     // We need to wait for fonts to load before creating text using them.
-    await figma.loadFontAsync({ family: "Inter", style: "Thin" });
-    await figma.loadFontAsync({ family: "Inter", style: "Extra Light" });
-    await figma.loadFontAsync({ family: "Inter", style: "Light" });
-    await figma.loadFontAsync({ family: "Inter", style: "Regular" });
-    await figma.loadFontAsync({ family: "Inter", style: "Medium" });
-    await figma.loadFontAsync({ family: "Inter", style: "Semi Bold" });
-    await figma.loadFontAsync({ family: "Inter", style: "Bold" });
-    await figma.loadFontAsync({ family: "Inter", style: "Extra Bold" });
-    await figma.loadFontAsync({ family: "Inter", style: "Black" });
-    await figma.loadFontAsync({ family: "Inter", style: "Thin Italic" });
-    await figma.loadFontAsync({
-      family: "Inter",
-      style: "Extra Light Italic",
-    });
-    await figma.loadFontAsync({ family: "Inter", style: "Light Italic" });
-    await figma.loadFontAsync({ family: "Inter", style: "Italic" });
-    await figma.loadFontAsync({ family: "Inter", style: "Medium Italic" });
-    await figma.loadFontAsync({ family: "Inter", style: "Semi Bold Italic" });
-    await figma.loadFontAsync({ family: "Inter", style: "Bold Italic" });
-    await figma.loadFontAsync({
-      family: "Inter",
-      style: "Extra Bold Italic",
-    });
-    await figma.loadFontAsync({ family: "Inter", style: "Black Italic" });
-    // Make sure the selection is a single piece of text before proceeding.
 
     if (figma.currentPage.selection.length === 0) {
       // if not, show a message
@@ -2185,7 +2262,10 @@ if (figma.command == "open-plugin") {
     });
     await figma.loadFontAsync({ family: "Inter", style: "Black Italic" });
     // Make sure the selection is a single piece of text before proceeding.
-
+    // Load Roboto Mono font
+    await figma.loadFontAsync({ family: "Roboto Mono", style: "Regular" });
+    await figma.loadFontAsync({ family: "Roboto Mono", style: "Bold" });
+    await figma.loadFontAsync({ family: "Roboto Mono", style: "Italic" });
     if (figma.currentPage.selection.length === 0) {
       // if not, show a message
       figma.closePlugin("Select a text object to convert it");
@@ -2266,7 +2346,10 @@ if (figma.command == "open-plugin") {
     });
     await figma.loadFontAsync({ family: "Inter", style: "Black Italic" });
     // Make sure the selection is a single piece of text before proceeding.
-
+    // Load Roboto Mono font
+    await figma.loadFontAsync({ family: "Roboto Mono", style: "Regular" });
+    await figma.loadFontAsync({ family: "Roboto Mono", style: "Bold" });
+    await figma.loadFontAsync({ family: "Roboto Mono", style: "Italic" });
     if (figma.currentPage.selection.length === 0) {
       // if not, show a message
       figma.closePlugin("Select a text object to convert it");
@@ -2346,7 +2429,10 @@ if (figma.command == "open-plugin") {
     });
     await figma.loadFontAsync({ family: "Inter", style: "Black Italic" });
     // Make sure the selection is a single piece of text before proceeding.
-
+    // Load Roboto Mono font
+    await figma.loadFontAsync({ family: "Roboto Mono", style: "Regular" });
+    await figma.loadFontAsync({ family: "Roboto Mono", style: "Bold" });
+    await figma.loadFontAsync({ family: "Roboto Mono", style: "Italic" });
     if (figma.currentPage.selection.length === 0) {
       // if not, show a message
       figma.closePlugin("Select a text object to convert it");
@@ -2426,7 +2512,10 @@ if (figma.command == "open-plugin") {
     });
     await figma.loadFontAsync({ family: "Inter", style: "Black Italic" });
     // Make sure the selection is a single piece of text before proceeding.
-
+    // Load Roboto Mono font
+    await figma.loadFontAsync({ family: "Roboto Mono", style: "Regular" });
+    await figma.loadFontAsync({ family: "Roboto Mono", style: "Bold" });
+    await figma.loadFontAsync({ family: "Roboto Mono", style: "Italic" });
     if (figma.currentPage.selection.length === 0) {
       // if not, show a message
       figma.closePlugin("Select a text object to convert it");
@@ -2508,7 +2597,10 @@ if (figma.command == "open-plugin") {
     });
     await figma.loadFontAsync({ family: "Inter", style: "Black Italic" });
     // Make sure the selection is a single piece of text before proceeding.
-
+    // Load Roboto Mono font
+    await figma.loadFontAsync({ family: "Roboto Mono", style: "Regular" });
+    await figma.loadFontAsync({ family: "Roboto Mono", style: "Bold" });
+    await figma.loadFontAsync({ family: "Roboto Mono", style: "Italic" });
     if (figma.currentPage.selection.length === 0) {
       // if not, show a message
       figma.closePlugin("Select a text object to convert it");
@@ -2588,7 +2680,10 @@ if (figma.command == "open-plugin") {
     });
     await figma.loadFontAsync({ family: "Inter", style: "Black Italic" });
     // Make sure the selection is a single piece of text before proceeding.
-
+    // Load Roboto Mono font
+    await figma.loadFontAsync({ family: "Roboto Mono", style: "Regular" });
+    await figma.loadFontAsync({ family: "Roboto Mono", style: "Bold" });
+    await figma.loadFontAsync({ family: "Roboto Mono", style: "Italic" });
     if (figma.currentPage.selection.length === 0) {
       // if not, show a message
       figma.closePlugin("Select a text object to convert it");
@@ -2654,7 +2749,10 @@ if (figma.command == "open-plugin") {
     });
     await figma.loadFontAsync({ family: "Inter", style: "Black Italic" });
     // Make sure the selection is a single piece of text before proceeding.
-
+    // Load Roboto Mono font
+    await figma.loadFontAsync({ family: "Roboto Mono", style: "Regular" });
+    await figma.loadFontAsync({ family: "Roboto Mono", style: "Bold" });
+    await figma.loadFontAsync({ family: "Roboto Mono", style: "Italic" });
     if (figma.currentPage.selection.length === 0) {
       // if not, show a message
       figma.closePlugin("Select a text object to convert it");
@@ -2719,7 +2817,10 @@ if (figma.command == "open-plugin") {
     });
     await figma.loadFontAsync({ family: "Inter", style: "Black Italic" });
     // Make sure the selection is a single piece of text before proceeding.
-
+    // Load Roboto Mono font
+    await figma.loadFontAsync({ family: "Roboto Mono", style: "Regular" });
+    await figma.loadFontAsync({ family: "Roboto Mono", style: "Bold" });
+    await figma.loadFontAsync({ family: "Roboto Mono", style: "Italic" });
     if (figma.currentPage.selection.length === 0) {
       // if not, show a message
       figma.closePlugin("Select a text object to convert it");
@@ -2879,6 +2980,20 @@ if (figma.command == "open-plugin") {
     await figma.loadFontAsync({ family: "Inter", style: "Black Italic" });
     // Make sure the selection is a single piece of text before proceeding.
 
+    // Roboto Mono load
+    await figma.loadFontAsync({ family: "Roboto Mono", style: "Thin" });
+    await figma.loadFontAsync({ family: "Roboto Mono", style: "Light" });
+    await figma.loadFontAsync({ family: "Roboto Mono", style: "Regular" });
+    await figma.loadFontAsync({ family: "Roboto Mono", style: "Medium" });
+    await figma.loadFontAsync({ family: "Roboto Mono", style: "Bold" });
+    await figma.loadFontAsync({ family: "Roboto Mono", style: "Thin Italic" });
+    await figma.loadFontAsync({ family: "Roboto Mono", style: "Light Italic" });
+    await figma.loadFontAsync({ family: "Roboto Mono", style: "Italic" });
+    await figma.loadFontAsync({
+      family: "Roboto Mono",
+      style: "Medium Italic",
+    });
+    await figma.loadFontAsync({ family: "Roboto Mono", style: "Bold Italic" });
     if (figma.currentPage.selection.length === 0) {
       // if not, show a message
       figma.closePlugin("Select a text object to convert it");
@@ -2947,6 +3062,20 @@ if (figma.command == "open-plugin") {
     await figma.loadFontAsync({ family: "Inter", style: "Black Italic" });
     // Make sure the selection is a single piece of text before proceeding.
 
+    // Roboto Mono load
+    await figma.loadFontAsync({ family: "Roboto Mono", style: "Thin" });
+    await figma.loadFontAsync({ family: "Roboto Mono", style: "Light" });
+    await figma.loadFontAsync({ family: "Roboto Mono", style: "Regular" });
+    await figma.loadFontAsync({ family: "Roboto Mono", style: "Medium" });
+    await figma.loadFontAsync({ family: "Roboto Mono", style: "Bold" });
+    await figma.loadFontAsync({ family: "Roboto Mono", style: "Thin Italic" });
+    await figma.loadFontAsync({ family: "Roboto Mono", style: "Light Italic" });
+    await figma.loadFontAsync({ family: "Roboto Mono", style: "Italic" });
+    await figma.loadFontAsync({
+      family: "Roboto Mono",
+      style: "Medium Italic",
+    });
+    await figma.loadFontAsync({ family: "Roboto Mono", style: "Bold Italic" });
     if (figma.currentPage.selection.length === 0) {
       // if not, show a message
       figma.closePlugin("Select a text object to convert it");

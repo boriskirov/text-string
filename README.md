@@ -142,6 +142,14 @@ If text object/s is/are selected in Figma, the command will format them randomly
 
 If text object/s is/are selected in Figma, the command will format them randomly with a function name.
 
+### Source file
+
+If text object/s is/are selected in Figma, the command will format them randomly with a source file.
+
+### Timestamp
+
+If text object/s is/are selected in Figma, the command will format them randomly with a random timestamp `{Month}{Day}{Year}@{Hour}{Minute}{Seconds}{Milliseconds}`.
+
 ### Message
 
 If text object/s is/are selected in Figma, the command will format them randomly with a message.
