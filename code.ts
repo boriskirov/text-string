@@ -1,5 +1,3 @@
-import Intl from "intl";
-
 // This file holds the main code for the plugin. It has access to the *document*.
 // You can access browser APIs such as the network by creating a UI which contains
 // a full browser environment (see documentation).
@@ -1510,11 +1508,11 @@ if (figma.command == "open-plugin") {
           const hostName = [
             "gke-edge-oblt-pool-1-9a60016d-4b34",
             "gke-edge-oblt-pool-1-9a60016d-xd62",
-            "gke-edge-oblt-pool-1-9a60016d-vjw6",
+            "opbeans-php-857f67897d-pfmxk",
             "gke-edge-oblt-pool-1-3b11012g-wyn6",
             "gke-edge-oblt-pool-1-9a50016d-aj23",
-            "gke-edge-oblt-pool-1-7a82216d-wjs8",
-            "gke-edge-oblt-pool-1-2a27716d-uja2",
+            "opbeans-php-857f67897d-kjhsdf",
+            "opbeans-php-9984393fh-lksdjfksdh",
             "gke-edge-oblt-pool-1-5a91116d-ojw3",
             "gke-edge-oblt-pool-1-4a60016d-pjp1",
             "gke-edge-oblt-pool-1-7a60016d-slot",
@@ -5215,12 +5213,32 @@ if (figma.command == "open-plugin") {
     } else {
       for (const node of figma.currentPage.selection) {
         if ("characters" in node) {
-          const mediumTime = new Intl.DateTimeFormat("en", {
-            timeStyle: "medium",
-            dateStyle: "short",
-          });
-          const randomTimestamp = mediumTime.format(Date.now());
-          node.characters = randomTimestamp;
+          const months = ["Jan", "Feb", "Mar"];
+          const randomMonthIndex = Math.floor(Math.random() * months.length);
+          const randomMonth = months[randomMonthIndex];
+
+          const year = 2023;
+
+          function Day(min, max) {
+            return Math.floor(Math.random() * (max - min + 1) + min);
+          }
+          const randomDay = Day(10, 31);
+
+          function Minutes(min, max) {
+            return Math.floor(Math.random() * (max - min + 1) + min);
+          }
+          const randomMinute = Day(10, 59);
+
+          function Hours(min, max) {
+            return Math.floor(Math.random() * (max - min + 1) + min);
+          }
+          const randomHour = Hours(14, 19);
+
+          const hours = Math.floor(Math.random() * 12);
+          const seconds = Math.floor(Math.random() * 60);
+          const milliseconds = Math.floor(Math.random() * 999);
+
+          node.characters = `${randomMonth} ${randomDay}, ${year} @ ${randomHour}:${randomMinute}:${seconds}.${milliseconds}`;
         }
       }
     }
