@@ -1,8 +1,21 @@
-// This file holds the main code for the plugin. It has access to the *document*.
-// You can access browser APIs such as the network by creating a UI which contains
-// a full browser environment (see documentation).
-
+// Load fonts async
 async function loadMonospaceFont() {
+  // Roboto Mono load
+  await figma.loadFontAsync({ family: "Roboto Mono", style: "Thin" });
+  await figma.loadFontAsync({ family: "Roboto Mono", style: "Light" });
+  await figma.loadFontAsync({ family: "Roboto Mono", style: "Regular" });
+  await figma.loadFontAsync({ family: "Roboto Mono", style: "Medium" });
+  await figma.loadFontAsync({ family: "Roboto Mono", style: "Bold" });
+  await figma.loadFontAsync({ family: "Roboto Mono", style: "Thin Italic" });
+  await figma.loadFontAsync({ family: "Roboto Mono", style: "Light Italic" });
+  await figma.loadFontAsync({ family: "Roboto Mono", style: "Italic" });
+  await figma.loadFontAsync({
+    family: "Roboto Mono",
+    style: "Medium Italic",
+  });
+  await figma.loadFontAsync({ family: "Roboto Mono", style: "Bold Italic" });
+}
+async function loadSansSerifFont() {
   // Inter is the font that objects will be created in Figma.
   await figma.loadFontAsync({ family: "Inter", style: "Thin" });
   await figma.loadFontAsync({ family: "Inter", style: "Extra Light" });
@@ -29,21 +42,11 @@ async function loadMonospaceFont() {
   });
   await figma.loadFontAsync({ family: "Inter", style: "Black Italic" });
   // Make sure the selection is a single piece of text before proceeding.
-  // Roboto Mono load
-  await figma.loadFontAsync({ family: "Roboto Mono", style: "Thin" });
-  await figma.loadFontAsync({ family: "Roboto Mono", style: "Light" });
-  await figma.loadFontAsync({ family: "Roboto Mono", style: "Regular" });
-  await figma.loadFontAsync({ family: "Roboto Mono", style: "Medium" });
-  await figma.loadFontAsync({ family: "Roboto Mono", style: "Bold" });
-  await figma.loadFontAsync({ family: "Roboto Mono", style: "Thin Italic" });
-  await figma.loadFontAsync({ family: "Roboto Mono", style: "Light Italic" });
-  await figma.loadFontAsync({ family: "Roboto Mono", style: "Italic" });
-  await figma.loadFontAsync({
-    family: "Roboto Mono",
-    style: "Medium Italic",
-  });
-  await figma.loadFontAsync({ family: "Roboto Mono", style: "Bold Italic" });
 }
+
+// This file holds the main code for the plugin. It has access to the *document*.
+// You can access browser APIs such as the network by creating a UI which contains
+// a full browser environment (see documentation).
 
 // Runs this code if the plugin is run in Figma)
 if (figma.command == "open-plugin") {
@@ -2030,36 +2033,8 @@ if (figma.command == "open-plugin") {
   //
 } else if (figma.command == "health") {
   async function createHealth(): Promise<string | undefined> {
-    // Inter is the font that objects will be created in Figma.
-    // We need to wait for fonts to load before creating text using them.
-    await figma.loadFontAsync({ family: "Inter", style: "Thin" });
-    await figma.loadFontAsync({ family: "Inter", style: "Extra Light" });
-    await figma.loadFontAsync({ family: "Inter", style: "Light" });
-    await figma.loadFontAsync({ family: "Inter", style: "Regular" });
-    await figma.loadFontAsync({ family: "Inter", style: "Medium" });
-    await figma.loadFontAsync({ family: "Inter", style: "Semi Bold" });
-    await figma.loadFontAsync({ family: "Inter", style: "Bold" });
-    await figma.loadFontAsync({ family: "Inter", style: "Extra Bold" });
-    await figma.loadFontAsync({ family: "Inter", style: "Black" });
-    await figma.loadFontAsync({ family: "Inter", style: "Thin Italic" });
-    await figma.loadFontAsync({
-      family: "Inter",
-      style: "Extra Light Italic",
-    });
-    await figma.loadFontAsync({ family: "Inter", style: "Light Italic" });
-    await figma.loadFontAsync({ family: "Inter", style: "Italic" });
-    await figma.loadFontAsync({ family: "Inter", style: "Medium Italic" });
-    await figma.loadFontAsync({ family: "Inter", style: "Semi Bold Italic" });
-    await figma.loadFontAsync({ family: "Inter", style: "Bold Italic" });
-    await figma.loadFontAsync({
-      family: "Inter",
-      style: "Extra Bold Italic",
-    });
-    await figma.loadFontAsync({ family: "Inter", style: "Black Italic" });
-    // Load Roboto Mono font
-    await figma.loadFontAsync({ family: "Roboto Mono", style: "Regular" });
-    await figma.loadFontAsync({ family: "Roboto Mono", style: "Bold" });
-    await figma.loadFontAsync({ family: "Roboto Mono", style: "Italic" });
+    await loadMonospaceFont();
+    await loadSansSerifFont();
     if (figma.currentPage.selection.length === 0) {
       // if not, show a message
       figma.closePlugin("Select a text object to convert it");
@@ -2088,37 +2063,8 @@ if (figma.command == "open-plugin") {
   });
 } else if (figma.command == "service") {
   async function createService(): Promise<string | undefined> {
-    // Inter is the font that objects will be created in Figma.
-    // We need to wait for fonts to load before creating text using them.
-    await figma.loadFontAsync({ family: "Inter", style: "Thin" });
-    await figma.loadFontAsync({ family: "Inter", style: "Extra Light" });
-    await figma.loadFontAsync({ family: "Inter", style: "Light" });
-    await figma.loadFontAsync({ family: "Inter", style: "Regular" });
-    await figma.loadFontAsync({ family: "Inter", style: "Medium" });
-    await figma.loadFontAsync({ family: "Inter", style: "Semi Bold" });
-    await figma.loadFontAsync({ family: "Inter", style: "Bold" });
-    await figma.loadFontAsync({ family: "Inter", style: "Extra Bold" });
-    await figma.loadFontAsync({ family: "Inter", style: "Black" });
-    await figma.loadFontAsync({ family: "Inter", style: "Thin Italic" });
-    await figma.loadFontAsync({
-      family: "Inter",
-      style: "Extra Light Italic",
-    });
-    await figma.loadFontAsync({ family: "Inter", style: "Light Italic" });
-    await figma.loadFontAsync({ family: "Inter", style: "Italic" });
-    await figma.loadFontAsync({ family: "Inter", style: "Medium Italic" });
-    await figma.loadFontAsync({ family: "Inter", style: "Semi Bold Italic" });
-    await figma.loadFontAsync({ family: "Inter", style: "Bold Italic" });
-    await figma.loadFontAsync({
-      family: "Inter",
-      style: "Extra Bold Italic",
-    });
-    await figma.loadFontAsync({ family: "Inter", style: "Black Italic" });
-    // Make sure the selection is a single piece of text before proceeding.
-    // Load Roboto Mono font
-    await figma.loadFontAsync({ family: "Roboto Mono", style: "Regular" });
-    await figma.loadFontAsync({ family: "Roboto Mono", style: "Bold" });
-    await figma.loadFontAsync({ family: "Roboto Mono", style: "Italic" });
+    await loadMonospaceFont();
+    await loadSansSerifFont();
     if (figma.currentPage.selection.length === 0) {
       // if not, show a message
       figma.closePlugin("Select a text object to convert it");
@@ -2177,6 +2123,7 @@ if (figma.command == "open-plugin") {
   async function createTrace(): Promise<string | undefined> {
     // Load fonts
     await loadMonospaceFont();
+    await loadSansSerifFont();
     // We need to wait for fonts to load before creating text using them.
 
     if (figma.currentPage.selection.length === 0) {
@@ -2235,37 +2182,8 @@ if (figma.command == "open-plugin") {
   });
 } else if (figma.command == "duration-ms") {
   async function createDuration(): Promise<string | undefined> {
-    // Inter is the font that objects will be created in Figma.
-    // We need to wait for fonts to load before creating text using them.
-    await figma.loadFontAsync({ family: "Inter", style: "Thin" });
-    await figma.loadFontAsync({ family: "Inter", style: "Extra Light" });
-    await figma.loadFontAsync({ family: "Inter", style: "Light" });
-    await figma.loadFontAsync({ family: "Inter", style: "Regular" });
-    await figma.loadFontAsync({ family: "Inter", style: "Medium" });
-    await figma.loadFontAsync({ family: "Inter", style: "Semi Bold" });
-    await figma.loadFontAsync({ family: "Inter", style: "Bold" });
-    await figma.loadFontAsync({ family: "Inter", style: "Extra Bold" });
-    await figma.loadFontAsync({ family: "Inter", style: "Black" });
-    await figma.loadFontAsync({ family: "Inter", style: "Thin Italic" });
-    await figma.loadFontAsync({
-      family: "Inter",
-      style: "Extra Light Italic",
-    });
-    await figma.loadFontAsync({ family: "Inter", style: "Light Italic" });
-    await figma.loadFontAsync({ family: "Inter", style: "Italic" });
-    await figma.loadFontAsync({ family: "Inter", style: "Medium Italic" });
-    await figma.loadFontAsync({ family: "Inter", style: "Semi Bold Italic" });
-    await figma.loadFontAsync({ family: "Inter", style: "Bold Italic" });
-    await figma.loadFontAsync({
-      family: "Inter",
-      style: "Extra Bold Italic",
-    });
-    await figma.loadFontAsync({ family: "Inter", style: "Black Italic" });
-    // Make sure the selection is a single piece of text before proceeding.
-    // Load Roboto Mono font
-    await figma.loadFontAsync({ family: "Roboto Mono", style: "Regular" });
-    await figma.loadFontAsync({ family: "Roboto Mono", style: "Bold" });
-    await figma.loadFontAsync({ family: "Roboto Mono", style: "Italic" });
+    await loadMonospaceFont();
+    await loadSansSerifFont();
     if (figma.currentPage.selection.length === 0) {
       // if not, show a message
       figma.closePlugin("Select a text object to convert it");
@@ -2319,37 +2237,8 @@ if (figma.command == "open-plugin") {
   });
 } else if (figma.command == "percentage") {
   async function createPercentage(): Promise<string | undefined> {
-    // Inter is the font that objects will be created in Figma.
-    // We need to wait for fonts to load before creating text using them.
-    await figma.loadFontAsync({ family: "Inter", style: "Thin" });
-    await figma.loadFontAsync({ family: "Inter", style: "Extra Light" });
-    await figma.loadFontAsync({ family: "Inter", style: "Light" });
-    await figma.loadFontAsync({ family: "Inter", style: "Regular" });
-    await figma.loadFontAsync({ family: "Inter", style: "Medium" });
-    await figma.loadFontAsync({ family: "Inter", style: "Semi Bold" });
-    await figma.loadFontAsync({ family: "Inter", style: "Bold" });
-    await figma.loadFontAsync({ family: "Inter", style: "Extra Bold" });
-    await figma.loadFontAsync({ family: "Inter", style: "Black" });
-    await figma.loadFontAsync({ family: "Inter", style: "Thin Italic" });
-    await figma.loadFontAsync({
-      family: "Inter",
-      style: "Extra Light Italic",
-    });
-    await figma.loadFontAsync({ family: "Inter", style: "Light Italic" });
-    await figma.loadFontAsync({ family: "Inter", style: "Italic" });
-    await figma.loadFontAsync({ family: "Inter", style: "Medium Italic" });
-    await figma.loadFontAsync({ family: "Inter", style: "Semi Bold Italic" });
-    await figma.loadFontAsync({ family: "Inter", style: "Bold Italic" });
-    await figma.loadFontAsync({
-      family: "Inter",
-      style: "Extra Bold Italic",
-    });
-    await figma.loadFontAsync({ family: "Inter", style: "Black Italic" });
-    // Make sure the selection is a single piece of text before proceeding.
-    // Load Roboto Mono font
-    await figma.loadFontAsync({ family: "Roboto Mono", style: "Regular" });
-    await figma.loadFontAsync({ family: "Roboto Mono", style: "Bold" });
-    await figma.loadFontAsync({ family: "Roboto Mono", style: "Italic" });
+    await loadMonospaceFont();
+    await loadSansSerifFont();
     if (figma.currentPage.selection.length === 0) {
       // if not, show a message
       figma.closePlugin("Select a text object to convert it");
@@ -2402,37 +2291,8 @@ if (figma.command == "open-plugin") {
   });
 } else if (figma.command == "throughput") {
   async function createThroughput(): Promise<string | undefined> {
-    // Inter is the font that objects will be created in Figma.
-    // We need to wait for fonts to load before creating text using them.
-    await figma.loadFontAsync({ family: "Inter", style: "Thin" });
-    await figma.loadFontAsync({ family: "Inter", style: "Extra Light" });
-    await figma.loadFontAsync({ family: "Inter", style: "Light" });
-    await figma.loadFontAsync({ family: "Inter", style: "Regular" });
-    await figma.loadFontAsync({ family: "Inter", style: "Medium" });
-    await figma.loadFontAsync({ family: "Inter", style: "Semi Bold" });
-    await figma.loadFontAsync({ family: "Inter", style: "Bold" });
-    await figma.loadFontAsync({ family: "Inter", style: "Extra Bold" });
-    await figma.loadFontAsync({ family: "Inter", style: "Black" });
-    await figma.loadFontAsync({ family: "Inter", style: "Thin Italic" });
-    await figma.loadFontAsync({
-      family: "Inter",
-      style: "Extra Light Italic",
-    });
-    await figma.loadFontAsync({ family: "Inter", style: "Light Italic" });
-    await figma.loadFontAsync({ family: "Inter", style: "Italic" });
-    await figma.loadFontAsync({ family: "Inter", style: "Medium Italic" });
-    await figma.loadFontAsync({ family: "Inter", style: "Semi Bold Italic" });
-    await figma.loadFontAsync({ family: "Inter", style: "Bold Italic" });
-    await figma.loadFontAsync({
-      family: "Inter",
-      style: "Extra Bold Italic",
-    });
-    await figma.loadFontAsync({ family: "Inter", style: "Black Italic" });
-    // Make sure the selection is a single piece of text before proceeding.
-    // Load Roboto Mono font
-    await figma.loadFontAsync({ family: "Roboto Mono", style: "Regular" });
-    await figma.loadFontAsync({ family: "Roboto Mono", style: "Bold" });
-    await figma.loadFontAsync({ family: "Roboto Mono", style: "Italic" });
+    await loadMonospaceFont();
+    await loadSansSerifFont();
     if (figma.currentPage.selection.length === 0) {
       // if not, show a message
       figma.closePlugin("Select a text object to convert it");
@@ -2485,37 +2345,8 @@ if (figma.command == "open-plugin") {
   });
 } else if (figma.command == "date") {
   async function createDate(): Promise<string | undefined> {
-    // Inter is the font that objects will be created in Figma.
-    // We need to wait for fonts to load before creating text using them.
-    await figma.loadFontAsync({ family: "Inter", style: "Thin" });
-    await figma.loadFontAsync({ family: "Inter", style: "Extra Light" });
-    await figma.loadFontAsync({ family: "Inter", style: "Light" });
-    await figma.loadFontAsync({ family: "Inter", style: "Regular" });
-    await figma.loadFontAsync({ family: "Inter", style: "Medium" });
-    await figma.loadFontAsync({ family: "Inter", style: "Semi Bold" });
-    await figma.loadFontAsync({ family: "Inter", style: "Bold" });
-    await figma.loadFontAsync({ family: "Inter", style: "Extra Bold" });
-    await figma.loadFontAsync({ family: "Inter", style: "Black" });
-    await figma.loadFontAsync({ family: "Inter", style: "Thin Italic" });
-    await figma.loadFontAsync({
-      family: "Inter",
-      style: "Extra Light Italic",
-    });
-    await figma.loadFontAsync({ family: "Inter", style: "Light Italic" });
-    await figma.loadFontAsync({ family: "Inter", style: "Italic" });
-    await figma.loadFontAsync({ family: "Inter", style: "Medium Italic" });
-    await figma.loadFontAsync({ family: "Inter", style: "Semi Bold Italic" });
-    await figma.loadFontAsync({ family: "Inter", style: "Bold Italic" });
-    await figma.loadFontAsync({
-      family: "Inter",
-      style: "Extra Bold Italic",
-    });
-    await figma.loadFontAsync({ family: "Inter", style: "Black Italic" });
-    // Make sure the selection is a single piece of text before proceeding.
-    // Load Roboto Mono font
-    await figma.loadFontAsync({ family: "Roboto Mono", style: "Regular" });
-    await figma.loadFontAsync({ family: "Roboto Mono", style: "Bold" });
-    await figma.loadFontAsync({ family: "Roboto Mono", style: "Italic" });
+    await loadMonospaceFont();
+    await loadSansSerifFont();
     if (figma.currentPage.selection.length === 0) {
       // if not, show a message
       figma.closePlugin("Select a text object to convert it");
@@ -2570,37 +2401,8 @@ if (figma.command == "open-plugin") {
   });
 } else if (figma.command == "severity") {
   async function createSeverity(): Promise<string | undefined> {
-    // Inter is the font that objects will be created in Figma.
-    // We need to wait for fonts to load before creating text using them.
-    await figma.loadFontAsync({ family: "Inter", style: "Thin" });
-    await figma.loadFontAsync({ family: "Inter", style: "Extra Light" });
-    await figma.loadFontAsync({ family: "Inter", style: "Light" });
-    await figma.loadFontAsync({ family: "Inter", style: "Regular" });
-    await figma.loadFontAsync({ family: "Inter", style: "Medium" });
-    await figma.loadFontAsync({ family: "Inter", style: "Semi Bold" });
-    await figma.loadFontAsync({ family: "Inter", style: "Bold" });
-    await figma.loadFontAsync({ family: "Inter", style: "Extra Bold" });
-    await figma.loadFontAsync({ family: "Inter", style: "Black" });
-    await figma.loadFontAsync({ family: "Inter", style: "Thin Italic" });
-    await figma.loadFontAsync({
-      family: "Inter",
-      style: "Extra Light Italic",
-    });
-    await figma.loadFontAsync({ family: "Inter", style: "Light Italic" });
-    await figma.loadFontAsync({ family: "Inter", style: "Italic" });
-    await figma.loadFontAsync({ family: "Inter", style: "Medium Italic" });
-    await figma.loadFontAsync({ family: "Inter", style: "Semi Bold Italic" });
-    await figma.loadFontAsync({ family: "Inter", style: "Bold Italic" });
-    await figma.loadFontAsync({
-      family: "Inter",
-      style: "Extra Bold Italic",
-    });
-    await figma.loadFontAsync({ family: "Inter", style: "Black Italic" });
-    // Make sure the selection is a single piece of text before proceeding.
-    // Load Roboto Mono font
-    await figma.loadFontAsync({ family: "Roboto Mono", style: "Regular" });
-    await figma.loadFontAsync({ family: "Roboto Mono", style: "Bold" });
-    await figma.loadFontAsync({ family: "Roboto Mono", style: "Italic" });
+    await loadMonospaceFont();
+    await loadSansSerifFont();
     if (figma.currentPage.selection.length === 0) {
       // if not, show a message
       figma.closePlugin("Select a text object to convert it");
@@ -2653,37 +2455,8 @@ if (figma.command == "open-plugin") {
   });
 } else if (figma.command == "span-trace-id") {
   async function createID(): Promise<string | undefined> {
-    // Inter is the font that objects will be created in Figma.
-    // We need to wait for fonts to load before creating text using them.
-    await figma.loadFontAsync({ family: "Inter", style: "Thin" });
-    await figma.loadFontAsync({ family: "Inter", style: "Extra Light" });
-    await figma.loadFontAsync({ family: "Inter", style: "Light" });
-    await figma.loadFontAsync({ family: "Inter", style: "Regular" });
-    await figma.loadFontAsync({ family: "Inter", style: "Medium" });
-    await figma.loadFontAsync({ family: "Inter", style: "Semi Bold" });
-    await figma.loadFontAsync({ family: "Inter", style: "Bold" });
-    await figma.loadFontAsync({ family: "Inter", style: "Extra Bold" });
-    await figma.loadFontAsync({ family: "Inter", style: "Black" });
-    await figma.loadFontAsync({ family: "Inter", style: "Thin Italic" });
-    await figma.loadFontAsync({
-      family: "Inter",
-      style: "Extra Light Italic",
-    });
-    await figma.loadFontAsync({ family: "Inter", style: "Light Italic" });
-    await figma.loadFontAsync({ family: "Inter", style: "Italic" });
-    await figma.loadFontAsync({ family: "Inter", style: "Medium Italic" });
-    await figma.loadFontAsync({ family: "Inter", style: "Semi Bold Italic" });
-    await figma.loadFontAsync({ family: "Inter", style: "Bold Italic" });
-    await figma.loadFontAsync({
-      family: "Inter",
-      style: "Extra Bold Italic",
-    });
-    await figma.loadFontAsync({ family: "Inter", style: "Black Italic" });
-    // Make sure the selection is a single piece of text before proceeding.
-    // Load Roboto Mono font
-    await figma.loadFontAsync({ family: "Roboto Mono", style: "Regular" });
-    await figma.loadFontAsync({ family: "Roboto Mono", style: "Bold" });
-    await figma.loadFontAsync({ family: "Roboto Mono", style: "Italic" });
+    await loadMonospaceFont();
+    await loadSansSerifFont();
     if (figma.currentPage.selection.length === 0) {
       // if not, show a message
       figma.closePlugin("Select a text object to convert it");
@@ -2722,37 +2495,8 @@ if (figma.command == "open-plugin") {
   });
 } else if (figma.command == "monitor") {
   async function createMonitor(): Promise<string | undefined> {
-    // Inter is the font that objects will be created in Figma.
-    // We need to wait for fonts to load before creating text using them.
-    await figma.loadFontAsync({ family: "Inter", style: "Thin" });
-    await figma.loadFontAsync({ family: "Inter", style: "Extra Light" });
-    await figma.loadFontAsync({ family: "Inter", style: "Light" });
-    await figma.loadFontAsync({ family: "Inter", style: "Regular" });
-    await figma.loadFontAsync({ family: "Inter", style: "Medium" });
-    await figma.loadFontAsync({ family: "Inter", style: "Semi Bold" });
-    await figma.loadFontAsync({ family: "Inter", style: "Bold" });
-    await figma.loadFontAsync({ family: "Inter", style: "Extra Bold" });
-    await figma.loadFontAsync({ family: "Inter", style: "Black" });
-    await figma.loadFontAsync({ family: "Inter", style: "Thin Italic" });
-    await figma.loadFontAsync({
-      family: "Inter",
-      style: "Extra Light Italic",
-    });
-    await figma.loadFontAsync({ family: "Inter", style: "Light Italic" });
-    await figma.loadFontAsync({ family: "Inter", style: "Italic" });
-    await figma.loadFontAsync({ family: "Inter", style: "Medium Italic" });
-    await figma.loadFontAsync({ family: "Inter", style: "Semi Bold Italic" });
-    await figma.loadFontAsync({ family: "Inter", style: "Bold Italic" });
-    await figma.loadFontAsync({
-      family: "Inter",
-      style: "Extra Bold Italic",
-    });
-    await figma.loadFontAsync({ family: "Inter", style: "Black Italic" });
-    // Make sure the selection is a single piece of text before proceeding.
-    // Load Roboto Mono font
-    await figma.loadFontAsync({ family: "Roboto Mono", style: "Regular" });
-    await figma.loadFontAsync({ family: "Roboto Mono", style: "Bold" });
-    await figma.loadFontAsync({ family: "Roboto Mono", style: "Italic" });
+    await loadMonospaceFont();
+    await loadSansSerifFont();
     if (figma.currentPage.selection.length === 0) {
       // if not, show a message
       figma.closePlugin("Select a text object to convert it");
@@ -2790,37 +2534,8 @@ if (figma.command == "open-plugin") {
   });
 } else if (figma.command == "dependency") {
   async function createDependency(): Promise<string | undefined> {
-    // Inter is the font that objects will be created in Figma.
-    // We need to wait for fonts to load before creating text using them.
-    await figma.loadFontAsync({ family: "Inter", style: "Thin" });
-    await figma.loadFontAsync({ family: "Inter", style: "Extra Light" });
-    await figma.loadFontAsync({ family: "Inter", style: "Light" });
-    await figma.loadFontAsync({ family: "Inter", style: "Regular" });
-    await figma.loadFontAsync({ family: "Inter", style: "Medium" });
-    await figma.loadFontAsync({ family: "Inter", style: "Semi Bold" });
-    await figma.loadFontAsync({ family: "Inter", style: "Bold" });
-    await figma.loadFontAsync({ family: "Inter", style: "Extra Bold" });
-    await figma.loadFontAsync({ family: "Inter", style: "Black" });
-    await figma.loadFontAsync({ family: "Inter", style: "Thin Italic" });
-    await figma.loadFontAsync({
-      family: "Inter",
-      style: "Extra Light Italic",
-    });
-    await figma.loadFontAsync({ family: "Inter", style: "Light Italic" });
-    await figma.loadFontAsync({ family: "Inter", style: "Italic" });
-    await figma.loadFontAsync({ family: "Inter", style: "Medium Italic" });
-    await figma.loadFontAsync({ family: "Inter", style: "Semi Bold Italic" });
-    await figma.loadFontAsync({ family: "Inter", style: "Bold Italic" });
-    await figma.loadFontAsync({
-      family: "Inter",
-      style: "Extra Bold Italic",
-    });
-    await figma.loadFontAsync({ family: "Inter", style: "Black Italic" });
-    // Make sure the selection is a single piece of text before proceeding.
-    // Load Roboto Mono font
-    await figma.loadFontAsync({ family: "Roboto Mono", style: "Regular" });
-    await figma.loadFontAsync({ family: "Roboto Mono", style: "Bold" });
-    await figma.loadFontAsync({ family: "Roboto Mono", style: "Italic" });
+    await loadMonospaceFont();
+    await loadSansSerifFont();
     if (figma.currentPage.selection.length === 0) {
       // if not, show a message
       figma.closePlugin("Select a text object to convert it");
@@ -2867,47 +2582,8 @@ if (figma.command == "open-plugin") {
   });
 } else if (figma.command == "error-message") {
   async function createErrorMessage(): Promise<string | undefined> {
-    // Inter is the font that objects will be created in Figma.
-    // We need to wait for fonts to load before creating text using them.
-    await figma.loadFontAsync({ family: "Inter", style: "Thin" });
-    await figma.loadFontAsync({ family: "Inter", style: "Extra Light" });
-    await figma.loadFontAsync({ family: "Inter", style: "Light" });
-    await figma.loadFontAsync({ family: "Inter", style: "Regular" });
-    await figma.loadFontAsync({ family: "Inter", style: "Medium" });
-    await figma.loadFontAsync({ family: "Inter", style: "Semi Bold" });
-    await figma.loadFontAsync({ family: "Inter", style: "Bold" });
-    await figma.loadFontAsync({ family: "Inter", style: "Extra Bold" });
-    await figma.loadFontAsync({ family: "Inter", style: "Black" });
-    await figma.loadFontAsync({ family: "Inter", style: "Thin Italic" });
-    await figma.loadFontAsync({
-      family: "Inter",
-      style: "Extra Light Italic",
-    });
-    await figma.loadFontAsync({ family: "Inter", style: "Light Italic" });
-    await figma.loadFontAsync({ family: "Inter", style: "Italic" });
-    await figma.loadFontAsync({ family: "Inter", style: "Medium Italic" });
-    await figma.loadFontAsync({ family: "Inter", style: "Semi Bold Italic" });
-    await figma.loadFontAsync({ family: "Inter", style: "Bold Italic" });
-    await figma.loadFontAsync({
-      family: "Inter",
-      style: "Extra Bold Italic",
-    });
-    await figma.loadFontAsync({ family: "Inter", style: "Black Italic" });
-
-    // Roboto Mono load
-    await figma.loadFontAsync({ family: "Roboto Mono", style: "Thin" });
-    await figma.loadFontAsync({ family: "Roboto Mono", style: "Light" });
-    await figma.loadFontAsync({ family: "Roboto Mono", style: "Regular" });
-    await figma.loadFontAsync({ family: "Roboto Mono", style: "Medium" });
-    await figma.loadFontAsync({ family: "Roboto Mono", style: "Bold" });
-    await figma.loadFontAsync({ family: "Roboto Mono", style: "Thin Italic" });
-    await figma.loadFontAsync({ family: "Roboto Mono", style: "Light Italic" });
-    await figma.loadFontAsync({ family: "Roboto Mono", style: "Italic" });
-    await figma.loadFontAsync({
-      family: "Roboto Mono",
-      style: "Medium Italic",
-    });
-    await figma.loadFontAsync({ family: "Roboto Mono", style: "Bold Italic" });
+    await loadMonospaceFont();
+    await loadSansSerifFont();
 
     // Make sure the selection is a single piece of text before proceeding.
 
@@ -2952,48 +2628,8 @@ if (figma.command == "open-plugin") {
   });
 } else if (figma.command == "last-seen") {
   async function createLastSeen(): Promise<string | undefined> {
-    // Inter is the font that objects will be created in Figma.
-    // We need to wait for fonts to load before creating text using them.
-    await figma.loadFontAsync({ family: "Inter", style: "Thin" });
-    await figma.loadFontAsync({ family: "Inter", style: "Extra Light" });
-    await figma.loadFontAsync({ family: "Inter", style: "Light" });
-    await figma.loadFontAsync({ family: "Inter", style: "Regular" });
-    await figma.loadFontAsync({ family: "Inter", style: "Medium" });
-    await figma.loadFontAsync({ family: "Inter", style: "Semi Bold" });
-    await figma.loadFontAsync({ family: "Inter", style: "Bold" });
-    await figma.loadFontAsync({ family: "Inter", style: "Extra Bold" });
-    await figma.loadFontAsync({ family: "Inter", style: "Black" });
-    await figma.loadFontAsync({ family: "Inter", style: "Thin Italic" });
-    await figma.loadFontAsync({
-      family: "Inter",
-      style: "Extra Light Italic",
-    });
-    await figma.loadFontAsync({ family: "Inter", style: "Light Italic" });
-    await figma.loadFontAsync({ family: "Inter", style: "Italic" });
-    await figma.loadFontAsync({ family: "Inter", style: "Medium Italic" });
-    await figma.loadFontAsync({ family: "Inter", style: "Semi Bold Italic" });
-    await figma.loadFontAsync({ family: "Inter", style: "Bold Italic" });
-    await figma.loadFontAsync({
-      family: "Inter",
-      style: "Extra Bold Italic",
-    });
-    await figma.loadFontAsync({ family: "Inter", style: "Black Italic" });
-    // Make sure the selection is a single piece of text before proceeding.
-
-    // Roboto Mono load
-    await figma.loadFontAsync({ family: "Roboto Mono", style: "Thin" });
-    await figma.loadFontAsync({ family: "Roboto Mono", style: "Light" });
-    await figma.loadFontAsync({ family: "Roboto Mono", style: "Regular" });
-    await figma.loadFontAsync({ family: "Roboto Mono", style: "Medium" });
-    await figma.loadFontAsync({ family: "Roboto Mono", style: "Bold" });
-    await figma.loadFontAsync({ family: "Roboto Mono", style: "Thin Italic" });
-    await figma.loadFontAsync({ family: "Roboto Mono", style: "Light Italic" });
-    await figma.loadFontAsync({ family: "Roboto Mono", style: "Italic" });
-    await figma.loadFontAsync({
-      family: "Roboto Mono",
-      style: "Medium Italic",
-    });
-    await figma.loadFontAsync({ family: "Roboto Mono", style: "Bold Italic" });
+    await loadMonospaceFont();
+    await loadSansSerifFont();
     if (figma.currentPage.selection.length === 0) {
       // if not, show a message
       figma.closePlugin("Select a text object to convert it");
@@ -3034,48 +2670,8 @@ if (figma.command == "open-plugin") {
   });
 } else if (figma.command == "transaction") {
   async function createTransaction(): Promise<string | undefined> {
-    // Inter is the font that objects will be created in Figma.
-    // We need to wait for fonts to load before creating text using them.
-    await figma.loadFontAsync({ family: "Inter", style: "Thin" });
-    await figma.loadFontAsync({ family: "Inter", style: "Extra Light" });
-    await figma.loadFontAsync({ family: "Inter", style: "Light" });
-    await figma.loadFontAsync({ family: "Inter", style: "Regular" });
-    await figma.loadFontAsync({ family: "Inter", style: "Medium" });
-    await figma.loadFontAsync({ family: "Inter", style: "Semi Bold" });
-    await figma.loadFontAsync({ family: "Inter", style: "Bold" });
-    await figma.loadFontAsync({ family: "Inter", style: "Extra Bold" });
-    await figma.loadFontAsync({ family: "Inter", style: "Black" });
-    await figma.loadFontAsync({ family: "Inter", style: "Thin Italic" });
-    await figma.loadFontAsync({
-      family: "Inter",
-      style: "Extra Light Italic",
-    });
-    await figma.loadFontAsync({ family: "Inter", style: "Light Italic" });
-    await figma.loadFontAsync({ family: "Inter", style: "Italic" });
-    await figma.loadFontAsync({ family: "Inter", style: "Medium Italic" });
-    await figma.loadFontAsync({ family: "Inter", style: "Semi Bold Italic" });
-    await figma.loadFontAsync({ family: "Inter", style: "Bold Italic" });
-    await figma.loadFontAsync({
-      family: "Inter",
-      style: "Extra Bold Italic",
-    });
-    await figma.loadFontAsync({ family: "Inter", style: "Black Italic" });
-    // Make sure the selection is a single piece of text before proceeding.
-
-    // Roboto Mono load
-    await figma.loadFontAsync({ family: "Roboto Mono", style: "Thin" });
-    await figma.loadFontAsync({ family: "Roboto Mono", style: "Light" });
-    await figma.loadFontAsync({ family: "Roboto Mono", style: "Regular" });
-    await figma.loadFontAsync({ family: "Roboto Mono", style: "Medium" });
-    await figma.loadFontAsync({ family: "Roboto Mono", style: "Bold" });
-    await figma.loadFontAsync({ family: "Roboto Mono", style: "Thin Italic" });
-    await figma.loadFontAsync({ family: "Roboto Mono", style: "Light Italic" });
-    await figma.loadFontAsync({ family: "Roboto Mono", style: "Italic" });
-    await figma.loadFontAsync({
-      family: "Roboto Mono",
-      style: "Medium Italic",
-    });
-    await figma.loadFontAsync({ family: "Roboto Mono", style: "Bold Italic" });
+    await loadMonospaceFont();
+    await loadSansSerifFont();
     if (figma.currentPage.selection.length === 0) {
       // if not, show a message
       figma.closePlugin("Select a text object to convert it");
@@ -3128,32 +2724,8 @@ if (figma.command == "open-plugin") {
   });
 } else if (figma.command == "error-type") {
   async function createErrorType(): Promise<string | undefined> {
-    // Inter is the font that objects will be created in Figma.
-    // We need to wait for fonts to load before creating text using them.
-    await figma.loadFontAsync({ family: "Inter", style: "Thin" });
-    await figma.loadFontAsync({ family: "Inter", style: "Extra Light" });
-    await figma.loadFontAsync({ family: "Inter", style: "Light" });
-    await figma.loadFontAsync({ family: "Inter", style: "Regular" });
-    await figma.loadFontAsync({ family: "Inter", style: "Medium" });
-    await figma.loadFontAsync({ family: "Inter", style: "Semi Bold" });
-    await figma.loadFontAsync({ family: "Inter", style: "Bold" });
-    await figma.loadFontAsync({ family: "Inter", style: "Extra Bold" });
-    await figma.loadFontAsync({ family: "Inter", style: "Black" });
-    await figma.loadFontAsync({ family: "Inter", style: "Thin Italic" });
-    await figma.loadFontAsync({
-      family: "Inter",
-      style: "Extra Light Italic",
-    });
-    await figma.loadFontAsync({ family: "Inter", style: "Light Italic" });
-    await figma.loadFontAsync({ family: "Inter", style: "Italic" });
-    await figma.loadFontAsync({ family: "Inter", style: "Medium Italic" });
-    await figma.loadFontAsync({ family: "Inter", style: "Semi Bold Italic" });
-    await figma.loadFontAsync({ family: "Inter", style: "Bold Italic" });
-    await figma.loadFontAsync({
-      family: "Inter",
-      style: "Extra Bold Italic",
-    });
-    await figma.loadFontAsync({ family: "Inter", style: "Black Italic" });
+    await loadMonospaceFont();
+    await loadSansSerifFont();
     // Make sure the selection is a single piece of text before proceeding.
 
     if (figma.currentPage.selection.length === 0) {
@@ -3190,32 +2762,8 @@ if (figma.command == "open-plugin") {
   });
 } else if (figma.command == "storage-size") {
   async function createSize(): Promise<string | undefined> {
-    // Inter is the font that objects will be created in Figma.
-    // We need to wait for fonts to load before creating text using them.
-    await figma.loadFontAsync({ family: "Inter", style: "Thin" });
-    await figma.loadFontAsync({ family: "Inter", style: "Extra Light" });
-    await figma.loadFontAsync({ family: "Inter", style: "Light" });
-    await figma.loadFontAsync({ family: "Inter", style: "Regular" });
-    await figma.loadFontAsync({ family: "Inter", style: "Medium" });
-    await figma.loadFontAsync({ family: "Inter", style: "Semi Bold" });
-    await figma.loadFontAsync({ family: "Inter", style: "Bold" });
-    await figma.loadFontAsync({ family: "Inter", style: "Extra Bold" });
-    await figma.loadFontAsync({ family: "Inter", style: "Black" });
-    await figma.loadFontAsync({ family: "Inter", style: "Thin Italic" });
-    await figma.loadFontAsync({
-      family: "Inter",
-      style: "Extra Light Italic",
-    });
-    await figma.loadFontAsync({ family: "Inter", style: "Light Italic" });
-    await figma.loadFontAsync({ family: "Inter", style: "Italic" });
-    await figma.loadFontAsync({ family: "Inter", style: "Medium Italic" });
-    await figma.loadFontAsync({ family: "Inter", style: "Semi Bold Italic" });
-    await figma.loadFontAsync({ family: "Inter", style: "Bold Italic" });
-    await figma.loadFontAsync({
-      family: "Inter",
-      style: "Extra Bold Italic",
-    });
-    await figma.loadFontAsync({ family: "Inter", style: "Black Italic" });
+    await loadMonospaceFont();
+    await loadSansSerifFont();
     // Make sure the selection is a single piece of text before proceeding.
     if (figma.currentPage.selection.length === 0) {
       // if not, show a message
@@ -3269,36 +2817,8 @@ if (figma.command == "open-plugin") {
   });
 } else if (figma.command == "host-name") {
   async function createHostName(): Promise<string | undefined> {
-    // Inter is the font that objects will be created in Figma.
-    // We need to wait for fonts to load before creating text using them.
-    await figma.loadFontAsync({ family: "Inter", style: "Thin" });
-    await figma.loadFontAsync({ family: "Inter", style: "Extra Light" });
-    await figma.loadFontAsync({ family: "Inter", style: "Light" });
-    await figma.loadFontAsync({ family: "Inter", style: "Regular" });
-    await figma.loadFontAsync({ family: "Inter", style: "Medium" });
-    await figma.loadFontAsync({ family: "Inter", style: "Semi Bold" });
-    await figma.loadFontAsync({ family: "Inter", style: "Bold" });
-    await figma.loadFontAsync({ family: "Inter", style: "Extra Bold" });
-    await figma.loadFontAsync({ family: "Inter", style: "Black" });
-    await figma.loadFontAsync({ family: "Inter", style: "Thin Italic" });
-    await figma.loadFontAsync({
-      family: "Inter",
-      style: "Extra Light Italic",
-    });
-    await figma.loadFontAsync({ family: "Inter", style: "Light Italic" });
-    await figma.loadFontAsync({ family: "Inter", style: "Italic" });
-    await figma.loadFontAsync({ family: "Inter", style: "Medium Italic" });
-    await figma.loadFontAsync({ family: "Inter", style: "Semi Bold Italic" });
-    await figma.loadFontAsync({ family: "Inter", style: "Bold Italic" });
-    await figma.loadFontAsync({
-      family: "Inter",
-      style: "Extra Bold Italic",
-    });
-    await figma.loadFontAsync({ family: "Inter", style: "Black Italic" });
-    // Load Roboto Mono font
-    await figma.loadFontAsync({ family: "Roboto Mono", style: "Regular" });
-    await figma.loadFontAsync({ family: "Roboto Mono", style: "Bold" });
-    await figma.loadFontAsync({ family: "Roboto Mono", style: "Italic" });
+    await loadMonospaceFont();
+    await loadSansSerifFont();
     // Make sure the selection is a single piece of text before proceeding.
     if (figma.currentPage.selection.length === 0) {
       // if not, show a message
@@ -3340,36 +2860,8 @@ if (figma.command == "open-plugin") {
   });
 } else if (figma.command == "traffic") {
   async function createTraffic(): Promise<string | undefined> {
-    // Inter is the font that objects will be created in Figma.
-    // We need to wait for fonts to load before creating text using them.
-    await figma.loadFontAsync({ family: "Inter", style: "Thin" });
-    await figma.loadFontAsync({ family: "Inter", style: "Extra Light" });
-    await figma.loadFontAsync({ family: "Inter", style: "Light" });
-    await figma.loadFontAsync({ family: "Inter", style: "Regular" });
-    await figma.loadFontAsync({ family: "Inter", style: "Medium" });
-    await figma.loadFontAsync({ family: "Inter", style: "Semi Bold" });
-    await figma.loadFontAsync({ family: "Inter", style: "Bold" });
-    await figma.loadFontAsync({ family: "Inter", style: "Extra Bold" });
-    await figma.loadFontAsync({ family: "Inter", style: "Black" });
-    await figma.loadFontAsync({ family: "Inter", style: "Thin Italic" });
-    await figma.loadFontAsync({
-      family: "Inter",
-      style: "Extra Light Italic",
-    });
-    await figma.loadFontAsync({ family: "Inter", style: "Light Italic" });
-    await figma.loadFontAsync({ family: "Inter", style: "Italic" });
-    await figma.loadFontAsync({ family: "Inter", style: "Medium Italic" });
-    await figma.loadFontAsync({ family: "Inter", style: "Semi Bold Italic" });
-    await figma.loadFontAsync({ family: "Inter", style: "Bold Italic" });
-    await figma.loadFontAsync({
-      family: "Inter",
-      style: "Extra Bold Italic",
-    });
-    await figma.loadFontAsync({ family: "Inter", style: "Black Italic" });
-    // Load Roboto Mono font
-    await figma.loadFontAsync({ family: "Roboto Mono", style: "Regular" });
-    await figma.loadFontAsync({ family: "Roboto Mono", style: "Bold" });
-    await figma.loadFontAsync({ family: "Roboto Mono", style: "Italic" });
+    await loadMonospaceFont();
+    await loadSansSerifFont();
     // Make sure the selection is a single piece of text before proceeding.
 
     if (figma.currentPage.selection.length === 0) {
@@ -3424,36 +2916,8 @@ if (figma.command == "open-plugin") {
   });
 } else if (figma.command == "duration-s") {
   async function createDurationSec(): Promise<string | undefined> {
-    // Inter is the font that objects will be created in Figma.
-    // We need to wait for fonts to load before creating text using them.
-    await figma.loadFontAsync({ family: "Inter", style: "Thin" });
-    await figma.loadFontAsync({ family: "Inter", style: "Extra Light" });
-    await figma.loadFontAsync({ family: "Inter", style: "Light" });
-    await figma.loadFontAsync({ family: "Inter", style: "Regular" });
-    await figma.loadFontAsync({ family: "Inter", style: "Medium" });
-    await figma.loadFontAsync({ family: "Inter", style: "Semi Bold" });
-    await figma.loadFontAsync({ family: "Inter", style: "Bold" });
-    await figma.loadFontAsync({ family: "Inter", style: "Extra Bold" });
-    await figma.loadFontAsync({ family: "Inter", style: "Black" });
-    await figma.loadFontAsync({ family: "Inter", style: "Thin Italic" });
-    await figma.loadFontAsync({
-      family: "Inter",
-      style: "Extra Light Italic",
-    });
-    await figma.loadFontAsync({ family: "Inter", style: "Light Italic" });
-    await figma.loadFontAsync({ family: "Inter", style: "Italic" });
-    await figma.loadFontAsync({ family: "Inter", style: "Medium Italic" });
-    await figma.loadFontAsync({ family: "Inter", style: "Semi Bold Italic" });
-    await figma.loadFontAsync({ family: "Inter", style: "Bold Italic" });
-    await figma.loadFontAsync({
-      family: "Inter",
-      style: "Extra Bold Italic",
-    });
-    await figma.loadFontAsync({ family: "Inter", style: "Black Italic" });
-    // Load Roboto Mono font
-    await figma.loadFontAsync({ family: "Roboto Mono", style: "Regular" });
-    await figma.loadFontAsync({ family: "Roboto Mono", style: "Bold" });
-    await figma.loadFontAsync({ family: "Roboto Mono", style: "Italic" });
+    await loadMonospaceFont();
+    await loadSansSerifFont();
     // Make sure the selection is a single piece of text before proceeding.
 
     if (figma.currentPage.selection.length === 0) {
@@ -3513,36 +2977,8 @@ if (figma.command == "open-plugin") {
   });
 } else if (figma.command == "android-version") {
   async function createAndroidVersion(): Promise<string | undefined> {
-    // Inter is the font that objects will be created in Figma.
-    // We need to wait for fonts to load before creating text using them.
-    await figma.loadFontAsync({ family: "Inter", style: "Thin" });
-    await figma.loadFontAsync({ family: "Inter", style: "Extra Light" });
-    await figma.loadFontAsync({ family: "Inter", style: "Light" });
-    await figma.loadFontAsync({ family: "Inter", style: "Regular" });
-    await figma.loadFontAsync({ family: "Inter", style: "Medium" });
-    await figma.loadFontAsync({ family: "Inter", style: "Semi Bold" });
-    await figma.loadFontAsync({ family: "Inter", style: "Bold" });
-    await figma.loadFontAsync({ family: "Inter", style: "Extra Bold" });
-    await figma.loadFontAsync({ family: "Inter", style: "Black" });
-    await figma.loadFontAsync({ family: "Inter", style: "Thin Italic" });
-    await figma.loadFontAsync({
-      family: "Inter",
-      style: "Extra Light Italic",
-    });
-    await figma.loadFontAsync({ family: "Inter", style: "Light Italic" });
-    await figma.loadFontAsync({ family: "Inter", style: "Italic" });
-    await figma.loadFontAsync({ family: "Inter", style: "Medium Italic" });
-    await figma.loadFontAsync({ family: "Inter", style: "Semi Bold Italic" });
-    await figma.loadFontAsync({ family: "Inter", style: "Bold Italic" });
-    await figma.loadFontAsync({
-      family: "Inter",
-      style: "Extra Bold Italic",
-    });
-    await figma.loadFontAsync({ family: "Inter", style: "Black Italic" });
-    // Load Roboto Mono font
-    await figma.loadFontAsync({ family: "Roboto Mono", style: "Regular" });
-    await figma.loadFontAsync({ family: "Roboto Mono", style: "Bold" });
-    await figma.loadFontAsync({ family: "Roboto Mono", style: "Italic" });
+    await loadMonospaceFont();
+    await loadSansSerifFont();
     // Make sure the selection is a single piece of text before proceeding.
     if (figma.currentPage.selection.length === 0) {
       // if not, show a message
@@ -3606,36 +3042,8 @@ if (figma.command == "open-plugin") {
   });
 } else if (figma.command == "ios-version") {
   async function createIosVersion(): Promise<string | undefined> {
-    // Inter is the font that objects will be created in Figma.
-    // We need to wait for fonts to load before creating text using them.
-    await figma.loadFontAsync({ family: "Inter", style: "Thin" });
-    await figma.loadFontAsync({ family: "Inter", style: "Extra Light" });
-    await figma.loadFontAsync({ family: "Inter", style: "Light" });
-    await figma.loadFontAsync({ family: "Inter", style: "Regular" });
-    await figma.loadFontAsync({ family: "Inter", style: "Medium" });
-    await figma.loadFontAsync({ family: "Inter", style: "Semi Bold" });
-    await figma.loadFontAsync({ family: "Inter", style: "Bold" });
-    await figma.loadFontAsync({ family: "Inter", style: "Extra Bold" });
-    await figma.loadFontAsync({ family: "Inter", style: "Black" });
-    await figma.loadFontAsync({ family: "Inter", style: "Thin Italic" });
-    await figma.loadFontAsync({
-      family: "Inter",
-      style: "Extra Light Italic",
-    });
-    await figma.loadFontAsync({ family: "Inter", style: "Light Italic" });
-    await figma.loadFontAsync({ family: "Inter", style: "Italic" });
-    await figma.loadFontAsync({ family: "Inter", style: "Medium Italic" });
-    await figma.loadFontAsync({ family: "Inter", style: "Semi Bold Italic" });
-    await figma.loadFontAsync({ family: "Inter", style: "Bold Italic" });
-    await figma.loadFontAsync({
-      family: "Inter",
-      style: "Extra Bold Italic",
-    });
-    await figma.loadFontAsync({ family: "Inter", style: "Black Italic" });
-    // Load Roboto Mono font
-    await figma.loadFontAsync({ family: "Roboto Mono", style: "Regular" });
-    await figma.loadFontAsync({ family: "Roboto Mono", style: "Bold" });
-    await figma.loadFontAsync({ family: "Roboto Mono", style: "Italic" });
+    await loadMonospaceFont();
+    await loadSansSerifFont();
     // Make sure the selection is a single piece of text before proceeding.
     if (figma.currentPage.selection.length === 0) {
       // if not, show a message
@@ -3701,36 +3109,8 @@ if (figma.command == "open-plugin") {
   });
 } else if (figma.command == "apple-mobile-device") {
   async function createMobileDeviceApple(): Promise<string | undefined> {
-    // Inter is the font that objects will be created in Figma.
-    // We need to wait for fonts to load before creating text using them.
-    await figma.loadFontAsync({ family: "Inter", style: "Thin" });
-    await figma.loadFontAsync({ family: "Inter", style: "Extra Light" });
-    await figma.loadFontAsync({ family: "Inter", style: "Light" });
-    await figma.loadFontAsync({ family: "Inter", style: "Regular" });
-    await figma.loadFontAsync({ family: "Inter", style: "Medium" });
-    await figma.loadFontAsync({ family: "Inter", style: "Semi Bold" });
-    await figma.loadFontAsync({ family: "Inter", style: "Bold" });
-    await figma.loadFontAsync({ family: "Inter", style: "Extra Bold" });
-    await figma.loadFontAsync({ family: "Inter", style: "Black" });
-    await figma.loadFontAsync({ family: "Inter", style: "Thin Italic" });
-    await figma.loadFontAsync({
-      family: "Inter",
-      style: "Extra Light Italic",
-    });
-    await figma.loadFontAsync({ family: "Inter", style: "Light Italic" });
-    await figma.loadFontAsync({ family: "Inter", style: "Italic" });
-    await figma.loadFontAsync({ family: "Inter", style: "Medium Italic" });
-    await figma.loadFontAsync({ family: "Inter", style: "Semi Bold Italic" });
-    await figma.loadFontAsync({ family: "Inter", style: "Bold Italic" });
-    await figma.loadFontAsync({
-      family: "Inter",
-      style: "Extra Bold Italic",
-    });
-    await figma.loadFontAsync({ family: "Inter", style: "Black Italic" });
-    // Load Roboto Mono font
-    await figma.loadFontAsync({ family: "Roboto Mono", style: "Regular" });
-    await figma.loadFontAsync({ family: "Roboto Mono", style: "Bold" });
-    await figma.loadFontAsync({ family: "Roboto Mono", style: "Italic" });
+    await loadMonospaceFont();
+    await loadSansSerifFont();
     // Make sure the selection is a single piece of text before proceeding.
     if (figma.currentPage.selection.length === 0) {
       // if not, show a message
@@ -3798,36 +3178,8 @@ if (figma.command == "open-plugin") {
   });
 } else if (figma.command == "android-mobile-device") {
   async function createMobileDeviceAndroid(): Promise<string | undefined> {
-    // Inter is the font that objects will be created in Figma.
-    // We need to wait for fonts to load before creating text using them.
-    await figma.loadFontAsync({ family: "Inter", style: "Thin" });
-    await figma.loadFontAsync({ family: "Inter", style: "Extra Light" });
-    await figma.loadFontAsync({ family: "Inter", style: "Light" });
-    await figma.loadFontAsync({ family: "Inter", style: "Regular" });
-    await figma.loadFontAsync({ family: "Inter", style: "Medium" });
-    await figma.loadFontAsync({ family: "Inter", style: "Semi Bold" });
-    await figma.loadFontAsync({ family: "Inter", style: "Bold" });
-    await figma.loadFontAsync({ family: "Inter", style: "Extra Bold" });
-    await figma.loadFontAsync({ family: "Inter", style: "Black" });
-    await figma.loadFontAsync({ family: "Inter", style: "Thin Italic" });
-    await figma.loadFontAsync({
-      family: "Inter",
-      style: "Extra Light Italic",
-    });
-    await figma.loadFontAsync({ family: "Inter", style: "Light Italic" });
-    await figma.loadFontAsync({ family: "Inter", style: "Italic" });
-    await figma.loadFontAsync({ family: "Inter", style: "Medium Italic" });
-    await figma.loadFontAsync({ family: "Inter", style: "Semi Bold Italic" });
-    await figma.loadFontAsync({ family: "Inter", style: "Bold Italic" });
-    await figma.loadFontAsync({
-      family: "Inter",
-      style: "Extra Bold Italic",
-    });
-    await figma.loadFontAsync({ family: "Inter", style: "Black Italic" });
-    // Load Roboto Mono font
-    await figma.loadFontAsync({ family: "Roboto Mono", style: "Regular" });
-    await figma.loadFontAsync({ family: "Roboto Mono", style: "Bold" });
-    await figma.loadFontAsync({ family: "Roboto Mono", style: "Italic" });
+    await loadMonospaceFont();
+    await loadSansSerifFont();
     // Make sure the selection is a single piece of text before proceeding.
     if (figma.currentPage.selection.length === 0) {
       // if not, show a message
@@ -3883,36 +3235,8 @@ if (figma.command == "open-plugin") {
   });
 } else if (figma.command == "browser") {
   async function createBrowser(): Promise<string | undefined> {
-    // Inter is the font that objects will be created in Figma.
-    // We need to wait for fonts to load before creating text using them.
-    await figma.loadFontAsync({ family: "Inter", style: "Thin" });
-    await figma.loadFontAsync({ family: "Inter", style: "Extra Light" });
-    await figma.loadFontAsync({ family: "Inter", style: "Light" });
-    await figma.loadFontAsync({ family: "Inter", style: "Regular" });
-    await figma.loadFontAsync({ family: "Inter", style: "Medium" });
-    await figma.loadFontAsync({ family: "Inter", style: "Semi Bold" });
-    await figma.loadFontAsync({ family: "Inter", style: "Bold" });
-    await figma.loadFontAsync({ family: "Inter", style: "Extra Bold" });
-    await figma.loadFontAsync({ family: "Inter", style: "Black" });
-    await figma.loadFontAsync({ family: "Inter", style: "Thin Italic" });
-    await figma.loadFontAsync({
-      family: "Inter",
-      style: "Extra Light Italic",
-    });
-    await figma.loadFontAsync({ family: "Inter", style: "Light Italic" });
-    await figma.loadFontAsync({ family: "Inter", style: "Italic" });
-    await figma.loadFontAsync({ family: "Inter", style: "Medium Italic" });
-    await figma.loadFontAsync({ family: "Inter", style: "Semi Bold Italic" });
-    await figma.loadFontAsync({ family: "Inter", style: "Bold Italic" });
-    await figma.loadFontAsync({
-      family: "Inter",
-      style: "Extra Bold Italic",
-    });
-    await figma.loadFontAsync({ family: "Inter", style: "Black Italic" });
-    // Load Roboto Mono font
-    await figma.loadFontAsync({ family: "Roboto Mono", style: "Regular" });
-    await figma.loadFontAsync({ family: "Roboto Mono", style: "Bold" });
-    await figma.loadFontAsync({ family: "Roboto Mono", style: "Italic" });
+    await loadMonospaceFont();
+    await loadSansSerifFont();
     // Make sure the selection is a single piece of text before proceeding.
     if (figma.currentPage.selection.length === 0) {
       // if not, show a message
@@ -3976,36 +3300,8 @@ if (figma.command == "open-plugin") {
   });
 } else if (figma.command == "country") {
   async function createCountry(): Promise<string | undefined> {
-    // Inter is the font that objects will be created in Figma.
-    // We need to wait for fonts to load before creating text using them.
-    await figma.loadFontAsync({ family: "Inter", style: "Thin" });
-    await figma.loadFontAsync({ family: "Inter", style: "Extra Light" });
-    await figma.loadFontAsync({ family: "Inter", style: "Light" });
-    await figma.loadFontAsync({ family: "Inter", style: "Regular" });
-    await figma.loadFontAsync({ family: "Inter", style: "Medium" });
-    await figma.loadFontAsync({ family: "Inter", style: "Semi Bold" });
-    await figma.loadFontAsync({ family: "Inter", style: "Bold" });
-    await figma.loadFontAsync({ family: "Inter", style: "Extra Bold" });
-    await figma.loadFontAsync({ family: "Inter", style: "Black" });
-    await figma.loadFontAsync({ family: "Inter", style: "Thin Italic" });
-    await figma.loadFontAsync({
-      family: "Inter",
-      style: "Extra Light Italic",
-    });
-    await figma.loadFontAsync({ family: "Inter", style: "Light Italic" });
-    await figma.loadFontAsync({ family: "Inter", style: "Italic" });
-    await figma.loadFontAsync({ family: "Inter", style: "Medium Italic" });
-    await figma.loadFontAsync({ family: "Inter", style: "Semi Bold Italic" });
-    await figma.loadFontAsync({ family: "Inter", style: "Bold Italic" });
-    await figma.loadFontAsync({
-      family: "Inter",
-      style: "Extra Bold Italic",
-    });
-    await figma.loadFontAsync({ family: "Inter", style: "Black Italic" });
-    // Load Roboto Mono font
-    await figma.loadFontAsync({ family: "Roboto Mono", style: "Regular" });
-    await figma.loadFontAsync({ family: "Roboto Mono", style: "Bold" });
-    await figma.loadFontAsync({ family: "Roboto Mono", style: "Italic" });
+    await loadMonospaceFont();
+    await loadSansSerifFont();
     // Make sure the selection is a single piece of text before proceeding.
     if (figma.currentPage.selection.length === 0) {
       // if not, show a message
@@ -4279,36 +3575,8 @@ if (figma.command == "open-plugin") {
   });
 } else if (figma.command == "hundreds") {
   async function createHundreds(): Promise<string | undefined> {
-    // Inter is the font that objects will be created in Figma.
-    // We need to wait for fonts to load before creating text using them.
-    await figma.loadFontAsync({ family: "Inter", style: "Thin" });
-    await figma.loadFontAsync({ family: "Inter", style: "Extra Light" });
-    await figma.loadFontAsync({ family: "Inter", style: "Light" });
-    await figma.loadFontAsync({ family: "Inter", style: "Regular" });
-    await figma.loadFontAsync({ family: "Inter", style: "Medium" });
-    await figma.loadFontAsync({ family: "Inter", style: "Semi Bold" });
-    await figma.loadFontAsync({ family: "Inter", style: "Bold" });
-    await figma.loadFontAsync({ family: "Inter", style: "Extra Bold" });
-    await figma.loadFontAsync({ family: "Inter", style: "Black" });
-    await figma.loadFontAsync({ family: "Inter", style: "Thin Italic" });
-    await figma.loadFontAsync({
-      family: "Inter",
-      style: "Extra Light Italic",
-    });
-    await figma.loadFontAsync({ family: "Inter", style: "Light Italic" });
-    await figma.loadFontAsync({ family: "Inter", style: "Italic" });
-    await figma.loadFontAsync({ family: "Inter", style: "Medium Italic" });
-    await figma.loadFontAsync({ family: "Inter", style: "Semi Bold Italic" });
-    await figma.loadFontAsync({ family: "Inter", style: "Bold Italic" });
-    await figma.loadFontAsync({
-      family: "Inter",
-      style: "Extra Bold Italic",
-    });
-    await figma.loadFontAsync({ family: "Inter", style: "Black Italic" });
-    // Load Roboto Mono font
-    await figma.loadFontAsync({ family: "Roboto Mono", style: "Regular" });
-    await figma.loadFontAsync({ family: "Roboto Mono", style: "Bold" });
-    await figma.loadFontAsync({ family: "Roboto Mono", style: "Italic" });
+    await loadMonospaceFont();
+    await loadSansSerifFont();
     // Make sure the selection is a single piece of text before proceeding.
     if (figma.currentPage.selection.length === 0) {
       // if not, show a message
@@ -4348,36 +3616,8 @@ if (figma.command == "open-plugin") {
   });
 } else if (figma.command == "thousands") {
   async function createThousands(): Promise<string | undefined> {
-    // Inter is the font that objects will be created in Figma.
-    // We need to wait for fonts to load before creating text using them.
-    await figma.loadFontAsync({ family: "Inter", style: "Thin" });
-    await figma.loadFontAsync({ family: "Inter", style: "Extra Light" });
-    await figma.loadFontAsync({ family: "Inter", style: "Light" });
-    await figma.loadFontAsync({ family: "Inter", style: "Regular" });
-    await figma.loadFontAsync({ family: "Inter", style: "Medium" });
-    await figma.loadFontAsync({ family: "Inter", style: "Semi Bold" });
-    await figma.loadFontAsync({ family: "Inter", style: "Bold" });
-    await figma.loadFontAsync({ family: "Inter", style: "Extra Bold" });
-    await figma.loadFontAsync({ family: "Inter", style: "Black" });
-    await figma.loadFontAsync({ family: "Inter", style: "Thin Italic" });
-    await figma.loadFontAsync({
-      family: "Inter",
-      style: "Extra Light Italic",
-    });
-    await figma.loadFontAsync({ family: "Inter", style: "Light Italic" });
-    await figma.loadFontAsync({ family: "Inter", style: "Italic" });
-    await figma.loadFontAsync({ family: "Inter", style: "Medium Italic" });
-    await figma.loadFontAsync({ family: "Inter", style: "Semi Bold Italic" });
-    await figma.loadFontAsync({ family: "Inter", style: "Bold Italic" });
-    await figma.loadFontAsync({
-      family: "Inter",
-      style: "Extra Bold Italic",
-    });
-    await figma.loadFontAsync({ family: "Inter", style: "Black Italic" });
-    // Load Roboto Mono font
-    await figma.loadFontAsync({ family: "Roboto Mono", style: "Regular" });
-    await figma.loadFontAsync({ family: "Roboto Mono", style: "Bold" });
-    await figma.loadFontAsync({ family: "Roboto Mono", style: "Italic" });
+    await loadMonospaceFont();
+    await loadSansSerifFont();
     // Make sure the selection is a single piece of text before proceeding.
     if (figma.currentPage.selection.length === 0) {
       // if not, show a message
@@ -4417,36 +3657,8 @@ if (figma.command == "open-plugin") {
   });
 } else if (figma.command == "nct") {
   async function createNetworkConnectionType(): Promise<string | undefined> {
-    // Inter is the font that objects will be created in Figma.
-    // We need to wait for fonts to load before creating text using them.
-    await figma.loadFontAsync({ family: "Inter", style: "Thin" });
-    await figma.loadFontAsync({ family: "Inter", style: "Extra Light" });
-    await figma.loadFontAsync({ family: "Inter", style: "Light" });
-    await figma.loadFontAsync({ family: "Inter", style: "Regular" });
-    await figma.loadFontAsync({ family: "Inter", style: "Medium" });
-    await figma.loadFontAsync({ family: "Inter", style: "Semi Bold" });
-    await figma.loadFontAsync({ family: "Inter", style: "Bold" });
-    await figma.loadFontAsync({ family: "Inter", style: "Extra Bold" });
-    await figma.loadFontAsync({ family: "Inter", style: "Black" });
-    await figma.loadFontAsync({ family: "Inter", style: "Thin Italic" });
-    await figma.loadFontAsync({
-      family: "Inter",
-      style: "Extra Light Italic",
-    });
-    await figma.loadFontAsync({ family: "Inter", style: "Light Italic" });
-    await figma.loadFontAsync({ family: "Inter", style: "Italic" });
-    await figma.loadFontAsync({ family: "Inter", style: "Medium Italic" });
-    await figma.loadFontAsync({ family: "Inter", style: "Semi Bold Italic" });
-    await figma.loadFontAsync({ family: "Inter", style: "Bold Italic" });
-    await figma.loadFontAsync({
-      family: "Inter",
-      style: "Extra Bold Italic",
-    });
-    await figma.loadFontAsync({ family: "Inter", style: "Black Italic" });
-    // Load Roboto Mono font
-    await figma.loadFontAsync({ family: "Roboto Mono", style: "Regular" });
-    await figma.loadFontAsync({ family: "Roboto Mono", style: "Bold" });
-    await figma.loadFontAsync({ family: "Roboto Mono", style: "Italic" });
+    await loadMonospaceFont();
+    await loadSansSerifFont();
     // Make sure the selection is a single piece of text before proceeding.
     if (figma.currentPage.selection.length === 0) {
       // if not, show a message
@@ -4487,36 +3699,8 @@ if (figma.command == "open-plugin") {
   });
 } else if (figma.command == "version") {
   async function createVersion(): Promise<string | undefined> {
-    // Inter is the font that objects will be created in Figma.
-    // We need to wait for fonts to load before creating text using them.
-    await figma.loadFontAsync({ family: "Inter", style: "Thin" });
-    await figma.loadFontAsync({ family: "Inter", style: "Extra Light" });
-    await figma.loadFontAsync({ family: "Inter", style: "Light" });
-    await figma.loadFontAsync({ family: "Inter", style: "Regular" });
-    await figma.loadFontAsync({ family: "Inter", style: "Medium" });
-    await figma.loadFontAsync({ family: "Inter", style: "Semi Bold" });
-    await figma.loadFontAsync({ family: "Inter", style: "Bold" });
-    await figma.loadFontAsync({ family: "Inter", style: "Extra Bold" });
-    await figma.loadFontAsync({ family: "Inter", style: "Black" });
-    await figma.loadFontAsync({ family: "Inter", style: "Thin Italic" });
-    await figma.loadFontAsync({
-      family: "Inter",
-      style: "Extra Light Italic",
-    });
-    await figma.loadFontAsync({ family: "Inter", style: "Light Italic" });
-    await figma.loadFontAsync({ family: "Inter", style: "Italic" });
-    await figma.loadFontAsync({ family: "Inter", style: "Medium Italic" });
-    await figma.loadFontAsync({ family: "Inter", style: "Semi Bold Italic" });
-    await figma.loadFontAsync({ family: "Inter", style: "Bold Italic" });
-    await figma.loadFontAsync({
-      family: "Inter",
-      style: "Extra Bold Italic",
-    });
-    await figma.loadFontAsync({ family: "Inter", style: "Black Italic" });
-    // Load Roboto Mono font
-    await figma.loadFontAsync({ family: "Roboto Mono", style: "Regular" });
-    await figma.loadFontAsync({ family: "Roboto Mono", style: "Bold" });
-    await figma.loadFontAsync({ family: "Roboto Mono", style: "Italic" });
+    await loadMonospaceFont();
+    await loadSansSerifFont();
     // Make sure the selection is a single piece of text before proceeding.
     if (figma.currentPage.selection.length === 0) {
       // if not, show a message
@@ -4560,36 +3744,8 @@ if (figma.command == "open-plugin") {
   });
 } else if (figma.command == "alert-reason") {
   async function createAlertReason(): Promise<string | undefined> {
-    // Inter is the font that objects will be created in Figma.
-    // We need to wait for fonts to load before creating text using them.
-    await figma.loadFontAsync({ family: "Inter", style: "Thin" });
-    await figma.loadFontAsync({ family: "Inter", style: "Extra Light" });
-    await figma.loadFontAsync({ family: "Inter", style: "Light" });
-    await figma.loadFontAsync({ family: "Inter", style: "Regular" });
-    await figma.loadFontAsync({ family: "Inter", style: "Medium" });
-    await figma.loadFontAsync({ family: "Inter", style: "Semi Bold" });
-    await figma.loadFontAsync({ family: "Inter", style: "Bold" });
-    await figma.loadFontAsync({ family: "Inter", style: "Extra Bold" });
-    await figma.loadFontAsync({ family: "Inter", style: "Black" });
-    await figma.loadFontAsync({ family: "Inter", style: "Thin Italic" });
-    await figma.loadFontAsync({
-      family: "Inter",
-      style: "Extra Light Italic",
-    });
-    await figma.loadFontAsync({ family: "Inter", style: "Light Italic" });
-    await figma.loadFontAsync({ family: "Inter", style: "Italic" });
-    await figma.loadFontAsync({ family: "Inter", style: "Medium Italic" });
-    await figma.loadFontAsync({ family: "Inter", style: "Semi Bold Italic" });
-    await figma.loadFontAsync({ family: "Inter", style: "Bold Italic" });
-    await figma.loadFontAsync({
-      family: "Inter",
-      style: "Extra Bold Italic",
-    });
-    await figma.loadFontAsync({ family: "Inter", style: "Black Italic" });
-    // Load Roboto Mono font
-    await figma.loadFontAsync({ family: "Roboto Mono", style: "Regular" });
-    await figma.loadFontAsync({ family: "Roboto Mono", style: "Bold" });
-    await figma.loadFontAsync({ family: "Roboto Mono", style: "Italic" });
+    await loadMonospaceFont();
+    await loadSansSerifFont();
     // Make sure the selection is a single piece of text before proceeding.
     if (figma.currentPage.selection.length === 0) {
       // if not, show a message
@@ -4671,36 +3827,8 @@ if (figma.command == "open-plugin") {
   });
 } else if (figma.command == "alert-status") {
   async function createAlertStatus(): Promise<string | undefined> {
-    // Inter is the font that objects will be created in Figma.
-    // We need to wait for fonts to load before creating text using them.
-    await figma.loadFontAsync({ family: "Inter", style: "Thin" });
-    await figma.loadFontAsync({ family: "Inter", style: "Extra Light" });
-    await figma.loadFontAsync({ family: "Inter", style: "Light" });
-    await figma.loadFontAsync({ family: "Inter", style: "Regular" });
-    await figma.loadFontAsync({ family: "Inter", style: "Medium" });
-    await figma.loadFontAsync({ family: "Inter", style: "Semi Bold" });
-    await figma.loadFontAsync({ family: "Inter", style: "Bold" });
-    await figma.loadFontAsync({ family: "Inter", style: "Extra Bold" });
-    await figma.loadFontAsync({ family: "Inter", style: "Black" });
-    await figma.loadFontAsync({ family: "Inter", style: "Thin Italic" });
-    await figma.loadFontAsync({
-      family: "Inter",
-      style: "Extra Light Italic",
-    });
-    await figma.loadFontAsync({ family: "Inter", style: "Light Italic" });
-    await figma.loadFontAsync({ family: "Inter", style: "Italic" });
-    await figma.loadFontAsync({ family: "Inter", style: "Medium Italic" });
-    await figma.loadFontAsync({ family: "Inter", style: "Semi Bold Italic" });
-    await figma.loadFontAsync({ family: "Inter", style: "Bold Italic" });
-    await figma.loadFontAsync({
-      family: "Inter",
-      style: "Extra Bold Italic",
-    });
-    await figma.loadFontAsync({ family: "Inter", style: "Black Italic" });
-    // Load Roboto Mono font
-    await figma.loadFontAsync({ family: "Roboto Mono", style: "Regular" });
-    await figma.loadFontAsync({ family: "Roboto Mono", style: "Bold" });
-    await figma.loadFontAsync({ family: "Roboto Mono", style: "Italic" });
+    await loadMonospaceFont();
+    await loadSansSerifFont();
     // Make sure the selection is a single piece of text before proceeding.
     if (figma.currentPage.selection.length === 0) {
       // if not, show a message
@@ -4730,36 +3858,8 @@ if (figma.command == "open-plugin") {
   });
 } else if (figma.command == "alert-source") {
   async function createAlertSource(): Promise<string | undefined> {
-    // Inter is the font that objects will be created in Figma.
-    // We need to wait for fonts to load before creating text using them.
-    await figma.loadFontAsync({ family: "Inter", style: "Thin" });
-    await figma.loadFontAsync({ family: "Inter", style: "Extra Light" });
-    await figma.loadFontAsync({ family: "Inter", style: "Light" });
-    await figma.loadFontAsync({ family: "Inter", style: "Regular" });
-    await figma.loadFontAsync({ family: "Inter", style: "Medium" });
-    await figma.loadFontAsync({ family: "Inter", style: "Semi Bold" });
-    await figma.loadFontAsync({ family: "Inter", style: "Bold" });
-    await figma.loadFontAsync({ family: "Inter", style: "Extra Bold" });
-    await figma.loadFontAsync({ family: "Inter", style: "Black" });
-    await figma.loadFontAsync({ family: "Inter", style: "Thin Italic" });
-    await figma.loadFontAsync({
-      family: "Inter",
-      style: "Extra Light Italic",
-    });
-    await figma.loadFontAsync({ family: "Inter", style: "Light Italic" });
-    await figma.loadFontAsync({ family: "Inter", style: "Italic" });
-    await figma.loadFontAsync({ family: "Inter", style: "Medium Italic" });
-    await figma.loadFontAsync({ family: "Inter", style: "Semi Bold Italic" });
-    await figma.loadFontAsync({ family: "Inter", style: "Bold Italic" });
-    await figma.loadFontAsync({
-      family: "Inter",
-      style: "Extra Bold Italic",
-    });
-    await figma.loadFontAsync({ family: "Inter", style: "Black Italic" });
-    // Load Roboto Mono font
-    await figma.loadFontAsync({ family: "Roboto Mono", style: "Regular" });
-    await figma.loadFontAsync({ family: "Roboto Mono", style: "Bold" });
-    await figma.loadFontAsync({ family: "Roboto Mono", style: "Italic" });
+    await loadMonospaceFont();
+    await loadSansSerifFont();
     // Make sure the selection is a single piece of text before proceeding.
     if (figma.currentPage.selection.length === 0) {
       // if not, show a message
@@ -4826,37 +3926,8 @@ if (figma.command == "open-plugin") {
   });
 } else if (figma.command == "data-field-apm") {
   async function createDataFieldApm(): Promise<string | undefined> {
-    // Inter is the font that objects will be created in Figma.
-    // We need to wait for fonts to load before creating text using them.
-    await figma.loadFontAsync({ family: "Inter", style: "Thin" });
-    await figma.loadFontAsync({ family: "Inter", style: "Extra Light" });
-    await figma.loadFontAsync({ family: "Inter", style: "Light" });
-    await figma.loadFontAsync({ family: "Inter", style: "Regular" });
-    await figma.loadFontAsync({ family: "Inter", style: "Medium" });
-    await figma.loadFontAsync({ family: "Inter", style: "Semi Bold" });
-    await figma.loadFontAsync({ family: "Inter", style: "Bold" });
-    await figma.loadFontAsync({ family: "Inter", style: "Extra Bold" });
-    await figma.loadFontAsync({ family: "Inter", style: "Black" });
-    await figma.loadFontAsync({ family: "Inter", style: "Thin Italic" });
-    await figma.loadFontAsync({
-      family: "Inter",
-      style: "Extra Light Italic",
-    });
-    await figma.loadFontAsync({ family: "Inter", style: "Light Italic" });
-    await figma.loadFontAsync({ family: "Inter", style: "Italic" });
-    await figma.loadFontAsync({ family: "Inter", style: "Medium Italic" });
-    await figma.loadFontAsync({ family: "Inter", style: "Semi Bold Italic" });
-    await figma.loadFontAsync({ family: "Inter", style: "Bold Italic" });
-    await figma.loadFontAsync({
-      family: "Inter",
-      style: "Extra Bold Italic",
-    });
-    await figma.loadFontAsync({ family: "Inter", style: "Black Italic" });
-
-    // Load Roboto Mono font
-    await figma.loadFontAsync({ family: "Roboto Mono", style: "Regular" });
-    await figma.loadFontAsync({ family: "Roboto Mono", style: "Bold" });
-    await figma.loadFontAsync({ family: "Roboto Mono", style: "Italic" });
+    await loadMonospaceFont();
+    await loadSansSerifFont();
     // Make sure the selection is a single piece of text before proceeding.
     if (figma.currentPage.selection.length === 0) {
       // if not, show a message
@@ -4910,37 +3981,8 @@ if (figma.command == "open-plugin") {
   });
 } else if (figma.command == "environment") {
   async function createEnvironment(): Promise<string | undefined> {
-    // Inter is the font that objects will be created in Figma.
-    // We need to wait for fonts to load before creating text using them.
-    await figma.loadFontAsync({ family: "Inter", style: "Thin" });
-    await figma.loadFontAsync({ family: "Inter", style: "Extra Light" });
-    await figma.loadFontAsync({ family: "Inter", style: "Light" });
-    await figma.loadFontAsync({ family: "Inter", style: "Regular" });
-    await figma.loadFontAsync({ family: "Inter", style: "Medium" });
-    await figma.loadFontAsync({ family: "Inter", style: "Semi Bold" });
-    await figma.loadFontAsync({ family: "Inter", style: "Bold" });
-    await figma.loadFontAsync({ family: "Inter", style: "Extra Bold" });
-    await figma.loadFontAsync({ family: "Inter", style: "Black" });
-    await figma.loadFontAsync({ family: "Inter", style: "Thin Italic" });
-    await figma.loadFontAsync({
-      family: "Inter",
-      style: "Extra Light Italic",
-    });
-    await figma.loadFontAsync({ family: "Inter", style: "Light Italic" });
-    await figma.loadFontAsync({ family: "Inter", style: "Italic" });
-    await figma.loadFontAsync({ family: "Inter", style: "Medium Italic" });
-    await figma.loadFontAsync({ family: "Inter", style: "Semi Bold Italic" });
-    await figma.loadFontAsync({ family: "Inter", style: "Bold Italic" });
-    await figma.loadFontAsync({
-      family: "Inter",
-      style: "Extra Bold Italic",
-    });
-    await figma.loadFontAsync({ family: "Inter", style: "Black Italic" });
-
-    // Load Roboto Mono font
-    await figma.loadFontAsync({ family: "Roboto Mono", style: "Regular" });
-    await figma.loadFontAsync({ family: "Roboto Mono", style: "Bold" });
-    await figma.loadFontAsync({ family: "Roboto Mono", style: "Italic" });
+    await loadMonospaceFont();
+    await loadSansSerifFont();
     // Make sure the selection is a single piece of text before proceeding.
     if (figma.currentPage.selection.length === 0) {
       // if not, show a message
@@ -4984,37 +4026,8 @@ if (figma.command == "open-plugin") {
   });
 } else if (figma.command == "log-level") {
   async function createLogLevel(): Promise<string | undefined> {
-    // Inter is the font that objects will be created in Figma.
-    // We need to wait for fonts to load before creating text using them.
-    await figma.loadFontAsync({ family: "Inter", style: "Thin" });
-    await figma.loadFontAsync({ family: "Inter", style: "Extra Light" });
-    await figma.loadFontAsync({ family: "Inter", style: "Light" });
-    await figma.loadFontAsync({ family: "Inter", style: "Regular" });
-    await figma.loadFontAsync({ family: "Inter", style: "Medium" });
-    await figma.loadFontAsync({ family: "Inter", style: "Semi Bold" });
-    await figma.loadFontAsync({ family: "Inter", style: "Bold" });
-    await figma.loadFontAsync({ family: "Inter", style: "Extra Bold" });
-    await figma.loadFontAsync({ family: "Inter", style: "Black" });
-    await figma.loadFontAsync({ family: "Inter", style: "Thin Italic" });
-    await figma.loadFontAsync({
-      family: "Inter",
-      style: "Extra Light Italic",
-    });
-    await figma.loadFontAsync({ family: "Inter", style: "Light Italic" });
-    await figma.loadFontAsync({ family: "Inter", style: "Italic" });
-    await figma.loadFontAsync({ family: "Inter", style: "Medium Italic" });
-    await figma.loadFontAsync({ family: "Inter", style: "Semi Bold Italic" });
-    await figma.loadFontAsync({ family: "Inter", style: "Bold Italic" });
-    await figma.loadFontAsync({
-      family: "Inter",
-      style: "Extra Bold Italic",
-    });
-    await figma.loadFontAsync({ family: "Inter", style: "Black Italic" });
-
-    // Load Roboto Mono font
-    await figma.loadFontAsync({ family: "Roboto Mono", style: "Regular" });
-    await figma.loadFontAsync({ family: "Roboto Mono", style: "Bold" });
-    await figma.loadFontAsync({ family: "Roboto Mono", style: "Italic" });
+    await loadMonospaceFont();
+    await loadSansSerifFont();
     // Make sure the selection is a single piece of text before proceeding.
     if (figma.currentPage.selection.length === 0) {
       // if not, show a message
@@ -5054,37 +4067,8 @@ if (figma.command == "open-plugin") {
   });
 } else if (figma.command == "message") {
   async function createTimestamp(): Promise<string | undefined> {
-    // Inter is the font that objects will be created in Figma.
-    // We need to wait for fonts to load before creating text using them.
-    await figma.loadFontAsync({ family: "Inter", style: "Thin" });
-    await figma.loadFontAsync({ family: "Inter", style: "Extra Light" });
-    await figma.loadFontAsync({ family: "Inter", style: "Light" });
-    await figma.loadFontAsync({ family: "Inter", style: "Regular" });
-    await figma.loadFontAsync({ family: "Inter", style: "Medium" });
-    await figma.loadFontAsync({ family: "Inter", style: "Semi Bold" });
-    await figma.loadFontAsync({ family: "Inter", style: "Bold" });
-    await figma.loadFontAsync({ family: "Inter", style: "Extra Bold" });
-    await figma.loadFontAsync({ family: "Inter", style: "Black" });
-    await figma.loadFontAsync({ family: "Inter", style: "Thin Italic" });
-    await figma.loadFontAsync({
-      family: "Inter",
-      style: "Extra Light Italic",
-    });
-    await figma.loadFontAsync({ family: "Inter", style: "Light Italic" });
-    await figma.loadFontAsync({ family: "Inter", style: "Italic" });
-    await figma.loadFontAsync({ family: "Inter", style: "Medium Italic" });
-    await figma.loadFontAsync({ family: "Inter", style: "Semi Bold Italic" });
-    await figma.loadFontAsync({ family: "Inter", style: "Bold Italic" });
-    await figma.loadFontAsync({
-      family: "Inter",
-      style: "Extra Bold Italic",
-    });
-    await figma.loadFontAsync({ family: "Inter", style: "Black Italic" });
-
-    // Load Roboto Mono font
-    await figma.loadFontAsync({ family: "Roboto Mono", style: "Regular" });
-    await figma.loadFontAsync({ family: "Roboto Mono", style: "Bold" });
-    await figma.loadFontAsync({ family: "Roboto Mono", style: "Italic" });
+    await loadMonospaceFont();
+    await loadSansSerifFont();
     // Make sure the selection is a single piece of text before proceeding.
     if (figma.currentPage.selection.length === 0) {
       // if not, show a message
@@ -5133,37 +4117,8 @@ if (figma.command == "open-plugin") {
   });
 } else if (figma.command == "profiling-function") {
   async function createProfilingFunction(): Promise<string | undefined> {
-    // Inter is the font that objects will be created in Figma.
-    // We need to wait for fonts to load before creating text using them.
-    await figma.loadFontAsync({ family: "Inter", style: "Thin" });
-    await figma.loadFontAsync({ family: "Inter", style: "Extra Light" });
-    await figma.loadFontAsync({ family: "Inter", style: "Light" });
-    await figma.loadFontAsync({ family: "Inter", style: "Regular" });
-    await figma.loadFontAsync({ family: "Inter", style: "Medium" });
-    await figma.loadFontAsync({ family: "Inter", style: "Semi Bold" });
-    await figma.loadFontAsync({ family: "Inter", style: "Bold" });
-    await figma.loadFontAsync({ family: "Inter", style: "Extra Bold" });
-    await figma.loadFontAsync({ family: "Inter", style: "Black" });
-    await figma.loadFontAsync({ family: "Inter", style: "Thin Italic" });
-    await figma.loadFontAsync({
-      family: "Inter",
-      style: "Extra Light Italic",
-    });
-    await figma.loadFontAsync({ family: "Inter", style: "Light Italic" });
-    await figma.loadFontAsync({ family: "Inter", style: "Italic" });
-    await figma.loadFontAsync({ family: "Inter", style: "Medium Italic" });
-    await figma.loadFontAsync({ family: "Inter", style: "Semi Bold Italic" });
-    await figma.loadFontAsync({ family: "Inter", style: "Bold Italic" });
-    await figma.loadFontAsync({
-      family: "Inter",
-      style: "Extra Bold Italic",
-    });
-    await figma.loadFontAsync({ family: "Inter", style: "Black Italic" });
-
-    // Load Roboto Mono font
-    await figma.loadFontAsync({ family: "Roboto Mono", style: "Regular" });
-    await figma.loadFontAsync({ family: "Roboto Mono", style: "Bold" });
-    await figma.loadFontAsync({ family: "Roboto Mono", style: "Italic" });
+    await loadMonospaceFont();
+    await loadSansSerifFont();
     // Make sure the selection is a single piece of text before proceeding.
     if (figma.currentPage.selection.length === 0) {
       // if not, show a message
@@ -5214,37 +4169,8 @@ if (figma.command == "open-plugin") {
   });
 } else if (figma.command == "profiling-source-file") {
   async function createProfilingSourceFile(): Promise<string | undefined> {
-    // Inter is the font that objects will be created in Figma.
-    // We need to wait for fonts to load before creating text using them.
-    await figma.loadFontAsync({ family: "Inter", style: "Thin" });
-    await figma.loadFontAsync({ family: "Inter", style: "Extra Light" });
-    await figma.loadFontAsync({ family: "Inter", style: "Light" });
-    await figma.loadFontAsync({ family: "Inter", style: "Regular" });
-    await figma.loadFontAsync({ family: "Inter", style: "Medium" });
-    await figma.loadFontAsync({ family: "Inter", style: "Semi Bold" });
-    await figma.loadFontAsync({ family: "Inter", style: "Bold" });
-    await figma.loadFontAsync({ family: "Inter", style: "Extra Bold" });
-    await figma.loadFontAsync({ family: "Inter", style: "Black" });
-    await figma.loadFontAsync({ family: "Inter", style: "Thin Italic" });
-    await figma.loadFontAsync({
-      family: "Inter",
-      style: "Extra Light Italic",
-    });
-    await figma.loadFontAsync({ family: "Inter", style: "Light Italic" });
-    await figma.loadFontAsync({ family: "Inter", style: "Italic" });
-    await figma.loadFontAsync({ family: "Inter", style: "Medium Italic" });
-    await figma.loadFontAsync({ family: "Inter", style: "Semi Bold Italic" });
-    await figma.loadFontAsync({ family: "Inter", style: "Bold Italic" });
-    await figma.loadFontAsync({
-      family: "Inter",
-      style: "Extra Bold Italic",
-    });
-    await figma.loadFontAsync({ family: "Inter", style: "Black Italic" });
-
-    // Load Roboto Mono font
-    await figma.loadFontAsync({ family: "Roboto Mono", style: "Regular" });
-    await figma.loadFontAsync({ family: "Roboto Mono", style: "Bold" });
-    await figma.loadFontAsync({ family: "Roboto Mono", style: "Italic" });
+    await loadMonospaceFont();
+    await loadSansSerifFont();
     // Make sure the selection is a single piece of text before proceeding.
     if (figma.currentPage.selection.length === 0) {
       // if not, show a message
@@ -5295,37 +4221,8 @@ if (figma.command == "open-plugin") {
   });
 } else if (figma.command == "timestamp") {
   async function createRandomTimestamp(): Promise<string | undefined> {
-    // Inter is the font that objects will be created in Figma.
-    // We need to wait for fonts to load before creating text using them.
-    await figma.loadFontAsync({ family: "Inter", style: "Thin" });
-    await figma.loadFontAsync({ family: "Inter", style: "Extra Light" });
-    await figma.loadFontAsync({ family: "Inter", style: "Light" });
-    await figma.loadFontAsync({ family: "Inter", style: "Regular" });
-    await figma.loadFontAsync({ family: "Inter", style: "Medium" });
-    await figma.loadFontAsync({ family: "Inter", style: "Semi Bold" });
-    await figma.loadFontAsync({ family: "Inter", style: "Bold" });
-    await figma.loadFontAsync({ family: "Inter", style: "Extra Bold" });
-    await figma.loadFontAsync({ family: "Inter", style: "Black" });
-    await figma.loadFontAsync({ family: "Inter", style: "Thin Italic" });
-    await figma.loadFontAsync({
-      family: "Inter",
-      style: "Extra Light Italic",
-    });
-    await figma.loadFontAsync({ family: "Inter", style: "Light Italic" });
-    await figma.loadFontAsync({ family: "Inter", style: "Italic" });
-    await figma.loadFontAsync({ family: "Inter", style: "Medium Italic" });
-    await figma.loadFontAsync({ family: "Inter", style: "Semi Bold Italic" });
-    await figma.loadFontAsync({ family: "Inter", style: "Bold Italic" });
-    await figma.loadFontAsync({
-      family: "Inter",
-      style: "Extra Bold Italic",
-    });
-    await figma.loadFontAsync({ family: "Inter", style: "Black Italic" });
-
-    // Load Roboto Mono font
-    await figma.loadFontAsync({ family: "Roboto Mono", style: "Regular" });
-    await figma.loadFontAsync({ family: "Roboto Mono", style: "Bold" });
-    await figma.loadFontAsync({ family: "Roboto Mono", style: "Italic" });
+    await loadMonospaceFont();
+    await loadSansSerifFont();
 
     // Make sure the selection is a single piece of text before proceeding.
     if (figma.currentPage.selection.length === 0) {
