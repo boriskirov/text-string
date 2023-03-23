@@ -11,6 +11,8 @@
   "license": "",
   "devDependencies": {
     "@figma/plugin-typings": "^1.47.0",
+    "@types/intl": "^1.2.0",
+    "intl": "^1.2.5",
     "typescript": "*"
   }
 }

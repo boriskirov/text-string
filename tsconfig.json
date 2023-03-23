@@ -4,10 +4,12 @@
     "noEmitOnError": true,
     "removeComments": false,
     "target": "es6",
-    "lib": ["es6"],
+    "lib": ["ES2020"],
     "typeRoots": [
       "./node_modules/@types",
       "./node_modules/@figma"
     ],
+    "moduleResolution":"node",
+    "allowSyntheticDefaultImports": true
   },
 }

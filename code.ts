@@ -1,3 +1,5 @@
+import Intl from "intl";
+
 // This file holds the main code for the plugin. It has access to the *document*.
 // You can access browser APIs such as the network by creating a UI which contains
 // a full browser environment (see documentation).
@@ -1756,6 +1758,7 @@ if (figma.command == "open-plugin") {
         }
       }
     }
+
     //Update random message
     if (msg.type === "change-message") {
       // Check if something is selected
@@ -1796,6 +1799,101 @@ if (figma.command == "open-plugin") {
           ];
           const randomMessage = Math.floor(Math.random() * message.length);
           node.characters = message[randomMessage];
+        }
+      }
+    }
+
+    //Update random profiling function
+    if (msg.type === "change-profiling-function") {
+      // Check if something is selected
+      if (figma.currentPage.selection.length === 0) {
+        // if not, show a message
+        figma.notify("Select a text object to convert it", { timeout: 5 });
+        return;
+      }
+      // if it is not a text object, show a message
+      const nodes = figma.currentPage.selection.filter(function (node) {
+        return node.type === "TEXT";
+      }) as Array<TextNode>;
+      if (nodes.length === 0) {
+        figma.notify("Select a text object to convert it", { timeout: 5 });
+        return;
+      }
+
+      for (const node of figma.currentPage.selection) {
+        if ("characters" in node) {
+          const profilingFunction = [
+            "vmlinux: __lock_text_start",
+            "JVM/Hotspot: vtable chunks",
+            "JVM/Hotspot: StubRoutines (2)",
+            "vmlinux: copy_user_enhanced_fast_string",
+            "auditbeat",
+            "libz.so.1.2.11",
+            "JVM/Hotspot: int java.lang.StringLatin1.hashCode(byte[])",
+            "pf-host-agent",
+            "JVM/Hotspot: java.lang.Object java.util.HashMap.putVal(int, java.lang.Object, java.lang.Object, boolean, boolean)",
+            "JVM/Hotspot: java.util.HashMap$Node[] java.util.HashMap.resize()",
+            "auditbeat",
+            "metricbeat",
+            "vmlinux: __seccomp_filter",
+            "vmlinux: clear_page_erms",
+            "libpthread-2.31.so",
+            "containerd",
+            "JVM/Hotspot: java.lang.Object java.util.HashMap$EntryIterator.next()",
+          ];
+
+          const randomProfilingFunction = Math.floor(
+            Math.random() * profilingFunction.length
+          );
+
+          node.characters = profilingFunction[randomProfilingFunction];
+        }
+      }
+    }
+    //Update random profiling-source-file
+    if (msg.type === "change-profiling-source-file") {
+      // Check if something is selected
+      if (figma.currentPage.selection.length === 0) {
+        // if not, show a message
+        figma.notify("Select a text object to convert it", { timeout: 5 });
+        return;
+      }
+      // if it is not a text object, show a message
+      const nodes = figma.currentPage.selection.filter(function (node) {
+        return node.type === "TEXT";
+      }) as Array<TextNode>;
+      if (nodes.length === 0) {
+        figma.notify("Select a text object to convert it", { timeout: 5 });
+        return;
+      }
+
+      for (const node of figma.currentPage.selection) {
+        if ("characters" in node) {
+          const sourceFile = [
+            "vmlinux+0xa75ab4",
+            "<unsymbolized>",
+            "vmlinux+0xcc9c8",
+            "StringLatin1.java#193",
+            "HashMap.java#669",
+            "StringHelper.java#165",
+            "IndexingChain.java#566",
+            "pf-host-agent+0x468e",
+            "HashMap.java#684",
+            "UTF8StreamJsonParser.java#2554",
+            "metricbeat+0x2826abe",
+            "FreqProxTermsWriterPerField.java#142",
+            "containerd+0x1165782",
+            "LZ4.java#555",
+            "LZ4.java#225",
+            "<unsymbolized>",
+            "ArraysSupport.java#298",
+          ];
+
+          const randomSourceFile = Math.floor(
+            Math.random() * sourceFile.length
+          );
+
+          node.characters = sourceFile[randomSourceFile];
         }
       }
     }
@@ -4904,6 +5002,231 @@ if (figma.command == "open-plugin") {
   }
 
   createTimestamp().then((message: string | undefined) => {
+    figma.closePlugin(message);
+  });
+} else if (figma.command == "profiling-function") {
+  async function createProfilingFunction(): Promise<string | undefined> {
+    // Inter is the font that objects will be created in Figma.
+    // We need to wait for fonts to load before creating text using them.
+    await figma.loadFontAsync({ family: "Inter", style: "Thin" });
+    await figma.loadFontAsync({ family: "Inter", style: "Extra Light" });
+    await figma.loadFontAsync({ family: "Inter", style: "Light" });
+    await figma.loadFontAsync({ family: "Inter", style: "Regular" });
+    await figma.loadFontAsync({ family: "Inter", style: "Medium" });
+    await figma.loadFontAsync({ family: "Inter", style: "Semi Bold" });
+    await figma.loadFontAsync({ family: "Inter", style: "Bold" });
+    await figma.loadFontAsync({ family: "Inter", style: "Extra Bold" });
+    await figma.loadFontAsync({ family: "Inter", style: "Black" });
+    await figma.loadFontAsync({ family: "Inter", style: "Thin Italic" });
+    await figma.loadFontAsync({
+      family: "Inter",
+      style: "Extra Light Italic",
+    });
+    await figma.loadFontAsync({ family: "Inter", style: "Light Italic" });
+    await figma.loadFontAsync({ family: "Inter", style: "Italic" });
+    await figma.loadFontAsync({ family: "Inter", style: "Medium Italic" });
+    await figma.loadFontAsync({ family: "Inter", style: "Semi Bold Italic" });
+    await figma.loadFontAsync({ family: "Inter", style: "Bold Italic" });
+    await figma.loadFontAsync({
+      family: "Inter",
+      style: "Extra Bold Italic",
+    });
+    await figma.loadFontAsync({ family: "Inter", style: "Black Italic" });
+
+    // Load Roboto Mono font
+    await figma.loadFontAsync({ family: "Roboto Mono", style: "Regular" });
+    await figma.loadFontAsync({ family: "Roboto Mono", style: "Bold" });
+    await figma.loadFontAsync({ family: "Roboto Mono", style: "Italic" });
+    // Make sure the selection is a single piece of text before proceeding.
+    if (figma.currentPage.selection.length === 0) {
+      // if not, show a message
+      figma.closePlugin("Select a text object to convert it");
+      return;
+    } // if it is not a text object, show a message
+    const nodes = figma.currentPage.selection.filter(function (node) {
+      return node.type === "TEXT";
+    }) as Array<TextNode>;
+    if (nodes.length === 0) {
+      figma.closePlugin("Select a text object to convert it");
+      return;
+    } else {
+      for (const node of figma.currentPage.selection) {
+        if ("characters" in node) {
+          const profilingFunction = [
+            "vmlinux: __lock_text_start",
+            "JVM/Hotspot: vtable chunks",
+            "JVM/Hotspot: StubRoutines (2)",
+            "vmlinux: copy_user_enhanced_fast_string",
+            "auditbeat",
+            "libz.so.1.2.11",
+            "JVM/Hotspot: int java.lang.StringLatin1.hashCode(byte[])",
+            "pf-host-agent",
+            "JVM/Hotspot: java.lang.Object java.util.HashMap.putVal(int, java.lang.Object, java.lang.Object, boolean, boolean)",
+            "JVM/Hotspot: java.util.HashMap$Node[] java.util.HashMap.resize()",
+            "auditbeat",
+            "metricbeat",
+            "vmlinux: __seccomp_filter",
+            "vmlinux: clear_page_erms",
+            "libpthread-2.31.so",
+            "containerd",
+            "JVM/Hotspot: java.lang.Object java.util.HashMap$EntryIterator.next()",
+          ];
+
+          const randomProfilingFunction = Math.floor(
+            Math.random() * profilingFunction.length
+          );
+
+          node.characters = profilingFunction[randomProfilingFunction];
+        }
+      }
+    }
+  }
+
+  createProfilingFunction().then((message: string | undefined) => {
+    figma.closePlugin(message);
+  });
+} else if (figma.command == "profiling-source-file") {
+  async function createProfilingSourceFile(): Promise<string | undefined> {
+    // Inter is the font that objects will be created in Figma.
+    // We need to wait for fonts to load before creating text using them.
+    await figma.loadFontAsync({ family: "Inter", style: "Thin" });
+    await figma.loadFontAsync({ family: "Inter", style: "Extra Light" });
+    await figma.loadFontAsync({ family: "Inter", style: "Light" });
+    await figma.loadFontAsync({ family: "Inter", style: "Regular" });
+    await figma.loadFontAsync({ family: "Inter", style: "Medium" });
+    await figma.loadFontAsync({ family: "Inter", style: "Semi Bold" });
+    await figma.loadFontAsync({ family: "Inter", style: "Bold" });
+    await figma.loadFontAsync({ family: "Inter", style: "Extra Bold" });
+    await figma.loadFontAsync({ family: "Inter", style: "Black" });
+    await figma.loadFontAsync({ family: "Inter", style: "Thin Italic" });
+    await figma.loadFontAsync({
+      family: "Inter",
+      style: "Extra Light Italic",
+    });
+    await figma.loadFontAsync({ family: "Inter", style: "Light Italic" });
+    await figma.loadFontAsync({ family: "Inter", style: "Italic" });
+    await figma.loadFontAsync({ family: "Inter", style: "Medium Italic" });
+    await figma.loadFontAsync({ family: "Inter", style: "Semi Bold Italic" });
+    await figma.loadFontAsync({ family: "Inter", style: "Bold Italic" });
+    await figma.loadFontAsync({
+      family: "Inter",
+      style: "Extra Bold Italic",
+    });
+    await figma.loadFontAsync({ family: "Inter", style: "Black Italic" });
+
+    // Load Roboto Mono font
+    await figma.loadFontAsync({ family: "Roboto Mono", style: "Regular" });
+    await figma.loadFontAsync({ family: "Roboto Mono", style: "Bold" });
+    await figma.loadFontAsync({ family: "Roboto Mono", style: "Italic" });
+    // Make sure the selection is a single piece of text before proceeding.
+    if (figma.currentPage.selection.length === 0) {
+      // if not, show a message
+      figma.closePlugin("Select a text object to convert it");
+      return;
+    } // if it is not a text object, show a message
+    const nodes = figma.currentPage.selection.filter(function (node) {
+      return node.type === "TEXT";
+    }) as Array<TextNode>;
+    if (nodes.length === 0) {
+      figma.closePlugin("Select a text object to convert it");
+      return;
+    } else {
+      for (const node of figma.currentPage.selection) {
+        if ("characters" in node) {
+          const sourceFile = [
+            "vmlinux+0xa75ab4",
+            "<unsymbolized>",
+            "vmlinux+0xcc9c8",
+            "StringLatin1.java#193",
+            "HashMap.java#669",
+            "StringHelper.java#165",
+            "IndexingChain.java#566",
+            "pf-host-agent+0x468e",
+            "HashMap.java#684",
+            "UTF8StreamJsonParser.java#2554",
+            "metricbeat+0x2826abe",
+            "FreqProxTermsWriterPerField.java#142",
+            "containerd+0x1165782",
+            "LZ4.java#555",
+            "LZ4.java#225",
+            "<unsymbolized>",
+            "ArraysSupport.java#298",
+          ];
+
+          const randomSourceFile = Math.floor(
+            Math.random() * sourceFile.length
+          );
+
+          node.characters = sourceFile[randomSourceFile];
+        }
+      }
+    }
+  }
+
+  createProfilingSourceFile().then((message: string | undefined) => {
+    figma.closePlugin(message);
+  });
+} else if (figma.command == "timestamp") {
+  async function createRandomTimestamp(): Promise<string | undefined> {
+    // Inter is the font that objects will be created in Figma.
+    // We need to wait for fonts to load before creating text using them.
+    await figma.loadFontAsync({ family: "Inter", style: "Thin" });
+    await figma.loadFontAsync({ family: "Inter", style: "Extra Light" });
+    await figma.loadFontAsync({ family: "Inter", style: "Light" });
+    await figma.loadFontAsync({ family: "Inter", style: "Regular" });
+    await figma.loadFontAsync({ family: "Inter", style: "Medium" });
+    await figma.loadFontAsync({ family: "Inter", style: "Semi Bold" });
+    await figma.loadFontAsync({ family: "Inter", style: "Bold" });
+    await figma.loadFontAsync({ family: "Inter", style: "Extra Bold" });
+    await figma.loadFontAsync({ family: "Inter", style: "Black" });
+    await figma.loadFontAsync({ family: "Inter", style: "Thin Italic" });
+    await figma.loadFontAsync({
+      family: "Inter",
+      style: "Extra Light Italic",
+    });
+    await figma.loadFontAsync({ family: "Inter", style: "Light Italic" });
+    await figma.loadFontAsync({ family: "Inter", style: "Italic" });
+    await figma.loadFontAsync({ family: "Inter", style: "Medium Italic" });
+    await figma.loadFontAsync({ family: "Inter", style: "Semi Bold Italic" });
+    await figma.loadFontAsync({ family: "Inter", style: "Bold Italic" });
+    await figma.loadFontAsync({
+      family: "Inter",
+      style: "Extra Bold Italic",
+    });
+    await figma.loadFontAsync({ family: "Inter", style: "Black Italic" });
+
+    // Load Roboto Mono font
+    await figma.loadFontAsync({ family: "Roboto Mono", style: "Regular" });
+    await figma.loadFontAsync({ family: "Roboto Mono", style: "Bold" });
+    await figma.loadFontAsync({ family: "Roboto Mono", style: "Italic" });
+
+    // Make sure the selection is a single piece of text before proceeding.
+    if (figma.currentPage.selection.length === 0) {
+      // if not, show a message
+      figma.closePlugin("Select a text object to convert it");
+      return;
+    } // if it is not a text object, show a message
+    const nodes = figma.currentPage.selection.filter(function (node) {
+      return node.type === "TEXT";
+    }) as Array<TextNode>;
+    if (nodes.length === 0) {
+      figma.closePlugin("Select a text object to convert it");
+      return;
+    } else {
+      for (const node of figma.currentPage.selection) {
+        if ("characters" in node) {
+          const mediumTime = new Intl.DateTimeFormat("en", {
+            timeStyle: "medium",
+            dateStyle: "short",
+          });
+          const randomTimestamp = mediumTime.format(Date.now());
+          node.characters = randomTimestamp;
+        }
+      }
+    }
+  }
+
+  createRandomTimestamp().then((message: string | undefined) => {
     figma.closePlugin(message);
   });
 }

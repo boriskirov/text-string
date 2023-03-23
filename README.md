@@ -142,9 +142,9 @@ If text object/s is/are selected in Figma, the command will format them randomly
 
 If text object/s is/are selected in Figma, the command will format them randomly with a function name.
 
-### Timestamp
+### Message
 
-If text object/s is/are selected in Figma, the command will format them randomly with a timestamp.
+If text object/s is/are selected in Figma, the command will format them randomly with a message.
 
 ### Open Plugin
 

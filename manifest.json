@@ -43,6 +43,8 @@
     { "name": "Network Connection Type", "command": "nct" },
     { "name": "Message", "command": "message" },
     { "name": "Timestamp", "command": "timestamp" },
+    { "name": "Profiling Function", "command": "profiling-function" },
+    { "name": "Profiling Source File", "command": "profiling-source-file" },
 
     { "separator": true },
     { "name": "Open Plugin", "command": "open-plugin" }
