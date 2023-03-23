@@ -2031,7 +2031,8 @@ if (figma.command == "open-plugin") {
   //
   //
   //
-} else if (figma.command == "health") {
+}
+if (figma.command == "health") {
   async function createHealth(): Promise<string | undefined> {
     await loadMonospaceFont();
     await loadSansSerifFont();
@@ -2061,7 +2062,8 @@ if (figma.command == "open-plugin") {
   createHealth().then((message: string | undefined) => {
     figma.closePlugin(message);
   });
-} else if (figma.command == "service") {
+}
+if (figma.command == "service") {
   async function createService(): Promise<string | undefined> {
     await loadMonospaceFont();
     await loadSansSerifFont();
@@ -2119,7 +2121,8 @@ if (figma.command == "open-plugin") {
   createService().then((message: string | undefined) => {
     figma.closePlugin(message);
   });
-} else if (figma.command == "trace") {
+}
+if (figma.command == "trace") {
   async function createTrace(): Promise<string | undefined> {
     // Load fonts
     await loadMonospaceFont();
@@ -2180,7 +2183,8 @@ if (figma.command == "open-plugin") {
   createTrace().then((message: string | undefined) => {
     figma.closePlugin(message);
   });
-} else if (figma.command == "duration-ms") {
+}
+if (figma.command == "duration-ms") {
   async function createDuration(): Promise<string | undefined> {
     await loadMonospaceFont();
     await loadSansSerifFont();
@@ -2235,7 +2239,8 @@ if (figma.command == "open-plugin") {
   createDuration().then((message: string | undefined) => {
     figma.closePlugin(message);
   });
-} else if (figma.command == "percentage") {
+}
+if (figma.command == "percentage") {
   async function createPercentage(): Promise<string | undefined> {
     await loadMonospaceFont();
     await loadSansSerifFont();
@@ -2289,7 +2294,8 @@ if (figma.command == "open-plugin") {
   createPercentage().then((message: string | undefined) => {
     figma.closePlugin(message);
   });
-} else if (figma.command == "throughput") {
+}
+if (figma.command == "throughput") {
   async function createThroughput(): Promise<string | undefined> {
     await loadMonospaceFont();
     await loadSansSerifFont();
@@ -2343,7 +2349,8 @@ if (figma.command == "open-plugin") {
   createThroughput().then((message: string | undefined) => {
     figma.closePlugin(message);
   });
-} else if (figma.command == "date") {
+}
+if (figma.command == "date") {
   async function createDate(): Promise<string | undefined> {
     await loadMonospaceFont();
     await loadSansSerifFont();
@@ -2399,7 +2406,8 @@ if (figma.command == "open-plugin") {
   createDate().then((message: string | undefined) => {
     figma.closePlugin(message);
   });
-} else if (figma.command == "severity") {
+}
+if (figma.command == "severity") {
   async function createSeverity(): Promise<string | undefined> {
     await loadMonospaceFont();
     await loadSansSerifFont();
@@ -2453,7 +2461,8 @@ if (figma.command == "open-plugin") {
   createSeverity().then((message: string | undefined) => {
     figma.closePlugin(message);
   });
-} else if (figma.command == "span-trace-id") {
+}
+if (figma.command == "span-trace-id") {
   async function createID(): Promise<string | undefined> {
     await loadMonospaceFont();
     await loadSansSerifFont();
@@ -2493,7 +2502,8 @@ if (figma.command == "open-plugin") {
   createID().then((message: string | undefined) => {
     figma.closePlugin(message);
   });
-} else if (figma.command == "monitor") {
+}
+if (figma.command == "monitor") {
   async function createMonitor(): Promise<string | undefined> {
     await loadMonospaceFont();
     await loadSansSerifFont();
@@ -2532,7 +2542,8 @@ if (figma.command == "open-plugin") {
   createMonitor().then((message: string | undefined) => {
     figma.closePlugin(message);
   });
-} else if (figma.command == "dependency") {
+}
+if (figma.command == "dependency") {
   async function createDependency(): Promise<string | undefined> {
     await loadMonospaceFont();
     await loadSansSerifFont();
@@ -2580,7 +2591,8 @@ if (figma.command == "open-plugin") {
   createDependency().then((message: string | undefined) => {
     figma.closePlugin(message);
   });
-} else if (figma.command == "error-message") {
+}
+if (figma.command == "error-message") {
   async function createErrorMessage(): Promise<string | undefined> {
     await loadMonospaceFont();
     await loadSansSerifFont();
@@ -2626,7 +2638,8 @@ if (figma.command == "open-plugin") {
   createErrorMessage().then((message: string | undefined) => {
     figma.closePlugin(message);
   });
-} else if (figma.command == "last-seen") {
+}
+if (figma.command == "last-seen") {
   async function createLastSeen(): Promise<string | undefined> {
     await loadMonospaceFont();
     await loadSansSerifFont();
@@ -2668,7 +2681,8 @@ if (figma.command == "open-plugin") {
   createLastSeen().then((message: string | undefined) => {
     figma.closePlugin(message);
   });
-} else if (figma.command == "transaction") {
+}
+if (figma.command == "transaction") {
   async function createTransaction(): Promise<string | undefined> {
     await loadMonospaceFont();
     await loadSansSerifFont();
@@ -2722,7 +2736,8 @@ if (figma.command == "open-plugin") {
   createTransaction().then((message: string | undefined) => {
     figma.closePlugin(message);
   });
-} else if (figma.command == "error-type") {
+}
+if (figma.command == "error-type") {
   async function createErrorType(): Promise<string | undefined> {
     await loadMonospaceFont();
     await loadSansSerifFont();
@@ -2760,7 +2775,8 @@ if (figma.command == "open-plugin") {
   createErrorType().then((message: string | undefined) => {
     figma.closePlugin(message);
   });
-} else if (figma.command == "storage-size") {
+}
+if (figma.command == "storage-size") {
   async function createSize(): Promise<string | undefined> {
     await loadMonospaceFont();
     await loadSansSerifFont();
@@ -2815,7 +2831,8 @@ if (figma.command == "open-plugin") {
   createSize().then((message: string | undefined) => {
     figma.closePlugin(message);
   });
-} else if (figma.command == "host-name") {
+}
+if (figma.command == "host-name") {
   async function createHostName(): Promise<string | undefined> {
     await loadMonospaceFont();
     await loadSansSerifFont();
@@ -2858,7 +2875,8 @@ if (figma.command == "open-plugin") {
   createHostName().then((message: string | undefined) => {
     figma.closePlugin(message);
   });
-} else if (figma.command == "traffic") {
+}
+if (figma.command == "traffic") {
   async function createTraffic(): Promise<string | undefined> {
     await loadMonospaceFont();
     await loadSansSerifFont();
@@ -2914,7 +2932,8 @@ if (figma.command == "open-plugin") {
   createTraffic().then((message: string | undefined) => {
     figma.closePlugin(message);
   });
-} else if (figma.command == "duration-s") {
+}
+if (figma.command == "duration-s") {
   async function createDurationSec(): Promise<string | undefined> {
     await loadMonospaceFont();
     await loadSansSerifFont();
@@ -2975,7 +2994,8 @@ if (figma.command == "open-plugin") {
   createDurationSec().then((message: string | undefined) => {
     figma.closePlugin(message);
   });
-} else if (figma.command == "android-version") {
+}
+if (figma.command == "android-version") {
   async function createAndroidVersion(): Promise<string | undefined> {
     await loadMonospaceFont();
     await loadSansSerifFont();
@@ -3040,7 +3060,8 @@ if (figma.command == "open-plugin") {
   createAndroidVersion().then((message: string | undefined) => {
     figma.closePlugin(message);
   });
-} else if (figma.command == "ios-version") {
+}
+if (figma.command == "ios-version") {
   async function createIosVersion(): Promise<string | undefined> {
     await loadMonospaceFont();
     await loadSansSerifFont();
@@ -3107,7 +3128,8 @@ if (figma.command == "open-plugin") {
   createIosVersion().then((message: string | undefined) => {
     figma.closePlugin(message);
   });
-} else if (figma.command == "apple-mobile-device") {
+}
+if (figma.command == "apple-mobile-device") {
   async function createMobileDeviceApple(): Promise<string | undefined> {
     await loadMonospaceFont();
     await loadSansSerifFont();
@@ -3176,7 +3198,8 @@ if (figma.command == "open-plugin") {
   createMobileDeviceApple().then((message: string | undefined) => {
     figma.closePlugin(message);
   });
-} else if (figma.command == "android-mobile-device") {
+}
+if (figma.command == "android-mobile-device") {
   async function createMobileDeviceAndroid(): Promise<string | undefined> {
     await loadMonospaceFont();
     await loadSansSerifFont();
@@ -3233,7 +3256,8 @@ if (figma.command == "open-plugin") {
   createMobileDeviceAndroid().then((message: string | undefined) => {
     figma.closePlugin(message);
   });
-} else if (figma.command == "browser") {
+}
+if (figma.command == "browser") {
   async function createBrowser(): Promise<string | undefined> {
     await loadMonospaceFont();
     await loadSansSerifFont();
@@ -3298,7 +3322,8 @@ if (figma.command == "open-plugin") {
   createBrowser().then((message: string | undefined) => {
     figma.closePlugin(message);
   });
-} else if (figma.command == "country") {
+}
+if (figma.command == "country") {
   async function createCountry(): Promise<string | undefined> {
     await loadMonospaceFont();
     await loadSansSerifFont();
@@ -3573,7 +3598,8 @@ if (figma.command == "open-plugin") {
   createCountry().then((message: string | undefined) => {
     figma.closePlugin(message);
   });
-} else if (figma.command == "hundreds") {
+}
+if (figma.command == "hundreds") {
   async function createHundreds(): Promise<string | undefined> {
     await loadMonospaceFont();
     await loadSansSerifFont();
@@ -3614,7 +3640,8 @@ if (figma.command == "open-plugin") {
   createHundreds().then((message: string | undefined) => {
     figma.closePlugin(message);
   });
-} else if (figma.command == "thousands") {
+}
+if (figma.command == "thousands") {
   async function createThousands(): Promise<string | undefined> {
     await loadMonospaceFont();
     await loadSansSerifFont();
@@ -3655,7 +3682,8 @@ if (figma.command == "open-plugin") {
   createThousands().then((message: string | undefined) => {
     figma.closePlugin(message);
   });
-} else if (figma.command == "nct") {
+}
+if (figma.command == "nct") {
   async function createNetworkConnectionType(): Promise<string | undefined> {
     await loadMonospaceFont();
     await loadSansSerifFont();
@@ -3697,7 +3725,8 @@ if (figma.command == "open-plugin") {
   createNetworkConnectionType().then((message: string | undefined) => {
     figma.closePlugin(message);
   });
-} else if (figma.command == "version") {
+}
+if (figma.command == "version") {
   async function createVersion(): Promise<string | undefined> {
     await loadMonospaceFont();
     await loadSansSerifFont();
@@ -3742,7 +3771,8 @@ if (figma.command == "open-plugin") {
   createVersion().then((message: string | undefined) => {
     figma.closePlugin(message);
   });
-} else if (figma.command == "alert-reason") {
+}
+if (figma.command == "alert-reason") {
   async function createAlertReason(): Promise<string | undefined> {
     await loadMonospaceFont();
     await loadSansSerifFont();
@@ -3825,7 +3855,8 @@ if (figma.command == "open-plugin") {
   createAlertReason().then((message: string | undefined) => {
     figma.closePlugin(message);
   });
-} else if (figma.command == "alert-status") {
+}
+if (figma.command == "alert-status") {
   async function createAlertStatus(): Promise<string | undefined> {
     await loadMonospaceFont();
     await loadSansSerifFont();
@@ -3856,7 +3887,8 @@ if (figma.command == "open-plugin") {
   createAlertStatus().then((message: string | undefined) => {
     figma.closePlugin(message);
   });
-} else if (figma.command == "alert-source") {
+}
+if (figma.command == "alert-source") {
   async function createAlertSource(): Promise<string | undefined> {
     await loadMonospaceFont();
     await loadSansSerifFont();
@@ -3924,7 +3956,8 @@ if (figma.command == "open-plugin") {
   createAlertSource().then((message: string | undefined) => {
     figma.closePlugin(message);
   });
-} else if (figma.command == "data-field-apm") {
+}
+if (figma.command == "data-field-apm") {
   async function createDataFieldApm(): Promise<string | undefined> {
     await loadMonospaceFont();
     await loadSansSerifFont();
@@ -3979,7 +4012,8 @@ if (figma.command == "open-plugin") {
   createDataFieldApm().then((message: string | undefined) => {
     figma.closePlugin(message);
   });
-} else if (figma.command == "environment") {
+}
+if (figma.command == "environment") {
   async function createEnvironment(): Promise<string | undefined> {
     await loadMonospaceFont();
     await loadSansSerifFont();
@@ -4024,7 +4058,8 @@ if (figma.command == "open-plugin") {
   createEnvironment().then((message: string | undefined) => {
     figma.closePlugin(message);
   });
-} else if (figma.command == "log-level") {
+}
+if (figma.command == "log-level") {
   async function createLogLevel(): Promise<string | undefined> {
     await loadMonospaceFont();
     await loadSansSerifFont();
@@ -4065,7 +4100,8 @@ if (figma.command == "open-plugin") {
   createLogLevel().then((message: string | undefined) => {
     figma.closePlugin(message);
   });
-} else if (figma.command == "message") {
+}
+if (figma.command == "message") {
   async function createTimestamp(): Promise<string | undefined> {
     await loadMonospaceFont();
     await loadSansSerifFont();
@@ -4115,7 +4151,8 @@ if (figma.command == "open-plugin") {
   createTimestamp().then((message: string | undefined) => {
     figma.closePlugin(message);
   });
-} else if (figma.command == "profiling-function") {
+}
+if (figma.command == "profiling-function") {
   async function createProfilingFunction(): Promise<string | undefined> {
     await loadMonospaceFont();
     await loadSansSerifFont();
@@ -4167,7 +4204,8 @@ if (figma.command == "open-plugin") {
   createProfilingFunction().then((message: string | undefined) => {
     figma.closePlugin(message);
   });
-} else if (figma.command == "profiling-source-file") {
+}
+if (figma.command == "profiling-source-file") {
   async function createProfilingSourceFile(): Promise<string | undefined> {
     await loadMonospaceFont();
     await loadSansSerifFont();
@@ -4219,7 +4257,8 @@ if (figma.command == "open-plugin") {
   createProfilingSourceFile().then((message: string | undefined) => {
     figma.closePlugin(message);
   });
-} else if (figma.command == "timestamp") {
+}
+if (figma.command == "timestamp") {
   async function createRandomTimestamp(): Promise<string | undefined> {
     await loadMonospaceFont();
     await loadSansSerifFont();
