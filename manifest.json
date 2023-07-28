@@ -45,6 +45,8 @@
     { "name": "Timestamp", "command": "timestamp" },
     { "name": "Profiling Function", "command": "profiling-function" },
     { "name": "Profiling Source File", "command": "profiling-source-file" },
+    { "name": "CO2 Emissions", "command": "co2" },
+    { "name": "Dollar currency", "command": "dollar" },
 
     { "separator": true },
     { "name": "Open Plugin", "command": "open-plugin" }

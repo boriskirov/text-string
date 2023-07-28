@@ -1992,6 +1992,93 @@ if (figma.command == "open-plugin") {
         }
       }
     }
+
+    //Update CO2
+    if (msg.type === "change-co2") {
+      // Check if something is selected
+      if (figma.currentPage.selection.length === 0) {
+        // if not, show a message
+        figma.notify("Select a text object to convert it", { timeout: 5 });
+        return;
+      }
+      // if it is not a text object, show a message
+      // 188.5 lbs / 85.5 kg
+      const nodes = figma.currentPage.selection.filter(function (node) {
+        return node.type === "TEXT";
+      }) as Array<TextNode>;
+      if (nodes.length === 0) {
+        figma.notify("Select a text object to convert it", { timeout: 5 });
+        return;
+      }
+
+      for (const node of figma.currentPage.selection) {
+        if ("characters" in node) {
+          const characters = "1236789";
+          function generateC02(length) {
+            let result = "";
+            const charactersLength = characters.length;
+            for (let i = 0; i < length; i++) {
+              result += characters.charAt(
+                Math.floor(Math.random() * charactersLength)
+              );
+            }
+            return result;
+          }
+
+          node.characters =
+            generateC02(3) +
+            "." +
+            generateC02(2) +
+            " " +
+            "lbs" +
+            " " +
+            "/" +
+            " " +
+            generateC02(2) +
+            "." +
+            generateC02(2) +
+            " " +
+            "kg";
+        }
+      }
+    }
+
+    //Update Dollar currency
+    if (msg.type === "change-dollar") {
+      // Check if something is selected
+      if (figma.currentPage.selection.length === 0) {
+        // if not, show a message
+        figma.notify("Select a text object to convert it", { timeout: 5 });
+        return;
+      }
+      // if it is not a text object, show a message
+      // 188.5 lbs / 85.5 kg
+      const nodes = figma.currentPage.selection.filter(function (node) {
+        return node.type === "TEXT";
+      }) as Array<TextNode>;
+      if (nodes.length === 0) {
+        figma.notify("Select a text object to convert it", { timeout: 5 });
+        return;
+      }
+
+      for (const node of figma.currentPage.selection) {
+        if ("characters" in node) {
+          const characters = "1236789";
+          function generateDollar(length) {
+            let result = "";
+            const charactersLength = characters.length;
+            for (let i = 0; i < length; i++) {
+              result += characters.charAt(
+                Math.floor(Math.random() * charactersLength)
+              );
+            }
+            return result;
+          }
+
+          node.characters = generateDollar(3) + "." + generateDollar(2) + "$";
+        }
+      }
+    }
   };
 
   // SHORTCUTS LOGIC BELOW
@@ -4310,6 +4397,103 @@ if (figma.command == "timestamp") {
   }
 
   createRandomTimestamp().then((message: string | undefined) => {
+    figma.closePlugin(message);
+  });
+}
+if (figma.command == "co2") {
+  async function createCO2(): Promise<string | undefined> {
+    await loadMonospaceFont();
+    await loadSansSerifFont();
+
+    // Make sure the selection is a single piece of text before proceeding.
+    if (figma.currentPage.selection.length === 0) {
+      // if not, show a message
+      figma.closePlugin("Select a text object to convert it");
+      return;
+    } // if it is not a text object, show a message
+    const nodes = figma.currentPage.selection.filter(function (node) {
+      return node.type === "TEXT";
+    }) as Array<TextNode>;
+    if (nodes.length === 0) {
+      figma.closePlugin("Select a text object to convert it");
+      return;
+    } else {
+      for (const node of figma.currentPage.selection) {
+        if ("characters" in node) {
+          const characters = "1236789";
+          function generateC02(length) {
+            let result = "";
+            const charactersLength = characters.length;
+            for (let i = 0; i < length; i++) {
+              result += characters.charAt(
+                Math.floor(Math.random() * charactersLength)
+              );
+            }
+            return result;
+          }
+
+          node.characters =
+            generateC02(3) +
+            "." +
+            generateC02(2) +
+            " " +
+            "lbs" +
+            " " +
+            "/" +
+            " " +
+            generateC02(2) +
+            "." +
+            generateC02(2) +
+            " " +
+            "kg";
+        }
+      }
+    }
+  }
+
+  createCO2().then((message: string | undefined) => {
+    figma.closePlugin(message);
+  });
+}
+if (figma.command == "dollar") {
+  async function createDollar(): Promise<string | undefined> {
+    await loadMonospaceFont();
+    await loadSansSerifFont();
+
+    // Make sure the selection is a single piece of text before proceeding.
+    if (figma.currentPage.selection.length === 0) {
+      // if not, show a message
+      figma.closePlugin("Select a text object to convert it");
+      return;
+    } // if it is not a text object, show a message
+    const nodes = figma.currentPage.selection.filter(function (node) {
+      return node.type === "TEXT";
+    }) as Array<TextNode>;
+    if (nodes.length === 0) {
+      figma.closePlugin("Select a text object to convert it");
+      return;
+    } else {
+      for (const node of figma.currentPage.selection) {
+        if ("characters" in node) {
+          const characters = "1236789";
+          function generateDollar(length) {
+            let result = "";
+            const charactersLength = characters.length;
+            for (let i = 0; i < length; i++) {
+              result += characters.charAt(
+                Math.floor(Math.random() * charactersLength)
+              );
+            }
+            return result;
+          }
+
+          node.characters = generateDollar(3) + "." + generateDollar(2) + "$";
+        }
+      }
+    }
+  }
+
+  createDollar().then((message: string | undefined) => {
     figma.closePlugin(message);
   });
 }
