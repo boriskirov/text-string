@@ -2079,6 +2079,127 @@ if (figma.command == "open-plugin") {
         }
       }
     }
+    //Update random cloud region
+    if (msg.type === "change-region") {
+      // Check if something is selected
+      if (figma.currentPage.selection.length === 0) {
+        // if not, show a message
+        figma.notify("Select a text object to convert it", { timeout: 5 });
+        return;
+      }
+      // if it is not a text object, show a message
+      const nodes = figma.currentPage.selection.filter(function (node) {
+        return node.type === "TEXT";
+      }) as Array<TextNode>;
+      if (nodes.length === 0) {
+        figma.notify("Select a text object to convert it", { timeout: 5 });
+        return;
+      }
+
+      for (const node of figma.currentPage.selection) {
+        if ("characters" in node) {
+          const region = [
+            "us-west1",
+            "us-west2",
+            "us-west3",
+            "us-west4",
+            "us-west5",
+            "us-west6",
+            "us-west7",
+            "us-west8",
+            "europe-west1",
+            "europe-west2",
+            "europe-west3",
+            "europe-west4",
+            "europe-west5",
+            "europe-west6",
+            "europe-west7",
+            "europe-west8",
+            "europe-east1",
+            "europe-east2",
+            "europe-east3",
+            "europe-east4",
+            "europe-east5",
+            "europe-east6",
+            "europe-east7",
+            "europe-east8",
+            "asia-east1",
+            "asia-east2",
+            "asia-east3",
+            "asia-east4",
+            "asia-east5",
+            "me-central1",
+            "me-central2",
+            "me-central3",
+            "me-central4",
+            "me-central5",
+            "me-central6",
+            "africa-south1",
+            "us-east1",
+            "us-east2",
+            "us-north1",
+            "us-north2",
+            "us-north3",
+            "us-north4",
+            "us-north5",
+            "us-north6",
+            "us-north7",
+            "us-north8",
+            "us-east3",
+            "us-east4",
+            "us-east5",
+            "us-east6",
+            "us-east7",
+            "us-east8",
+          ];
+
+          const randomRegion = Math.floor(Math.random() * region.length);
+
+          node.characters = region[randomRegion];
+        }
+      }
+    }
+    //Update random email
+    if (msg.type === "change-email") {
+      // Check if something is selected
+      if (figma.currentPage.selection.length === 0) {
+        // if not, show a message
+        figma.notify("Select a text object to convert it", { timeout: 5 });
+        return;
+      }
+      // if it is not a text object, show a message
+      const nodes = figma.currentPage.selection.filter(function (node) {
+        return node.type === "TEXT";
+      }) as Array<TextNode>;
+      if (nodes.length === 0) {
+        figma.notify("Select a text object to convert it", { timeout: 5 });
+        return;
+      }
+
+      for (const node of figma.currentPage.selection) {
+        if ("characters" in node) {
+          const email = [
+            "devops_master",
+            "sysadmin_guru",
+            "automate_ninja",
+            "code_whisperer",
+            "infra_architect",
+            "deploy_wizard",
+            "container_captain",
+            "orchestration_pro",
+            "monitor_mage",
+            "resilience_expert",
+            "troubleshoot_titan",
+            "global-sre-ops",
+            "global-sre-dev-ops",
+          ];
+
+          const randomEmail = Math.floor(Math.random() * email.length);
+
+          node.characters = email[randomEmail] + "@elastic.co";
+        }
+      }
+    }
   };
 
   // SHORTCUTS LOGIC BELOW
@@ -4494,6 +4615,142 @@ if (figma.command == "dollar") {
   }
 
   createDollar().then((message: string | undefined) => {
+    figma.closePlugin(message);
+  });
+}
+if (figma.command == "region") {
+  async function createRegion(): Promise<string | undefined> {
+    await loadMonospaceFont();
+    await loadSansSerifFont();
+
+    // Make sure the selection is a single piece of text before proceeding.
+    if (figma.currentPage.selection.length === 0) {
+      // if not, show a message
+      figma.closePlugin("Select a text object to convert it");
+      return;
+    } // if it is not a text object, show a message
+    const nodes = figma.currentPage.selection.filter(function (node) {
+      return node.type === "TEXT";
+    }) as Array<TextNode>;
+    if (nodes.length === 0) {
+      figma.closePlugin("Select a text object to convert it");
+      return;
+    } else {
+      for (const node of figma.currentPage.selection) {
+        if ("characters" in node) {
+          const region = [
+            "us-west1",
+            "us-west2",
+            "us-west3",
+            "us-west4",
+            "us-west5",
+            "us-west6",
+            "us-west7",
+            "us-west8",
+            "europe-west1",
+            "europe-west2",
+            "europe-west3",
+            "europe-west4",
+            "europe-west5",
+            "europe-west6",
+            "europe-west7",
+            "europe-west8",
+            "europe-east1",
+            "europe-east2",
+            "europe-east3",
+            "europe-east4",
+            "europe-east5",
+            "europe-east6",
+            "europe-east7",
+            "europe-east8",
+            "asia-east1",
+            "asia-east2",
+            "asia-east3",
+            "asia-east4",
+            "asia-east5",
+            "me-central1",
+            "me-central2",
+            "me-central3",
+            "me-central4",
+            "me-central5",
+            "me-central6",
+            "africa-south1",
+            "us-east1",
+            "us-east2",
+            "us-north1",
+            "us-north2",
+            "us-north3",
+            "us-north4",
+            "us-north5",
+            "us-north6",
+            "us-north7",
+            "us-north8",
+            "us-east3",
+            "us-east4",
+            "us-east5",
+            "us-east6",
+            "us-east7",
+            "us-east8",
+          ];
+
+          const randomRegion = Math.floor(Math.random() * region.length);
+
+          node.characters = region[randomRegion];
+        }
+      }
+    }
+  }
+
+  createRegion().then((message: string | undefined) => {
+    figma.closePlugin(message);
+  });
+}
+
+if (figma.command == "email") {
+  async function createEmail(): Promise<string | undefined> {
+    await loadMonospaceFont();
+    await loadSansSerifFont();
+
+    // Make sure the selection is a single piece of text before proceeding.
+    if (figma.currentPage.selection.length === 0) {
+      // if not, show a message
+      figma.closePlugin("Select a text object to convert it");
+      return;
+    } // if it is not a text object, show a message
+    const nodes = figma.currentPage.selection.filter(function (node) {
+      return node.type === "TEXT";
+    }) as Array<TextNode>;
+    if (nodes.length === 0) {
+      figma.closePlugin("Select a text object to convert it");
+      return;
+    } else {
+      for (const node of figma.currentPage.selection) {
+        if ("characters" in node) {
+          const email = [
+            "devops_master",
+            "sysadmin_guru",
+            "automate_ninja",
+            "code_whisperer",
+            "infra_architect",
+            "deploy_wizard",
+            "container_captain",
+            "orchestration_pro",
+            "monitor_mage",
+            "resilience_expert",
+            "troubleshoot_titan",
+            "global-sre-ops",
+            "global-sre-dev-ops",
+          ];
+
+          const randomEmail = Math.floor(Math.random() * email.length);
+
+          node.characters = email[randomEmail] + "@elastic.co";
+        }
+      }
+    }
+  }
+
+  createEmail().then((message: string | undefined) => {
     figma.closePlugin(message);
   });
 }

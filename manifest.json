@@ -47,6 +47,8 @@
     { "name": "Profiling Source File", "command": "profiling-source-file" },
     { "name": "CO2 Emissions", "command": "co2" },
     { "name": "Dollar currency", "command": "dollar" },
+    { "name": "Region", "command": "region" },
+    { "name": "Contact Email", "command": "email" },
 
     { "separator": true },
     { "name": "Open Plugin", "command": "open-plugin" }
