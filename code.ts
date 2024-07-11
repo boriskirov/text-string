@@ -2159,8 +2159,8 @@ if (figma.command == "open-plugin") {
         }
       }
     }
-    //Update random email
-    if (msg.type === "change-email") {
+    //Update random cloud provider
+    if (msg.type === "change-cloud") {
       // Check if something is selected
       if (figma.currentPage.selection.length === 0) {
         // if not, show a message
@@ -2197,6 +2197,46 @@ if (figma.command == "open-plugin") {
           const randomEmail = Math.floor(Math.random() * email.length);
 
           node.characters = email[randomEmail] + "@elastic.co";
+        }
+      }
+    }
+    //Update random cloud
+    if (msg.type === "change-cloud-provider") {
+      // Check if something is selected
+      if (figma.currentPage.selection.length === 0) {
+        // if not, show a message
+        figma.notify("Select a text object to convert it", { timeout: 5 });
+        return;
+      }
+      // if it is not a text object, show a message
+      const nodes = figma.currentPage.selection.filter(function (node) {
+        return node.type === "TEXT";
+      }) as Array<TextNode>;
+      if (nodes.length === 0) {
+        figma.notify("Select a text object to convert it", { timeout: 5 });
+        return;
+      }
+
+      for (const node of figma.currentPage.selection) {
+        if ("characters" in node) {
+          const cloud = [
+            "Amazon Web Services (AWS)",
+            "Microsoft Azure",
+            "Google Cloud Platform (GCP)",
+            "IBM Cloud",
+            "Oracle Cloud",
+            "Alibaba Cloud",
+            "SAP Cloud",
+            "Linode",
+            "Heroku",
+            "Salesforce",
+            "DigitalOcean",
+            "Linode",
+          ];
+
+          const randomCloudProvider = Math.floor(Math.random() * cloud.length);
+
+          node.characters = cloud[randomCloudProvider];
         }
       }
     }
@@ -4751,6 +4791,54 @@ if (figma.command == "email") {
   }
 
   createEmail().then((message: string | undefined) => {
+    figma.closePlugin(message);
+  });
+}
+
+if (figma.command == "cloud-provider") {
+  async function createCloudProvider(): Promise<string | undefined> {
+    await loadMonospaceFont();
+    await loadSansSerifFont();
+
+    // Make sure the selection is a single piece of text before proceeding.
+    if (figma.currentPage.selection.length === 0) {
+      // if not, show a message
+      figma.closePlugin("Select a text object to convert it");
+      return;
+    } // if it is not a text object, show a message
+    const nodes = figma.currentPage.selection.filter(function (node) {
+      return node.type === "TEXT";
+    }) as Array<TextNode>;
+    if (nodes.length === 0) {
+      figma.closePlugin("Select a text object to convert it");
+      return;
+    } else {
+      for (const node of figma.currentPage.selection) {
+        if ("characters" in node) {
+          const cloud = [
+            "Amazon Web Services (AWS)",
+            "Microsoft Azure",
+            "Google Cloud Platform (GCP)",
+            "IBM Cloud",
+            "Oracle Cloud",
+            "Alibaba Cloud",
+            "SAP Cloud",
+            "Linode",
+            "Heroku",
+            "Salesforce",
+            "DigitalOcean",
+            "Linode",
+          ];
+
+          const randomCloudProvider = Math.floor(Math.random() * cloud.length);
+
+          node.characters = cloud[randomCloudProvider];
+        }
+      }
+    }
+  }
+
+  createCloudProvider().then((message: string | undefined) => {
     figma.closePlugin(message);
   });
 }

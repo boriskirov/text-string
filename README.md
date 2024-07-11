@@ -154,6 +154,34 @@ If text object/s is/are selected in Figma, the command will format them randomly
 
 If text object/s is/are selected in Figma, the command will format them randomly with a message.
 
+### Profiling Source file
+
+If text object/s is/are selected in Figma, the command will format them randomly with a source file.
+
+### Timestamp
+
+If text object/s is/are selected in Figma, the command will format them randomly with a timestamps.
+
+### CO2
+
+If text object/s is/are selected in Figma, the command will format them randomly with a CO2 impact.
+
+### Dollar
+
+If text object/s is/are selected in Figma, the command will format them randomly with a dollar amount.
+
+### Region
+
+If text object/s is/are selected in Figma, the command will format them randomly with a cloud regions.
+
+### Contact Email
+
+If text object/s is/are selected in Figma, the command will format them randomly with a contact email from o11y perspective.
+
+### Cloud Provider
+
+If text object/s is/are selected in Figma, the command will format them randomly with a cloud provider.
+
 ### Open Plugin
 
 Opens a modal with a list of options. Select a text object/s in figma and then click on one of the available options in the modal to convert them in a data specific type. Close the dialog by clicking on the close icon on the top right corner.
