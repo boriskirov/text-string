@@ -52,6 +52,7 @@
     { "name": "Cloud Provider", "command": "cloud-provider" },
 
     { "separator": true },
-    { "name": "Open Plugin", "command": "open-plugin" }
+    { "name": "Open Plugin", "command": "open-plugin" },
+    { "networkAccess": { "allowedDomains": "none" } }
   ]
 }
