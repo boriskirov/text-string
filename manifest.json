@@ -5,6 +5,9 @@
   "main": "code.js",
   "editorType": ["figma", "figjam"],
   "ui": "ui.html",
+  "networkAccess": {
+    "allowedDomains": ["none"]
+  },
   "menu": [
     { "name": "Apple Mobile Device", "command": "apple-mobile-device" },
     { "name": "Android Mobile Device", "command": "android-mobile-device" },
@@ -52,7 +55,6 @@
     { "name": "Cloud Provider", "command": "cloud-provider" },
 
     { "separator": true },
-    { "name": "Open Plugin", "command": "open-plugin" },
-    { "networkAccess": { "allowedDomains": "none" } }
+    { "name": "Open Plugin", "command": "open-plugin" }
   ]
 }

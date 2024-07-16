@@ -448,6 +448,21 @@ if (figma.command == "open-plugin") {
             "opbeans-go",
             "opbeans-dotnet",
             "opbeans-ruby",
+            "adService",
+            "checkoutService",
+            "quoteService",
+            "shippingService",
+            "currencyService",
+            "productCatalogService",
+            "synth-node-0",
+            "synth-node-1",
+            "web-go",
+            "order-processing-dotnet",
+            "loadgenerator",
+            "api-backend-java",
+            "service-with-transactions",
+            "consumer",
+            "service-with-too-many-errors",
           ];
           const randomService = Math.floor(Math.random() * service.length);
 
@@ -2356,6 +2371,21 @@ if (figma.command == "service") {
               "opbeans-go",
               "opbeans-dotnet",
               "opbeans-ruby",
+              "adService",
+              "checkoutService",
+              "quoteService",
+              "shippingService",
+              "currencyService",
+              "productCatalogService",
+              "synth-node-0",
+              "synth-node-1",
+              "web-go",
+              "order-processing-dotnet",
+              "loadgenerator",
+              "api-backend-java",
+              "service-with-transactions",
+              "consumer",
+              "service-with-too-many-errors",
             ];
             const randomService = Math.floor(Math.random() * service.length);
 
