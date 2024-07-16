@@ -2255,8 +2255,55 @@ if (figma.command == "open-plugin") {
         }
       }
     }
-  };
+    //Update k8s field
+    if (msg.type === "change-k8s-field") {
+      // Check if something is selected
+      if (figma.currentPage.selection.length === 0) {
+        // if not, show a message
+        figma.notify("Select a text object to convert it", { timeout: 5 });
+        return;
+      }
+      // if it is not a text object, show a message
+      const nodes = figma.currentPage.selection.filter(function (node) {
+        return node.type === "TEXT";
+      }) as Array<TextNode>;
+      if (nodes.length === 0) {
+        figma.notify("Select a text object to convert it", { timeout: 5 });
+        return;
+      }
 
+      for (const node of figma.currentPage.selection) {
+        if ("characters" in node) {
+          const dataK8sField = [
+            "kubernetes.container.name",
+            "kubernetes.job.name",
+            "kubernetes.labels.app",
+            "kubernetes.labels.name",
+            "kubernetes.labels.opentelemetry_io/name",
+            "kubernetes.namespace",
+            "kubernetes.namespace_uid",
+            "kubernetes.statefulset.name",
+            "kubernetes.replicaset.name",
+            "kubernetes.pod.name",
+            "kubernetes.node.labels.topology_kubernetes_io/zone",
+            "kubernetes.node.labels.project",
+            "kubernetes.node.labels.org",
+            "kubernetes.node.labels.owner",
+            "kubernetes.labels.component",
+            "kubernetes.daemonset.name",
+            "kubernetes.labels.app_kubernetes_io/group",
+            "kubernetes.labels.app_kubernetes_io/instance",
+          ];
+
+          const randomK8sField = Math.floor(
+            Math.random() * dataK8sField.length
+          );
+
+          node.characters = dataK8sField[randomK8sField];
+        }
+      }
+    }
+  };
   // SHORTCUTS LOGIC BELOW
   //
   //
@@ -4869,6 +4916,60 @@ if (figma.command == "cloud-provider") {
   }
 
   createCloudProvider().then((message: string | undefined) => {
+    figma.closePlugin(message);
+  });
+}
+if (figma.command == "k8s-field") {
+  async function createK8sField(): Promise<string | undefined> {
+    await loadMonospaceFont();
+    await loadSansSerifFont();
+    // Make sure the selection is a single piece of text before proceeding.
+    if (figma.currentPage.selection.length === 0) {
+      // if not, show a message
+      figma.closePlugin("Select a text object to convert it");
+      return;
+    } // if it is not a text object, show a message
+    const nodes = figma.currentPage.selection.filter(function (node) {
+      return node.type === "TEXT";
+    }) as Array<TextNode>;
+    if (nodes.length === 0) {
+      figma.closePlugin("Select a text object to convert it");
+      return;
+    } else {
+      for (const node of figma.currentPage.selection) {
+        if ("characters" in node) {
+          const dataK8sField = [
+            "kubernetes.container.name",
+            "kubernetes.job.name",
+            "kubernetes.labels.app",
+            "kubernetes.labels.name",
+            "kubernetes.labels.opentelemetry_io/name",
+            "kubernetes.namespace",
+            "kubernetes.namespace_uid",
+            "kubernetes.statefulset.name",
+            "kubernetes.replicaset.name",
+            "kubernetes.pod.name",
+            "kubernetes.node.labels.topology_kubernetes_io/zone",
+            "kubernetes.node.labels.project",
+            "kubernetes.node.labels.org",
+            "kubernetes.node.labels.owner",
+            "kubernetes.labels.component",
+            "kubernetes.daemonset.name",
+            "kubernetes.labels.app_kubernetes_io/group",
+            "kubernetes.labels.app_kubernetes_io/instance",
+          ];
+
+          const randomK8sField = Math.floor(
+            Math.random() * dataK8sField.length
+          );
+
+          node.characters = dataK8sField[randomK8sField];
+        }
+      }
+    }
+  }
+
+  createK8sField().then((message: string | undefined) => {
     figma.closePlugin(message);
   });
 }

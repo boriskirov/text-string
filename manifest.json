@@ -53,6 +53,7 @@
     { "name": "Region", "command": "region" },
     { "name": "Contact Email", "command": "email" },
     { "name": "Cloud Provider", "command": "cloud-provider" },
+    { "name": "Kubernetes field", "command": "k8s-field" },
 
     { "separator": true },
     { "name": "Open Plugin", "command": "open-plugin" }
