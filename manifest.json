@@ -54,6 +54,7 @@
     { "name": "Contact Email", "command": "email" },
     { "name": "Cloud Provider", "command": "cloud-provider" },
     { "name": "Kubernetes field", "command": "k8s-field" },
+    { "name": "Datastream", "command": "datastream" },
 
     { "separator": true },
     { "name": "Open Plugin", "command": "open-plugin" }

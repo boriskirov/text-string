@@ -2255,6 +2255,56 @@ if (figma.command == "open-plugin") {
         }
       }
     }
+    //Update datastream
+    if (msg.type === "change-datastream") {
+      // Check if something is selected
+      if (figma.currentPage.selection.length === 0) {
+        // if not, show a message
+        figma.notify("Select a text object to convert it", { timeout: 5 });
+        return;
+      }
+      // if it is not a text object, show a message
+      const nodes = figma.currentPage.selection.filter(function (node) {
+        return node.type === "TEXT";
+      }) as Array<TextNode>;
+      if (nodes.length === 0) {
+        figma.notify("Select a text object to convert it", { timeout: 5 });
+        return;
+      }
+
+      for (const node of figma.currentPage.selection) {
+        if ("characters" in node) {
+          const dataStream = [
+            ".kibana-event-log-ds ",
+            ".logs-deprecation.elasticsearch-default ",
+            ".logs-endpoint.diagnostic.collection-default ",
+            ".slm-history-7 ",
+            "auditbeat-8.16.0",
+            "ilm-history-7 ",
+            "logs-activemq.audit-default",
+            "logs-activemq.log-default",
+            "logs-akamai.siem-default ",
+            "logs-apache.access-default ",
+            "logs-apache.error-default ",
+            "logs-apm.app.adservice-default",
+            "logs-apm.app.cartservice-default ",
+            "logs-apm.app.checkoutservice-default",
+            "logs-apm.app.currencyservice-default ",
+            "logs-apm.app.opbeans_android-default ",
+            "logs-apm.app.opbeans_swift-default ",
+            "logs-apm.app.productcatalogservice-default",
+            "logs-apm.app.quoteservice-default ",
+            "logs-apm.app.recommendationService-default",
+          ];
+
+          const randomDataStream = Math.floor(
+            Math.random() * dataStream.length
+          );
+
+          node.characters = dataStream[randomDataStream];
+        }
+      }
+    }
     //Update k8s field
     if (msg.type === "change-k8s-field") {
       // Check if something is selected
@@ -4970,6 +5020,63 @@ if (figma.command == "k8s-field") {
   }
 
   createK8sField().then((message: string | undefined) => {
+    figma.closePlugin(message);
+  });
+}
+
+if (figma.command == "datastream") {
+  async function createDataStream(): Promise<string | undefined> {
+    await loadMonospaceFont();
+    await loadSansSerifFont();
+    // Make sure the selection is a single piece of text before proceeding.
+    if (figma.currentPage.selection.length === 0) {
+      // if not, show a message
+      figma.closePlugin("Select a text object to convert it");
+      return;
+    } // if it is not a text object, show a message
+    const nodes = figma.currentPage.selection.filter(function (node) {
+      return node.type === "TEXT";
+    }) as Array<TextNode>;
+    if (nodes.length === 0) {
+      figma.closePlugin("Select a text object to convert it");
+      return;
+    } else {
+      for (const node of figma.currentPage.selection) {
+        if ("characters" in node) {
+          const dataStream = [
+            ".kibana-event-log-ds ",
+            ".logs-deprecation.elasticsearch-default ",
+            ".logs-endpoint.diagnostic.collection-default ",
+            ".slm-history-7 ",
+            "auditbeat-8.16.0",
+            "ilm-history-7 ",
+            "logs-activemq.audit-default",
+            "logs-activemq.log-default",
+            "logs-akamai.siem-default ",
+            "logs-apache.access-default ",
+            "logs-apache.error-default ",
+            "logs-apm.app.adservice-default",
+            "logs-apm.app.cartservice-default ",
+            "logs-apm.app.checkoutservice-default",
+            "logs-apm.app.currencyservice-default ",
+            "logs-apm.app.opbeans_android-default ",
+            "logs-apm.app.opbeans_swift-default ",
+            "logs-apm.app.productcatalogservice-default",
+            "logs-apm.app.quoteservice-default ",
+            "logs-apm.app.recommendationService-default",
+          ];
+
+          const randomDataStream = Math.floor(
+            Math.random() * dataStream.length
+          );
+
+          node.characters = dataStream[randomDataStream];
+        }
+      }
+    }
+  }
+
+  createDataStream().then((message: string | undefined) => {
     figma.closePlugin(message);
   });
 }

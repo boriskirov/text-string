@@ -744,6 +744,15 @@
             ><span class="button-text-type">Kubernetes field</span>
           </button>
         </li>
+
+        <li class="list-item">
+          <button id="datastream " class="button-list">
+            <span class="button-type"
+              ><img
+                src="data:image/svg+xml,%3Csvg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12 3H10.5V7.5H12V6H16.5V4.5H12V3Z' fill='%23343741'/%3E%3Cpath d='M4.5 15H3V19.5H4.5V18H9V16.5H4.5V15Z' fill='%23343741'/%3E%3Cpath d='M10.5 15H12V16.5H16.5V18H12V19.5H10.5V15Z' fill='%23343741'/%3E%3Cpath d='M19.5 15H18V19.5H19.5V18H21V16.5H19.5V15Z' fill='%23343741'/%3E%3Cpath d='M7.5 9H9V10.5H13.5V12H9V13.5H7.5V9Z' fill='%23343741'/%3E%3Cpath d='M16.5 9H15V13.5H16.5V12H21V10.5H16.5V9Z' fill='%23343741'/%3E%3Cpath d='M18 3H19.5V4.5H21V6H19.5V7.5H18V3Z' fill='%23343741'/%3E%3Cpath d='M9 4.5H3V6H9V4.5Z' fill='%23343741'/%3E%3Cpath d='M3 10.5H6V12H3V10.5Z' fill='%23343741'/%3E%3C/svg%3E" /></span
+            ><span class="button-text-type">Datastream</span>
+          </button>
+        </li>
       </ul>
     </div>
 
@@ -1066,6 +1075,13 @@
         document.getElementById("k8s-field").onclick = () => {
           parent.postMessage(
             { pluginMessage: { type: "change-k8s-field" } },
+            "*"
+          );
+        };
+
+        document.getElementById("datastream").onclick = () => {
+          parent.postMessage(
+            { pluginMessage: { type: "change-datastream" } },
             "*"
           );
         };

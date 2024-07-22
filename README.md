@@ -182,6 +182,14 @@ If text object/s is/are selected in Figma, the command will format them randomly
 
 If text object/s is/are selected in Figma, the command will format them randomly with a cloud provider.
 
+### K8s field
+
+If text object/s is/are selected in Figma, the command will format them randomly with a kuberentes field.
+
+### Datastream
+
+If text object/s is/are selected in Figma, the command will format them randomly with a datastream name.
+
 ### Open Plugin
 
 Opens a modal with a list of options. Select a text object/s in figma and then click on one of the available options in the modal to convert them in a data specific type. Close the dialog by clicking on the close icon on the top right corner.
