@@ -2655,6 +2655,95 @@ if (figma.command == "open-plugin") {
         }
       }
     }
+
+    //Update mySQL log messages
+    if (msg.type === "change-mysql-log-message") {
+      // Check if something is selected
+      if (figma.currentPage.selection.length === 0) {
+        // if not, show a message
+        figma.notify("Select a text object to convert it", { timeout: 5 });
+        return;
+      }
+      // if it is not a text object, show a message
+      const nodes = figma.currentPage.selection.filter(function (node) {
+        return node.type === "TEXT";
+      }) as Array<TextNode>;
+      if (nodes.length === 0) {
+        figma.notify("Select a text object to convert it", { timeout: 5 });
+        return;
+      }
+
+      for (const node of figma.currentPage.selection) {
+        if ("characters" in node) {
+          const mysqlogmessage = [
+            "[Server] mysqld: MySQL Community Server - GPL (version 8.0.34)",
+            "[Server] Starting MySQL server on port 3306",
+            "[InnoDB] Initializing buffer pool, size = 256.0M",
+            "[InnoDB] Completed initialization of buffer pool",
+            "[InnoDB] Log file ./ib_logfile0 is of different size 0 MB, renaming it to match",
+            "[Server] Data dictionary loading",
+            "[Server] Data dictionary upgrade required",
+            "[Server] Plugin 'FEDERATED' is disabled.",
+            "[Server] Successfully loaded plugins",
+            "[Server] Initializing authentication plugins.",
+            "[Server] A temporary password is generated for root@localhost: abc123!",
+            "[Server] SSL: Setting up SSL connections.",
+            "[Server] X Protocol is enabled on port 33060.",
+            "[Warning] Insecure setting: '--skip-networking' is set.",
+            "[Warning] The syntax for --innodb_buffer_pool_size is deprecated.",
+            "[Server] Ready for connections. Version: '8.0.34'  socket: '/var/lib/mysql/mysql.sock'",
+            "[Server] Listening on 127.0.0.1:3306 with backlog 50.",
+          ];
+
+          const randomMysqlLogMessage = Math.floor(
+            Math.random() * mysqlogmessage.length
+          );
+
+          node.characters = mysqlogmessage[randomMysqlLogMessage];
+        }
+      }
+    }
+
+    //Update java log messages
+    if (msg.type === "change-java-log-message") {
+      // Check if something is selected
+      if (figma.currentPage.selection.length === 0) {
+        // if not, show a message
+        figma.notify("Select a text object to convert it", { timeout: 5 });
+        return;
+      }
+      // if it is not a text object, show a message
+      const nodes = figma.currentPage.selection.filter(function (node) {
+        return node.type === "TEXT";
+      }) as Array<TextNode>;
+      if (nodes.length === 0) {
+        figma.notify("Select a text object to convert it", { timeout: 5 });
+        return;
+      }
+
+      for (const node of figma.currentPage.selection) {
+        if ("characters" in node) {
+          const javalogmessage = [
+            "[JAVA] [INFO ] 2024-12-04 14:00:01.210 [main] com.example.App - Application started. Listening on port 8080",
+            "[JAVA] [ERROR] 2024-12-04 14:00:01.200 [main] com.example.config.ConfigLoader - Failed to load optional configuration file: missing-file.properties",
+            "[JAVA] [INFO ] 2024-12-04 14:00:01.180 [main] com.example.App - Java Application initialized successfully",
+            "[JAVA] [INFO ] 2024-12-04 14:00:01.170 [main] org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler",
+            "[JAVA] [INFO ] 2024-12-04 14:00:01.150 [main] org.springframework.context.AnnotationConfigApplicationContext - Refreshing Spring ApplicationContext",
+            "[JAVA] [DEBUG] 2024-12-04 14:00:01.140 [main] com.example.security.SecurityManager - Initializing security modules",
+            "[JAVA] [INFO ] 2024-12-04 14:00:01.135 [main] com.example.db.DatabaseConnector - Connecting to database at jdbc:mysql://localhost:3306/mydb",
+            "[JAVA] [INFO ] 2024-12-04 14:00:01.130 [main] org.hibernate.Version - Hibernate Core {5.6.15.Final}",
+            "[JAVA] [INFO ] 2024-12-04 14:00:01.123 [main] com.example.App - Starting Java Application [Version: 1.0.0]",
+            "[JAVA] [DEBUG] 2024-12-04 14:00:01.125 [main] com.example.config.ConfigLoader - Loading configuration from application.properties",
+          ];
+
+          const randomJavaLogMessage = Math.floor(
+            Math.random() * javalogmessage.length
+          );
+
+          node.characters = javalogmessage[randomJavaLogMessage];
+        }
+      }
+    }
   };
 }
 // SHORTCUTS LOGIC BELOW
@@ -5468,6 +5557,105 @@ if (figma.command == "ip-address") {
     }
   }
   changeIpAddress().then((message: string | undefined) => {
+    figma.closePlugin(message);
+  });
+}
+
+if (figma.command == "mysql-log-message") {
+  async function changeMySqlLogMessage(): Promise<string | undefined> {
+    await loadMonospaceFont();
+    await loadSansSerifFont();
+    // Make sure the selection is a single piece of text before proceeding.
+    if (figma.currentPage.selection.length === 0) {
+      // if not, show a message
+      figma.closePlugin("Select a text object to convert it");
+      return;
+    } // if it is not a text object, show a message
+    const nodes = figma.currentPage.selection.filter(function (node) {
+      return node.type === "TEXT";
+    }) as Array<TextNode>;
+    if (nodes.length === 0) {
+      figma.closePlugin("Select a text object to convert it");
+      return;
+    } else {
+      for (const node of figma.currentPage.selection) {
+        if ("characters" in node) {
+          const mysqlogmessage = [
+            "[Server] mysqld: MySQL Community Server - GPL (version 8.0.34)",
+            "[Server] Starting MySQL server on port 3306",
+            "[InnoDB] Initializing buffer pool, size = 256.0M",
+            "[InnoDB] Completed initialization of buffer pool",
+            "[InnoDB] Log file ./ib_logfile0 is of different size 0 MB, renaming it to match",
+            "[Server] Data dictionary loading",
+            "[Server] Data dictionary upgrade required",
+            "[Server] Plugin 'FEDERATED' is disabled.",
+            "[Server] Successfully loaded plugins",
+            "[Server] Initializing authentication plugins.",
+            "[Server] A temporary password is generated for root@localhost: abc123!",
+            "[Server] SSL: Setting up SSL connections.",
+            "[Server] X Protocol is enabled on port 33060.",
+            "[Warning] Insecure setting: '--skip-networking' is set.",
+            "[Warning] The syntax for --innodb_buffer_pool_size is deprecated.",
+            "[Server] Ready for connections. Version: '8.0.34'  socket: '/var/lib/mysql/mysql.sock'",
+            "[Server] Listening on 127.0.0.1:3306 with backlog 50.",
+          ];
+
+          const randomMysqlLogMessage = Math.floor(
+            Math.random() * mysqlogmessage.length
+          );
+
+          node.characters = mysqlogmessage[randomMysqlLogMessage];
+        }
+      }
+    }
+  }
+  changeMySqlLogMessage().then((message: string | undefined) => {
+    figma.closePlugin(message);
+  });
+}
+
+if (figma.command == "java-log-message") {
+  async function changeJavaLogMessage(): Promise<string | undefined> {
+    await loadMonospaceFont();
+    await loadSansSerifFont();
+    // Make sure the selection is a single piece of text before proceeding.
+    if (figma.currentPage.selection.length === 0) {
+      // if not, show a message
+      figma.closePlugin("Select a text object to convert it");
+      return;
+    } // if it is not a text object, show a message
+    const nodes = figma.currentPage.selection.filter(function (node) {
+      return node.type === "TEXT";
+    }) as Array<TextNode>;
+    if (nodes.length === 0) {
+      figma.closePlugin("Select a text object to convert it");
+      return;
+    } else {
+      for (const node of figma.currentPage.selection) {
+        if ("characters" in node) {
+          const javalogmessage = [
+            "[JAVA] [INFO ] 2024-12-04 14:00:01.210 [main] com.example.App - Application started. Listening on port 8080",
+            "[JAVA] [ERROR] 2024-12-04 14:00:01.200 [main] com.example.config.ConfigLoader - Failed to load optional configuration file: missing-file.properties",
+            "[JAVA] [INFO ] 2024-12-04 14:00:01.180 [main] com.example.App - Java Application initialized successfully",
+            "[JAVA] [INFO ] 2024-12-04 14:00:01.170 [main] org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler",
+            "[JAVA] [INFO ] 2024-12-04 14:00:01.150 [main] org.springframework.context.AnnotationConfigApplicationContext - Refreshing Spring ApplicationContext",
+            "[JAVA] [DEBUG] 2024-12-04 14:00:01.140 [main] com.example.security.SecurityManager - Initializing security modules",
+            "[JAVA] [INFO ] 2024-12-04 14:00:01.135 [main] com.example.db.DatabaseConnector - Connecting to database at jdbc:mysql://localhost:3306/mydb",
+            "[JAVA] [INFO ] 2024-12-04 14:00:01.130 [main] org.hibernate.Version - Hibernate Core {5.6.15.Final}",
+            "[JAVA] [INFO ] 2024-12-04 14:00:01.123 [main] com.example.App - Starting Java Application [Version: 1.0.0]",
+            "[JAVA] [DEBUG] 2024-12-04 14:00:01.125 [main] com.example.config.ConfigLoader - Loading configuration from application.properties",
+          ];
+
+          const randomJavaLogMessage = Math.floor(
+            Math.random() * javalogmessage.length
+          );
+
+          node.characters = javalogmessage[randomJavaLogMessage];
+        }
+      }
+    }
+  }
+  changeJavaLogMessage().then((message: string | undefined) => {
     figma.closePlugin(message);
   });
 }

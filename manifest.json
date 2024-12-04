@@ -57,6 +57,8 @@
     { "name": "Datastream", "command": "datastream" },
     { "name": "Data Retention", "command": "data-retention" },
     { "name": "IP Address", "command": "ip-address" },
+    { "name": "MySQL Log Messages", "command": "mysql-log-message" },
+    { "name": "Java Log Messages", "command": "java-log-message" },
 
     { "separator": true },
     { "name": "Open Plugin", "command": "open-plugin" }
