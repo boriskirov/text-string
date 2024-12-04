@@ -55,6 +55,8 @@
     { "name": "Cloud Provider", "command": "cloud-provider" },
     { "name": "Kubernetes field", "command": "k8s-field" },
     { "name": "Datastream", "command": "datastream" },
+    { "name": "Data Retention", "command": "data-retention" },
+    { "name": "IP Address", "command": "ip-address" },
 
     { "separator": true },
     { "name": "Open Plugin", "command": "open-plugin" }

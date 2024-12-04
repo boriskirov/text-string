@@ -2174,8 +2174,8 @@ if (figma.command == "open-plugin") {
         }
       }
     }
-    //Update random cloud provider
-    if (msg.type === "change-cloud") {
+    //Update random email
+    if (msg.type === "change-email") {
       // Check if something is selected
       if (figma.currentPage.selection.length === 0) {
         // if not, show a message
@@ -2215,7 +2215,276 @@ if (figma.command == "open-plugin") {
         }
       }
     }
-    //Update random cloud
+    //Update random cloud provider
+    if (msg.type === "change-cloud-provider") {
+      // Check if something is selected
+      if (figma.currentPage.selection.length === 0) {
+        // if not, show a message
+        figma.notify("Select a text object to convert it", { timeout: 5 });
+        return;
+      }
+      // if it is not a text object, show a message
+      const nodes = figma.currentPage.selection.filter(function (node) {
+        return node.type === "TEXT";
+      }) as Array<TextNode>;
+      if (nodes.length === 0) {
+        figma.notify("Select a text object to convert it", { timeout: 5 });
+        return;
+      }
+
+      for (const node of figma.currentPage.selection) {
+        if ("characters" in node) {
+          const cloud = [
+            "Amazon Web Services (AWS)",
+            "Microsoft Azure",
+            "Google Cloud Platform (GCP)",
+            "IBM Cloud",
+            "Oracle Cloud",
+            "Alibaba Cloud",
+            "SAP Cloud",
+            "Linode",
+            "Heroku",
+            "Salesforce",
+            "DigitalOcean",
+            "Linode",
+          ];
+
+          const randomCloudProvider = Math.floor(Math.random() * cloud.length);
+
+          node.characters = cloud[randomCloudProvider];
+        }
+      }
+
+      //Update datastream
+      if (msg.type === "change-datastream") {
+        // Check if something is selected
+        if (figma.currentPage.selection.length === 0) {
+          // if not, show a message
+          figma.notify("Select a text object to convert it", { timeout: 5 });
+          return;
+        }
+        // if it is not a text object, show a message
+        const nodes = figma.currentPage.selection.filter(function (node) {
+          return node.type === "TEXT";
+        }) as Array<TextNode>;
+        if (nodes.length === 0) {
+          figma.notify("Select a text object to convert it", { timeout: 5 });
+          return;
+        }
+
+        for (const node of figma.currentPage.selection) {
+          if ("characters" in node) {
+            const dataStream = [
+              ".kibana-event-log-ds ",
+              ".logs-deprecation.elasticsearch-default ",
+              ".logs-endpoint.diagnostic.collection-default ",
+              ".slm-history-7 ",
+              "auditbeat-8.16.0",
+              "ilm-history-7 ",
+              "logs-activemq.audit-default",
+              "logs-activemq.log-default",
+              "logs-akamai.siem-default ",
+              "logs-apache.access-default ",
+              "logs-apache.error-default ",
+              "logs-apm.app.adservice-default",
+              "logs-apm.app.cartservice-default ",
+              "logs-apm.app.checkoutservice-default",
+              "logs-apm.app.currencyservice-default ",
+              "logs-apm.app.opbeans_android-default ",
+              "logs-apm.app.opbeans_swift-default ",
+              "logs-apm.app.productcatalogservice-default",
+              "logs-apm.app.quoteservice-default ",
+              "logs-apm.app.recommendationService-default",
+            ];
+
+            const randomDataStream = Math.floor(
+              Math.random() * dataStream.length
+            );
+
+            node.characters = dataStream[randomDataStream];
+          }
+        }
+      }
+      //Update k8s field
+      if (msg.type === "change-k8s-field") {
+        // Check if something is selected
+        if (figma.currentPage.selection.length === 0) {
+          // if not, show a message
+          figma.notify("Select a text object to convert it", { timeout: 5 });
+          return;
+        }
+        // if it is not a text object, show a message
+        const nodes = figma.currentPage.selection.filter(function (node) {
+          return node.type === "TEXT";
+        }) as Array<TextNode>;
+        if (nodes.length === 0) {
+          figma.notify("Select a text object to convert it", { timeout: 5 });
+          return;
+        }
+
+        for (const node of figma.currentPage.selection) {
+          if ("characters" in node) {
+            const dataK8sField = [
+              "kubernetes.container.name",
+              "kubernetes.job.name",
+              "kubernetes.labels.app",
+              "kubernetes.labels.name",
+              "kubernetes.labels.opentelemetry_io/name",
+              "kubernetes.namespace",
+              "kubernetes.namespace_uid",
+              "kubernetes.statefulset.name",
+              "kubernetes.replicaset.name",
+              "kubernetes.pod.name",
+              "kubernetes.node.labels.topology_kubernetes_io/zone",
+              "kubernetes.node.labels.project",
+              "kubernetes.node.labels.org",
+              "kubernetes.node.labels.owner",
+              "kubernetes.labels.component",
+              "kubernetes.daemonset.name",
+              "kubernetes.labels.app_kubernetes_io/group",
+              "kubernetes.labels.app_kubernetes_io/instance",
+            ];
+
+            const randomK8sField = Math.floor(
+              Math.random() * dataK8sField.length
+            );
+
+            node.characters = dataK8sField[randomK8sField];
+          }
+        }
+      }
+      // Update data retention
+      if (msg.type === "change-data-retention") {
+        // Check if something is selected
+        if (figma.currentPage.selection.length === 0) {
+          // if not, show a message
+          figma.notify("Select a text object to convert it", { timeout: 5 });
+          return;
+        }
+        // if it is not a text object, show a message
+        const nodes = figma.currentPage.selection.filter(function (node) {
+          return node.type === "TEXT";
+        }) as Array<TextNode>;
+        if (nodes.length === 0) {
+          figma.notify("Select a text object to convert it", { timeout: 5 });
+          return;
+        }
+
+        for (const node of figma.currentPage.selection) {
+          if ("characters" in node) {
+            const dataRetention = [
+              "90 days",
+              "Disabled",
+              "10 days",
+              "390 days",
+              "180 days",
+            ];
+
+            const randomDataRetention = Math.floor(
+              Math.random() * dataRetention.length
+            );
+
+            node.characters = dataRetention[randomDataRetention];
+          }
+        }
+      }
+      //Update IP address
+      if (msg.type === "change-ip") {
+        // Check if something is selected
+        if (figma.currentPage.selection.length === 0) {
+          // if not, show a message
+          figma.notify("Select a text object to convert it", { timeout: 5 });
+          return;
+        }
+        // if it is not a text object, show a message
+        const nodes = figma.currentPage.selection.filter(function (node) {
+          return node.type === "TEXT";
+        }) as Array<TextNode>;
+        if (nodes.length === 0) {
+          figma.notify("Select a text object to convert it", { timeout: 5 });
+          return;
+        }
+
+        for (const node of figma.currentPage.selection) {
+          if ("characters" in node) {
+            const ipAddress = [
+              "218.220.162.118s",
+              "172.191.104.77",
+              "73.101.204.144",
+              "27.251.228.103",
+              "94.2.114.155",
+              "115.174.46.65",
+              "72.97.96.101",
+              "97.152.250.106",
+              "10.23.134.114",
+              "65.198.21.164",
+              "1.104.157.16",
+              "183.198.59.189",
+              "221.204.57.72",
+              "17.53.193.40",
+              "90.115.225.195",
+              "246.136.239.77",
+              "13.188.245.132",
+            ];
+
+            const randomIpAddress = Math.floor(
+              Math.random() * ipAddress.length
+            );
+
+            node.characters = ipAddress[randomIpAddress];
+          }
+        }
+      }
+    }
+
+    // Update random Kuberentes field
+    if (msg.type === "change-k8s-field") {
+      // Check if something is selected
+      if (figma.currentPage.selection.length === 0) {
+        // if not, show a message
+        figma.notify("Select a text object to convert it", { timeout: 5 });
+        return;
+      }
+      // if it is not a text object, show a message
+      const nodes = figma.currentPage.selection.filter(function (node) {
+        return node.type === "TEXT";
+      }) as Array<TextNode>;
+      if (nodes.length === 0) {
+        figma.notify("Select a text object to convert it", { timeout: 5 });
+        return;
+      }
+
+      for (const node of figma.currentPage.selection) {
+        if ("characters" in node) {
+          const k8s = [
+            "kubernetes.container.name",
+            "kubernetes.job.name",
+            "kubernetes.labels.app",
+            "kubernetes.labels.name",
+            "kubernetes.labels.opentelemetry_io/name",
+            "kubernetes.namespace",
+            "kubernetes.namespace_uid",
+            "kubernetes.statefulset.name",
+            "kubernetes.replicaset.name",
+            "kubernetes.pod.name",
+            "kubernetes.node.labels.topology_kubernetes_io/zone",
+            "kubernetes.node.labels.project",
+            "kubernetes.node.labels.org",
+            "kubernetes.node.labels.owner",
+            "kubernetes.labels.component",
+            "kubernetes.daemonset.name",
+            "kubernetes.labels.app_kubernetes_io/group",
+            "kubernetes.labels.app_kubernetes_io/instance",
+          ];
+
+          const randomK8sField = Math.floor(Math.random() * k8s.length);
+
+          node.characters = k8s[randomK8sField];
+        }
+      }
+    }
+
+    //Update random cloud provider
     if (msg.type === "change-cloud-provider") {
       // Check if something is selected
       if (figma.currentPage.selection.length === 0) {
@@ -2274,7 +2543,7 @@ if (figma.command == "open-plugin") {
 
       for (const node of figma.currentPage.selection) {
         if ("characters" in node) {
-          const dataStream = [
+          const datastream = [
             ".kibana-event-log-ds ",
             ".logs-deprecation.elasticsearch-default ",
             ".logs-endpoint.diagnostic.collection-default ",
@@ -2298,15 +2567,16 @@ if (figma.command == "open-plugin") {
           ];
 
           const randomDataStream = Math.floor(
-            Math.random() * dataStream.length
+            Math.random() * datastream.length
           );
 
-          node.characters = dataStream[randomDataStream];
+          node.characters = datastream[randomDataStream];
         }
       }
     }
-    //Update k8s field
-    if (msg.type === "change-k8s-field") {
+
+    // Update data retention
+    if (msg.type === "change-data-retention") {
       // Check if something is selected
       if (figma.currentPage.selection.length === 0) {
         // if not, show a message
@@ -2324,74 +2594,107 @@ if (figma.command == "open-plugin") {
 
       for (const node of figma.currentPage.selection) {
         if ("characters" in node) {
-          const dataK8sField = [
-            "kubernetes.container.name",
-            "kubernetes.job.name",
-            "kubernetes.labels.app",
-            "kubernetes.labels.name",
-            "kubernetes.labels.opentelemetry_io/name",
-            "kubernetes.namespace",
-            "kubernetes.namespace_uid",
-            "kubernetes.statefulset.name",
-            "kubernetes.replicaset.name",
-            "kubernetes.pod.name",
-            "kubernetes.node.labels.topology_kubernetes_io/zone",
-            "kubernetes.node.labels.project",
-            "kubernetes.node.labels.org",
-            "kubernetes.node.labels.owner",
-            "kubernetes.labels.component",
-            "kubernetes.daemonset.name",
-            "kubernetes.labels.app_kubernetes_io/group",
-            "kubernetes.labels.app_kubernetes_io/instance",
+          const dataRetention = [
+            "90 days",
+            "Disabled",
+            "10 days",
+            "390 days",
+            "180 days",
           ];
 
-          const randomK8sField = Math.floor(
-            Math.random() * dataK8sField.length
+          const randomDataRetention = Math.floor(
+            Math.random() * dataRetention.length
           );
 
-          node.characters = dataK8sField[randomK8sField];
+          node.characters = dataRetention[randomDataRetention];
+        }
+      }
+    }
+    //Update IP
+    if (msg.type === "change-ip") {
+      // Check if something is selected
+      if (figma.currentPage.selection.length === 0) {
+        // if not, show a message
+        figma.notify("Select a text object to convert it", { timeout: 5 });
+        return;
+      }
+      // if it is not a text object, show a message
+      const nodes = figma.currentPage.selection.filter(function (node) {
+        return node.type === "TEXT";
+      }) as Array<TextNode>;
+      if (nodes.length === 0) {
+        figma.notify("Select a text object to convert it", { timeout: 5 });
+        return;
+      }
+
+      for (const node of figma.currentPage.selection) {
+        if ("characters" in node) {
+          const ipAddress = [
+            "218.220.162.118s",
+            "172.191.104.77",
+            "73.101.204.144",
+            "27.251.228.103",
+            "94.2.114.155",
+            "115.174.46.65",
+            "72.97.96.101",
+            "97.152.250.106",
+            "10.23.134.114",
+            "65.198.21.164",
+            "1.104.157.16",
+            "183.198.59.189",
+            "221.204.57.72",
+            "17.53.193.40",
+            "90.115.225.195",
+            "246.136.239.77",
+            "13.188.245.132",
+          ];
+
+          const randomIpAddress = Math.floor(Math.random() * ipAddress.length);
+
+          node.characters = ipAddress[randomIpAddress];
         }
       }
     }
   };
-  // SHORTCUTS LOGIC BELOW
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
 }
+// SHORTCUTS LOGIC BELOW
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 if (figma.command == "health") {
   async function createHealth(): Promise<string | undefined> {
     await loadMonospaceFont();
@@ -4872,7 +5175,6 @@ if (figma.command == "region") {
     figma.closePlugin(message);
   });
 }
-
 if (figma.command == "email") {
   async function createEmail(): Promise<string | undefined> {
     await loadMonospaceFont();
@@ -4921,7 +5223,6 @@ if (figma.command == "email") {
     figma.closePlugin(message);
   });
 }
-
 if (figma.command == "cloud-provider") {
   async function createCloudProvider(): Promise<string | undefined> {
     await loadMonospaceFont();
@@ -5023,7 +5324,6 @@ if (figma.command == "k8s-field") {
     figma.closePlugin(message);
   });
 }
-
 if (figma.command == "datastream") {
   async function createDataStream(): Promise<string | undefined> {
     await loadMonospaceFont();
@@ -5077,6 +5377,97 @@ if (figma.command == "datastream") {
   }
 
   createDataStream().then((message: string | undefined) => {
+    figma.closePlugin(message);
+  });
+}
+if (figma.command == "data-retention") {
+  async function createDataRetention(): Promise<string | undefined> {
+    await loadMonospaceFont();
+    await loadSansSerifFont();
+    // Make sure the selection is a single piece of text before proceeding.
+    if (figma.currentPage.selection.length === 0) {
+      // if not, show a message
+      figma.closePlugin("Select a text object to convert it");
+      return;
+    } // if it is not a text object, show a message
+    const nodes = figma.currentPage.selection.filter(function (node) {
+      return node.type === "TEXT";
+    }) as Array<TextNode>;
+    if (nodes.length === 0) {
+      figma.closePlugin("Select a text object to convert it");
+      return;
+    } else {
+      for (const node of figma.currentPage.selection) {
+        if ("characters" in node) {
+          const dataRetention = [
+            "90 days",
+            "Disabled",
+            "10 days",
+            "390 days",
+            "180 days",
+          ];
+
+          const randomDataRetention = Math.floor(
+            Math.random() * dataRetention.length
+          );
+
+          node.characters = dataRetention[randomDataRetention];
+        }
+      }
+    }
+  }
+
+  createDataRetention().then((message: string | undefined) => {
+    figma.closePlugin(message);
+  });
+}
+if (figma.command == "ip-address") {
+  async function changeIpAddress(): Promise<string | undefined> {
+    await loadMonospaceFont();
+    await loadSansSerifFont();
+    // Make sure the selection is a single piece of text before proceeding.
+    if (figma.currentPage.selection.length === 0) {
+      // if not, show a message
+      figma.closePlugin("Select a text object to convert it");
+      return;
+    } // if it is not a text object, show a message
+    const nodes = figma.currentPage.selection.filter(function (node) {
+      return node.type === "TEXT";
+    }) as Array<TextNode>;
+    if (nodes.length === 0) {
+      figma.closePlugin("Select a text object to convert it");
+      return;
+    } else {
+      for (const node of figma.currentPage.selection) {
+        if ("characters" in node) {
+          const ipAddress = [
+            "218.220.162.118s",
+            "172.191.104.77",
+            "73.101.204.144",
+            "27.251.228.103",
+            "94.2.114.155",
+            "115.174.46.65",
+            "72.97.96.101",
+            "97.152.250.106",
+            "10.23.134.114",
+            "65.198.21.164",
+            "1.104.157.16",
+            "183.198.59.189",
+            "221.204.57.72",
+            "17.53.193.40",
+            "90.115.225.195",
+            "246.136.239.77",
+            "13.188.245.132",
+          ];
+
+          const randomIpAddress = Math.floor(Math.random() * ipAddress.length);
+
+          node.characters = ipAddress[randomIpAddress];
+        }
+      }
+    }
+  }
+  changeIpAddress().then((message: string | undefined) => {
     figma.closePlugin(message);
   });
 }
