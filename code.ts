@@ -2744,6 +2744,47 @@ if (figma.command == "open-plugin") {
         }
       }
     }
+
+    //Update stream
+    if (msg.type === "change-stream") {
+      // Check if something is selected
+      if (figma.currentPage.selection.length === 0) {
+        // if not, show a message
+        figma.notify("Select a text object to convert it", { timeout: 5 });
+        return;
+      }
+      // if it is not a text object, show a message
+      const nodes = figma.currentPage.selection.filter(function (node) {
+        return node.type === "TEXT";
+      }) as Array<TextNode>;
+      if (nodes.length === 0) {
+        figma.notify("Select a text object to convert it", { timeout: 5 });
+        return;
+      }
+
+      for (const node of figma.currentPage.selection) {
+        if ("characters" in node) {
+          const stream = [
+            "logs",
+            "logs-d1.t1-default",
+            "logs-d1.t1_k8s-default",
+            "logs-d1.t2-default",
+            "logs-d1.t2_abc-default",
+            "logs-d1.t2_def-default",
+            "logs-d1.t2_def-staging",
+            "logs-d2-default",
+            "logs-d2.t2-default",
+            "logs-d3.t1-default",
+            "logs.ngnix.access",
+            "logs.ngnix.default",
+          ];
+
+          const randomStream = Math.floor(Math.random() * stream.length);
+
+          node.characters = stream[randomStream];
+        }
+      }
+    }
   };
 }
 // SHORTCUTS LOGIC BELOW
@@ -5656,6 +5697,51 @@ if (figma.command == "java-log-message") {
     }
   }
   changeJavaLogMessage().then((message: string | undefined) => {
+    figma.closePlugin(message);
+  });
+}
+if (figma.command == "stream") {
+  async function changeStream(): Promise<string | undefined> {
+    await loadMonospaceFont();
+    await loadSansSerifFont();
+    // Make sure the selection is a single piece of text before proceeding.
+    if (figma.currentPage.selection.length === 0) {
+      // if not, show a message
+      figma.closePlugin("Select a text object to convert it");
+      return;
+    } // if it is not a text object, show a message
+    const nodes = figma.currentPage.selection.filter(function (node) {
+      return node.type === "TEXT";
+    }) as Array<TextNode>;
+    if (nodes.length === 0) {
+      figma.closePlugin("Select a text object to convert it");
+      return;
+    } else {
+      for (const node of figma.currentPage.selection) {
+        if ("characters" in node) {
+          const stream = [
+            "logs",
+            "logs-d1.t1-default",
+            "logs-d1.t1_k8s-default",
+            "logs-d1.t2-default",
+            "logs-d1.t2_abc-default",
+            "logs-d1.t2_def-default",
+            "logs-d1.t2_def-staging",
+            "logs-d2-default",
+            "logs-d2.t2-default",
+            "logs-d3.t1-default",
+            "logs.ngnix.access",
+            "logs.ngnix.default",
+          ];
+
+          const randomStream = Math.floor(Math.random() * stream.length);
+
+          node.characters = stream[randomStream];
+        }
+      }
+    }
+  }
+  changeStream().then((message: string | undefined) => {
     figma.closePlugin(message);
   });
 }
