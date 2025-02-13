@@ -798,6 +798,15 @@
             ><span class="button-text-type">Stream</span>
           </button>
         </li>
+
+        <li class="list-item">
+          <button id="nginx-error-log-message" class="button-list">
+            <span class="button-type"
+              ><img
+                src="data:image/svg+xml,%3Csvg width='16' height='16' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M8.00003 0L14.928 4V12L8.00003 16L1.07202 12V4L8.00003 0Z' fill='%23ECF1F9'/%3E%3Cpath d='M5.58468 6.75608V10.9439C5.58468 11.3877 5.22491 11.7474 4.78111 11.7474C4.33731 11.7474 3.97754 11.3877 3.97754 10.9439V4.81592C3.97754 4.1 4.84315 3.74148 5.34936 4.24775L10.1048 9.00371V4.81592C10.1048 4.37212 10.4646 4.01235 10.9084 4.01235C11.3522 4.01235 11.7119 4.37212 11.7119 4.81592V10.9439C11.7119 11.6598 10.8463 12.0183 10.3401 11.512L5.58468 6.75608Z' fill='%231E1E1E'/%3E%3C/svg%3E" /></span
+            ><span class="button-text-type">Nginx Error message</span>
+          </button>
+        </li>
       </ul>
     </div>
 
@@ -1154,6 +1163,17 @@
             { pluginMessage: { type: "change-java-log-message" } },
             "*"
           );
+        };
+
+        document.getElementById("nginx-error-log-message").onclick = () => {
+          parent.postMessage(
+            { pluginMessage: { type: "change-nginx-error-log-message" } },
+            "*"
+          );
+        };
+
+        document.getElementById("stream").onclick = () => {
+          parent.postMessage({ pluginMessage: { type: "change-stream" } }, "*");
         };
 
         document.getElementById("cancel").onclick = () => {

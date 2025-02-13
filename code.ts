@@ -2785,6 +2785,47 @@ if (figma.command == "open-plugin") {
         }
       }
     }
+
+    //Update nginx error log messages
+    if (msg.type === "change-nginx-error-log-message") {
+      // Check if something is selected
+      if (figma.currentPage.selection.length === 0) {
+        // if not, show a message
+        figma.notify("Select a text object to convert it", { timeout: 5 });
+        return;
+      }
+      // if it is not a text object, show a message
+      const nodes = figma.currentPage.selection.filter(function (node) {
+        return node.type === "TEXT";
+      }) as Array<TextNode>;
+      if (nodes.length === 0) {
+        figma.notify("Select a text object to convert it", { timeout: 5 });
+        return;
+      }
+
+      for (const node of figma.currentPage.selection) {
+        if ("characters" in node) {
+          const nginxlogmessage = [
+            "[error] upstream sent too big header – Upstream response headers exceed the limit.",
+            "[error] no live upstreams while connecting to upstream – All upstream servers are down.",
+            "[warn] client sent invalid request while reading client request line – Malformed request from the client.",
+            "[error] bind() to 0.0.0.0:80 failed (98: Address already in use) – Port conflict with another service.",
+            "[error] SSL certificate verify failed – Certificate verification error (expired, untrusted, or missing).",
+            "[error] 502: Bad Gateway – Upstream server returned an invalid response.",
+            "[crit] worker process exited on signal 9 – Worker process terminated unexpectedly.",
+            "[alert] socket() failed (24: Too many open files) – Socket creation failed due to file descriptor limits.",
+            "[error] invalid PID number – PID file corruption or misconfiguration.",
+            "[crit] worker process exited on signal 9 – Worker process terminated unexpectedly.",
+          ];
+
+          const randomNginxLogMessage = Math.floor(
+            Math.random() * nginxlogmessage.length
+          );
+
+          node.characters = nginxlogmessage[randomNginxLogMessage];
+        }
+      }
+    }
   };
 }
 // SHORTCUTS LOGIC BELOW
@@ -5697,6 +5738,52 @@ if (figma.command == "java-log-message") {
     }
   }
   changeJavaLogMessage().then((message: string | undefined) => {
+    figma.closePlugin(message);
+  });
+}
+
+if (figma.command == "nginx-error-log-message") {
+  async function changeNginxLogMessage(): Promise<string | undefined> {
+    await loadMonospaceFont();
+    await loadSansSerifFont();
+    // Make sure the selection is a single piece of text before proceeding.
+    if (figma.currentPage.selection.length === 0) {
+      // if not, show a message
+      figma.closePlugin("Select a text object to convert it");
+      return;
+    } // if it is not a text object, show a message
+    const nodes = figma.currentPage.selection.filter(function (node) {
+      return node.type === "TEXT";
+    }) as Array<TextNode>;
+    if (nodes.length === 0) {
+      figma.closePlugin("Select a text object to convert it");
+      return;
+    } else {
+      for (const node of figma.currentPage.selection) {
+        if ("characters" in node) {
+          const nginxlogmessage = [
+            "[error] upstream sent too big header – Upstream response headers exceed the limit.",
+            "[error] no live upstreams while connecting to upstream – All upstream servers are down.",
+            "[warn] client sent invalid request while reading client request line – Malformed request from the client.",
+            "[error] bind() to 0.0.0.0:80 failed (98: Address already in use) – Port conflict with another service.",
+            "[error] SSL certificate verify failed – Certificate verification error (expired, untrusted, or missing).",
+            "[error] 502: Bad Gateway – Upstream server returned an invalid response.",
+            "[crit] worker process exited on signal 9 – Worker process terminated unexpectedly.",
+            "[alert] socket() failed (24: Too many open files) – Socket creation failed due to file descriptor limits.",
+            "[error] invalid PID number – PID file corruption or misconfiguration.",
+            "[crit] worker process exited on signal 9 – Worker process terminated unexpectedly.",
+          ];
+
+          const randomNginxLogMessage = Math.floor(
+            Math.random() * nginxlogmessage.length
+          );
+
+          node.characters = nginxlogmessage[randomNginxLogMessage];
+        }
+      }
+    }
+  }
+  changeNginxLogMessage().then((message: string | undefined) => {
     figma.closePlugin(message);
   });
 }
